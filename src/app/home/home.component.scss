@@ -1,0 +1,122 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    .content-header{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        .scores{
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            .img-content{
+                height: 40px;
+                width: 100%;
+                background-image:url("../../assets/Group\ 3.png");
+            }
+        } 
+    }
+    .content-body{
+        border-radius: 10px;
+        padding: 16px 20px;
+        background-color: #F5F5F5;
+        h1{
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 24px;
+        }
+        .item{
+            h2{
+                font-size: 14px;
+                line-height: 24px;
+            }
+            .button-group{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                button{
+                    background-color: #5B2EAC;
+                    color: white;
+                    border-radius: 16px;
+                    font-size: 16px;
+                    line-height: 24px;
+                    font-weight: 700;
+                    padding: 4px 20px;
+                }
+                .btn{
+                    display: flex;
+                    align-items: center;
+                    .circle{
+                        img{
+                            position: absolute;
+                            top: 4px;
+                            left: 5px;
+                        }
+                        position: relative;
+                        padding: 20px;
+                        border-radius: 100%;
+                        background-color: #5B2EAC;
+                    }
+                }
+            }
+        }
+    }
+    .content-body-2{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h1{
+            text-align: left;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 24px;
+        }
+        .item{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            p{
+                font-size: 14px;
+                line-height: 24px;
+                font-weight: 400;
+            }
+            h2{
+                font-size: 14px;
+                line-height: 24px;
+            }
+            .button-group{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                button{
+                    background-color: #5B2EAC;
+                    color: white;
+                    border-radius: 16px;
+                    padding: 4px 20px;
+                }
+                .btn{
+                    display: flex;
+                    align-items: center;
+                    .circle{
+                        padding: 0px;
+                        border-radius: 100%;
+                        background-color: #5B2EAC;
+                    }
+                }
+            }
+        }
+    }
+    .footer{
+        display: flex;
+    }
+}
