@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome.component.scss']
 })
 export class WelcomeComponent implements OnInit {
+  // private router:  Router;
 
-  constructor() { }
+  constructor(private router:Router) { 
+
+  }
 
   ngOnInit(): void {
   }
-
+  goToScore() {
+    this.router.navigate(['/scores'])
+  }
 }
