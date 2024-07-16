@@ -37,7 +37,7 @@ export class ScoresComponent implements OnInit {
           let config = {
             method: "post",
             maxBodyLength: Infinity,
-            url: "https://my-first-project-production-9b2c.up.railway.app/telegram-webhook",
+            url: "https://my-first-project-production-9b2c.up.railway.app/users",
             headers: {
               "Content-Type": "application/json",
             },

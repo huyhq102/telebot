@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
 
     this.httpClient.get(`https://my-first-project-production-9b2c.up.railway.app/users/${this.userInfo?.user?.id}`).pipe().subscribe(data => {
       this.totalActivePoint = Number(data);
+      this.totalPoint = this.totalActivePoint;
     })
   }
 
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
 
     axios.request(config).then(response => {
       this.pointHistory = response.data;
-      this.totalPoint = response.data.reduce((total: any, obj: { points: any; }) => obj.points + total, 0);
+      // this.totalPoint = response.data.reduce((total: any, obj: { points: any; }) => obj.points + total, 0);
     })
   }
 
