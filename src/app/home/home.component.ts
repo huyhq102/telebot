@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   pointHistory: any
   ngOnInit(): void {
     this.loadActivePoint()
-    this.loadTotalPoint()
+    // this.loadTotalPoint()
   }
 
   loadActivePoint() {
@@ -180,7 +180,6 @@ export class HomeComponent implements OnInit {
           icon: "success"
         });
         this.loadActivePoint()
-        this.loadTotalPoint()    
       })
       .catch((error) => {
       });
