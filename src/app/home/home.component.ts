@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
       } else {
         Swal.fire({
           title: "Oh no!",
-          text: "Chưa tham gia nhóm hoặc đã nhận thưởng!",
+          text: "Have not joined group or got the reward!",
           icon: "success"
         });
       }
@@ -95,6 +95,8 @@ export class HomeComponent implements OnInit {
         if (response.data.message == 'User had joined group') {
           return true
         }
+        return false
+      }).catch(error => {
         return false
       })
   }
@@ -176,7 +178,7 @@ export class HomeComponent implements OnInit {
       .then((response) => {
         Swal.fire({
           title: "Good job!",
-          text: "Bạn đã nhận được điểm thưởng!",
+          text: "You got a reward!",
           icon: "success"
         });
         this.loadActivePoint()
