@@ -56,6 +56,7 @@ export class ScoresComponent implements OnInit {
     }
   }
 
+  
   gotoHome() {
     this.router.navigate(['/home'])
   }
