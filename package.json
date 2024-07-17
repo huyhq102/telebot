@@ -20,6 +20,7 @@
     "@angular/router": "^14.2.0",
     "@zakarliuka/ng-telegram-webapp": "^1.0.6",
     "axios": "^1.7.2",
+    "ngx-loading": "^2.0.1",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.12.2",
     "tslib": "^2.3.0",
