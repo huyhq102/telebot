@@ -1,16 +1,21 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
+import { NgxLoadingModule } from 'ngx-loading';
 import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-home',
+	standalone: true,
+	imports: [CommonModule,NgxLoadingModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
+	public loading: boolean = false;
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   totalActivePoint = 0;
@@ -23,6 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadActivePoint() {
+		this.loading = true
     const tg = (window as any).Telegram.WebApp;
     tg.ready();
     tg.expand();
@@ -32,6 +38,7 @@ export class HomeComponent implements OnInit {
     this.httpClient.get(`https://my-first-project-production-9b2c.up.railway.app/users/${this.userInfo?.user?.id}`).pipe().subscribe(data => {
       this.totalActivePoint = Number(data);
       this.totalPoint = this.totalActivePoint;
+			this.loading = false
     })
   }
 

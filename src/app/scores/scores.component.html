@@ -1,5 +1,7 @@
+<ng-template #customLoadingTemplate>
 
-<div class="container">
+</ng-template>
+<div class="container" *ngIf="!loading; else customLoadingTemplate">
     <div class="content">
        <div class="scores">
         <div class="image-content">
@@ -19,3 +21,7 @@
         </div>
     </div>
 </div>
+<ngx-loading 
+    [show]="loading"
+    [config]="{ backdropBorderRadius: '3px' }"
+  ></ngx-loading>

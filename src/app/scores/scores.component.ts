@@ -3,20 +3,27 @@ import { Router } from '@angular/router';
 import { TelegramWebappService } from '@zakarliuka/ng-telegram-webapp';
 import { HttpClient } from '@angular/common/http';
 import axios from 'axios';
+import { CommonModule } from '@angular/common';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @Component({
   selector: 'app-scores',
   templateUrl: './scores.component.html',
+	standalone: true,
+	imports: [CommonModule,NgxLoadingModule],
   styleUrls: ['./scores.component.scss']
 })
 export class ScoresComponent implements OnInit {
   private readonly telegramService = inject(TelegramWebappService);
+	public loading: boolean = true;
 
   constructor(private router:Router, private httpClient: HttpClient) { }
 
 
   ngOnInit() {
-
+		setTimeout(() => {
+			this.loading = false;
+		}, 1500);
     const tg = (window as any).Telegram.WebApp;
     tg.ready();
     tg.expand();
