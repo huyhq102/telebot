@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { HomeComponent } from './home/home.component';
 import { ScoresComponent } from './scores/scores.component';
+import { EarnComponent } from './earn/earn.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 const routes: Routes = [
     {
@@ -16,7 +18,15 @@ const routes: Routes = [
     {
         path: 'scores',
         component: ScoresComponent,
-      },
+    },
+    {
+        path: 'earn',
+        component: EarnComponent,
+    },
+    {
+        path: 'leaderboard',
+        component: LeaderboardComponent,
+    }, 
   ];
 
 @NgModule({

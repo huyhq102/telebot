@@ -1,0 +1,144 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: relative;
+    h1{
+        color: #1A1A1A;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 32px;
+        padding: 0px 50px;
+        text-align: center;
+    }
+    
+    .content-body{
+        padding: 8px 20px;
+		width: 100%;
+        .content-header{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            span{
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 32px;
+                padding-left: 5px;
+            }
+        }
+        h1{
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 24px;
+        }
+        .item{
+					margin-top: 5px;
+					border: 1px solid #E5E5EA;
+					border-radius: 12px;
+					padding: 8px 10px;
+                    .item-content{
+                        display: flex;
+                        justify-content: space-between;
+                        border-bottom: 1px solid #E5E5EA;
+                        padding-bottom: 10px;
+                        .item-title{
+                            display: flex;
+                            font-size: 14px;
+                            line-height: 20px;
+                            align-items: center;
+                            span{
+                                color: #3A3A3C;
+                                font-size: 14px;
+                                font-weight: 400;
+                                line-height: 20px;
+                                padding-left: 5px;
+                            }
+                        }
+                        .button{
+                            display: flex;
+                            align-items: center;
+                            background-color: #5B2EAC;
+							border: none;
+                            font-weight: 500;
+                            font-size: 14px;
+                            line-height: 20px;
+                            color: white;
+                            padding: 4px 12px;
+                            border-radius: 16px;
+                        }
+                    }
+                    .item-reward{
+                        padding-top: 10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        .reward-content{
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-end;
+                            span{
+                                font-size: 12px;
+                                line-height: 20px;
+                                font-weight: 700;
+                                color: #3A3A3C;
+                            }
+                        }
+                        span{
+                            font-size: 12px;
+                            color: #3A3A3C;
+                            line-height: 20px;
+                            font-weight: 400;
+                        }
+                    }
+            h2{
+                font-size: 14px;
+                line-height: 24px;
+								font-weight: 400;
+								color: #636366;
+            }
+            .button-group{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                button{
+                    background-color: #5B2EAC;
+                    color: white;
+										border: none;
+                    border-radius: 16px;
+                    font-size: 16px;
+                    line-height: 24px;
+                    font-weight: 700;
+                    padding: 4px 20px;
+                }
+                .btn{
+                    display: flex;
+                    align-items: center;
+                    .circle{
+                        img{
+                            position: absolute;
+                            top: 5px;
+                            left: 6px;
+                        }
+                        position: relative;
+                        padding: 20px;
+                        border-radius: 100%;
+                        background-color: #5B2EAC;
+												border: none;
+                    }
+                }
+            }
+        }
+    }
+    .footer{
+        display: flex;
+		align-items: center;
+		justify-content: space-around;
+        position: fixed;
+        bottom: 0px;
+        background-color: white;
+    }
+}
