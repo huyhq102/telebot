@@ -195,4 +195,14 @@ export class HomeComponent implements OnInit {
       .catch((error) => {
       });
   }
+
+  goToHome(){
+    this.router.navigate(['/home'])
+  }
+  goToLeaderboard(){
+    this.router.navigate(['/leaderboard'])
+  }
+  goToEarn(){
+    this.router.navigate(['/earn'])
+  }
 }

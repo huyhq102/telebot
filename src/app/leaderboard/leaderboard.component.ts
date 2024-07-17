@@ -27,5 +27,14 @@ export class LeaderboardComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  goToHome(){
+    this.router.navigate(['/home'])
+  }
+  goToLeaderboard(){
+    this.router.navigate(['/leaderboard'])
+  }
+  goToEarn(){
+    this.router.navigate(['/earn'])
+  }
 
 }

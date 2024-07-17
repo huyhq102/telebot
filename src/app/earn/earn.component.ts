@@ -28,4 +28,14 @@ export class EarnComponent implements OnInit {
     
   }
 
+  goToHome(){
+    this.router.navigate(['/home'])
+  }
+  goToLeaderboard(){
+    this.router.navigate(['/leaderboard'])
+  }
+  goToEarn(){
+    this.router.navigate(['/earn'])
+  }
+
 }
