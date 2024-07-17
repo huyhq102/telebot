@@ -11,53 +11,44 @@ import axios from 'axios';
 })
 export class ScoresComponent implements OnInit {
   private readonly telegramService = inject(TelegramWebappService);
+  
+  isReady = false
 
   constructor(private router:Router, private httpClient: HttpClient) { }
 
-
   ngOnInit() {
-
     const tg = (window as any).Telegram.WebApp;
     tg.ready();
     tg.expand();
 
     const userInfo = tg.initDataUnsafe;
+    // const userInfo = {user: {"id":5068855744,"first_name":"Z","last_name":"","username":"iamzzzzzzzzz","language_code":"en","allows_write_to_pm":true}}
 
     if (
-      userInfo?.user?.id &&
-      userInfo?.user?.last_name &&
-      userInfo?.user?.first_name
+      userInfo?.user?.id 
     ) {
           const data = {
             id: userInfo?.user?.id,
-            first_name: userInfo?.user?.last_name,
-            last_name: userInfo?.user?.first_name,
+            first_name: userInfo?.user?.last_name || 'None',
+            last_name: userInfo?.user?.first_name || 'None',
           };
 
-          let config = {
-            method: "post",
-            maxBodyLength: Infinity,
-            url: "https://my-first-project-production-9b2c.up.railway.app/users",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            data: data,
-          };
-      
-          axios
-            .request(config)
-            .then((response) => {
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-    } else {
+          this.httpClient.post<any>( "https://test.review-ty.com/users", data, {headers: {
+            "Content-Type": "application/json",
+          }}).subscribe(
+            (response) => {
+              this.isReady = true
+              // alert(JSON.stringify(response))
+            }
+        );
+      } else {
       console.error("Cannot get user information:", userInfo);
     }
   }
-
   
   gotoHome() {
-    this.router.navigate(['/home'])
+    if (this.isReady) {
+      this.router.navigate(['/home'])
+    } 
   }
 }

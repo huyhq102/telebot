@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   totalPoint = 0
   userInfo: any
   pointHistory: any
+
+  isChecking = false;
   ngOnInit(): void {
     this.loadActivePoint()
     // this.loadTotalPoint()
@@ -29,7 +31,7 @@ export class HomeComponent implements OnInit {
 
     this.userInfo = tg.initDataUnsafe;
 
-    this.httpClient.get(`https://my-first-project-production-9b2c.up.railway.app/users/${this.userInfo?.user?.id}`).pipe().subscribe(data => {
+    this.httpClient.get(`https://test.review-ty.com/users/${this.userInfo?.user?.id}`).pipe().subscribe(data => {
       this.totalActivePoint = Number(data);
       this.totalPoint = this.totalActivePoint;
     })
@@ -39,12 +41,11 @@ export class HomeComponent implements OnInit {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: "https://my-first-project-production-9b2c.up.railway.app/users",
+      url: "https://test.review-ty.com/users",
     };
 
     axios.request(config).then(response => {
       this.pointHistory = response.data;
-      // this.totalPoint = response.data.reduce((total: any, obj: { points: any; }) => obj.points + total, 0);
     })
   }
 
@@ -54,6 +55,8 @@ export class HomeComponent implements OnInit {
 
 
   check(groupId: any) {
+    this.isChecking = true;
+
     this.checkJoinInTelegram(groupId).then(status => {
       if (status) {
         return this.checkUserInGroup(groupId)
@@ -65,11 +68,12 @@ export class HomeComponent implements OnInit {
         this.addPoint(3000)
       } else {
         Swal.fire({
-          title: "Oh no!",
-          text: "Have not joined group or got the reward!",
+          title: "Oops!",
+          text: "You have not joined group or got the reward!",
           icon: "success"
         });
       }
+      this.isChecking = false
     })
   }
 
@@ -82,7 +86,7 @@ export class HomeComponent implements OnInit {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "https://my-first-project-production-9b2c.up.railway.app/telegram-webhook-group",
+      url: "https://test.review-ty.com/telegram-webhook-group",
       headers: {
         "Content-Type": "application/json",
       },
@@ -110,7 +114,7 @@ export class HomeComponent implements OnInit {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "https://my-first-project-production-9b2c.up.railway.app/users/groups",
+      url: "https://test.review-ty.com/users/groups",
       headers: {
         "Content-Type": "application/json",
       },
@@ -120,10 +124,8 @@ export class HomeComponent implements OnInit {
     axios
       .request(config)
       .then((response) => {
-        // alert(JSON.stringify(response.data))
       })
       .catch((error) => {
-        // alert(error);
       });
   }
 
@@ -136,7 +138,7 @@ export class HomeComponent implements OnInit {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "https://my-first-project-production-9b2c.up.railway.app/is_user_in_group",
+      url: "https://test.review-ty.com/is_user_in_group",
       headers: {
         "Content-Type": "application/json",
       },
@@ -166,7 +168,7 @@ export class HomeComponent implements OnInit {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "https://my-first-project-production-9b2c.up.railway.app/users/points",
+      url: "https://test.review-ty.com/users/points",
       headers: {
         "Content-Type": "application/json",
       },
@@ -177,7 +179,7 @@ export class HomeComponent implements OnInit {
       .request(config)
       .then((response) => {
         Swal.fire({
-          title: "Good job!",
+          title: "OK!",
           text: "You got a reward!",
           icon: "success"
         });
