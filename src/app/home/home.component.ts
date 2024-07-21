@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
 
   isChecking = false;
   ngOnInit(): void {
-    this.userInfo = this.globalDataService.loadUserInfo()
+    this.userInfo = this.globalDataService.loadUserInfo();
 
     this.loadActivePoint()
 
@@ -38,11 +38,20 @@ export class HomeComponent implements OnInit {
   }
 
   loadActivePoint() {
-    this.loading = true
-    this.apiService.get(`users/${this.userInfo?.user?.id}`).subscribe(data => {
-      this.totalActivePoint = Number(data);
+    this.isChecking = true;
+    
+    const data = {user_id: this.userInfo.user.id};
+    this.apiService.post('my-point', data, {'Content-Type': 'application/json'}).subscribe((data:any) => {
+      let total = 0;  
+      data.forEach((element:any) => {
+        if(element.entity_type === 0 ||element.entity_type === 1 ||element.entity_type === 2 ){
+            total += +element.sum
+        }
+      });
+      console.log(total)
+      this.totalActivePoint = total;
       this.totalPoint = this.totalActivePoint;
-      this.loading = false
+      this.isChecking = false;
     })
   }
 
@@ -57,26 +66,49 @@ export class HomeComponent implements OnInit {
   }
 
 
-  check(groupId: any) {
+  check(entity_type: any, entity_id : any) {
     this.isChecking = true;
-    this.checkJoinInTelegram(groupId).then(status => {
-        return status ? this.checkUserInGroup(groupId): true 
-    }).then(
-      groupStatus => {
-        if (groupStatus == false) {
-          this.addGroup(groupId)
-          this.addPoint(3000)
-        } else {
-          Swal.fire({
-            title: "Oops!",
-            text: "You have not joined group or got the reward!",
-            icon: "success"
-          });
+    const data = {...this.userInfo, entity_type, entity_id}
+    this.apiService.post('bonus-point', data, {'Content-Type': 'application/json'}).subscribe((res:any) =>{
+        this.isChecking = false;
+        if(res.status === 0){
+            Swal.fire({
+                title: "Oops!",
+                text: "You have not joined group or got the reward!",
+                icon: "warning"
+            });
+        }else if(res.status === 1){
+            Swal.fire({
+                title: "OK!",
+                text: "You got a reward!",
+                icon: "success"
+              });
+        }else{
+            Swal.fire({
+                title: "Oops!",
+                text: "Your account is invalid!",
+                icon: "warning"
+            });
         }
-      }
-    ).finally(()=> {
-      this.isChecking = false
     })
+    // this.checkJoinInTelegram(groupId).then(status => {
+    //     return status ? this.checkUserInGroup(groupId): true 
+    // }).then(
+    //   groupStatus => {
+    //     if (groupStatus == false) {
+    //       this.addGroup(groupId)
+    //       this.addPoint(3000)
+    //     } else {
+    //       Swal.fire({
+    //         title: "Oops!",
+    //         text: "You have not joined group or got the reward!",
+    //         icon: "success"
+    //       });
+    //     }
+    //   }
+    // ).finally(()=> {
+    //   this.isChecking = false
+    // })
     return true;
   }
 
@@ -144,13 +176,13 @@ export class HomeComponent implements OnInit {
       })
   }
 
-  goToHome(){
-    this.router.navigate(['/home'])
-  }
-  goToLeaderboard(){
-    this.router.navigate(['/leaderboard'])
-  }
-  goToEarn(){
-    this.router.navigate(['/earn'])
-  }
+//   goToHome(){
+//     this.router.navigate(['/home'])
+//   }
+//   goToLeaderboard(){
+//     this.router.navigate(['/leaderboard'])
+//   }
+//   goToEarn(){
+//     this.router.navigate(['/earn'])
+//   }
 }

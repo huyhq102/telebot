@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxLoadingModule } from 'ngx-loading';
 import { GlobalDataService } from '../services/global.service';
 import { ApiService } from '../services/api.service';
+import axios from 'axios';
 
 
 @Component({
@@ -43,16 +44,11 @@ export class WelcomeComponent implements OnInit {
       this.userInfo?.user?.id
     ) {
       const data = {
-        id: this.userInfo?.user?.id,
+        user_id : this.userInfo?.user?.id,
         first_name: this.userInfo?.user?.last_name || 'None',
         last_name: this.userInfo?.user?.first_name || 'None',
       };
-
-      this.apiService.post("users", data, {
-
-        "Content-Type": "application/json",
-
-      }).subscribe(
+      this.apiService.post("start-app", data, {"Content-Type": "application/json",}).subscribe(
         (response) => {
           this.router.navigate(['/scores'])
           this.loading = false;
