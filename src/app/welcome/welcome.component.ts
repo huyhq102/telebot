@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxLoadingModule } from 'ngx-loading';
+import { GlobalDataService } from '../services/global.service';
+import { ApiService } from '../services/api.service';
 
 
 @Component({
@@ -13,41 +15,49 @@ import { NgxLoadingModule } from 'ngx-loading';
   standalone: true,
 })
 export class WelcomeComponent implements OnInit {
-	public loading: boolean = false;
+  public loading: boolean = false;
+  userInfo: any;
 
-  constructor(private router:Router, private httpClient: HttpClient) { }
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private apiService: ApiService,
+    private globalDataService: GlobalDataService
+  ) { }
 
   ngOnInit(): void {
+    this.userInfo = this.globalDataService.loadUserInfo()
+    // if (this.userInfo.user.id == 1893048886 || this.userInfo.user.id == '1893048886') {
+    //   alert(JSON.stringify(this.userInfo))
+    //this.userInfo.start_param 
+    // }
+
+    // alert(this.userInfo)
   }
 
-  addUser() {}
+  addUser() { }
 
   goToScore() {
-    const tg = (window as any).Telegram.WebApp;
-    tg.ready();
-    tg.expand();
-
-    const userInfo = tg.initDataUnsafe;
     this.loading = true
     if (
-      userInfo?.user?.id 
+      this.userInfo?.user?.id
     ) {
-          const data = {
-            id: userInfo?.user?.id,
-            first_name: userInfo?.user?.last_name || 'None',
-            last_name: userInfo?.user?.first_name || 'None',
-          };
+      const data = {
+        id: this.userInfo?.user?.id,
+        first_name: this.userInfo?.user?.last_name || 'None',
+        last_name: this.userInfo?.user?.first_name || 'None',
+      };
 
-          this.httpClient.post<any>( "https://test.review-ty.com/users", data, {
-            headers: {
-              "Content-Type": "application/json",
-            }
-          }).subscribe(
-            (response) => {
-              this.router.navigate(['/scores'])
-              this.loading = false;
-            }
-        );
-      }
+      this.apiService.post("users", data, {
+
+        "Content-Type": "application/json",
+
+      }).subscribe(
+        (response) => {
+          this.router.navigate(['/scores'])
+          this.loading = false;
+        }
+      );
+    }
   }
 }

@@ -5,18 +5,23 @@ import { Router } from '@angular/router';
 import axios from 'axios';
 import { NgxLoadingModule } from 'ngx-loading';
 import Swal from 'sweetalert2'
+import { ApiService } from '../services/api.service';
+import { GlobalDataService } from '../services/global.service';
 
 @Component({
   selector: 'app-home',
-	standalone: true,
-	imports: [CommonModule,NgxLoadingModule],
+  standalone: true,
+  imports: [CommonModule, NgxLoadingModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
-	public loading: boolean = false;
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  public loading: boolean = false;
+  constructor(
+    private apiService: ApiService,
+    private globalDataService: GlobalDataService
+  ) { }
 
   totalActivePoint = 0;
   totalPoint = 0
@@ -25,33 +30,24 @@ export class HomeComponent implements OnInit {
 
   isChecking = false;
   ngOnInit(): void {
+    this.userInfo = this.globalDataService.loadUserInfo()
+
     this.loadActivePoint()
+
     // this.loadTotalPoint()
   }
 
   loadActivePoint() {
-		this.loading = true
-    const tg = (window as any).Telegram.WebApp;
-    tg.ready();
-    tg.expand();
-
-    this.userInfo = tg.initDataUnsafe;
-
-    this.httpClient.get(`https://test.review-ty.com/users/${this.userInfo?.user?.id}`).pipe().subscribe(data => {
+    this.loading = true
+    this.apiService.get(`users/${this.userInfo?.user?.id}`).subscribe(data => {
       this.totalActivePoint = Number(data);
       this.totalPoint = this.totalActivePoint;
-			this.loading = false
+      this.loading = false
     })
   }
 
   loadTotalPoint() {
-    let config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: "https://test.review-ty.com/users",
-    };
-
-    axios.request(config).then(response => {
+    this.apiService.get('users').subscribe((response: any) => {
       this.pointHistory = response.data;
     })
   }
@@ -63,53 +59,40 @@ export class HomeComponent implements OnInit {
 
   check(groupId: any) {
     this.isChecking = true;
-
     this.checkJoinInTelegram(groupId).then(status => {
-      if (status) {
-        return this.checkUserInGroup(groupId)
+        return status ? this.checkUserInGroup(groupId): true 
+    }).then(
+      groupStatus => {
+        if (groupStatus == false) {
+          this.addGroup(groupId)
+          this.addPoint(3000)
+        } else {
+          Swal.fire({
+            title: "Oops!",
+            text: "You have not joined group or got the reward!",
+            icon: "success"
+          });
+        }
       }
-      return true;
-    }).then(groupStatus => {
-      if (groupStatus == false) {
-        this.addGroup(groupId)
-        this.addPoint(3000)
-      } else {
-        Swal.fire({
-          title: "Oops!",
-          text: "You have not joined group or got the reward!",
-          icon: "success"
-        });
-      }
+    ).finally(()=> {
       this.isChecking = false
     })
+    return true;
   }
 
   checkJoinInTelegram(groupId: any) {
-    const data = {
-      "id": this.userInfo.user.id,
-      "group_id": groupId
-    }
-
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "https://test.review-ty.com/telegram-webhook-group",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-
-    return axios
-      .request(config)
-      .then((response) => {
-        if (response.data.message == 'User had joined group') {
-          return true
+    return new Promise(
+      resolve => this.apiService.post('telegram-webhook-group', 
+        {
+          "id": this.userInfo.user.id,
+          "group_id": groupId
+        },
+        {
+          "Content-Type": "application/json",
         }
-        return false
-      }).catch(error => {
-        return false
-      })
+      ).subscribe((response: any) => {
+        response.message == 'User had joined group' ? resolve(true) : resolve(false)
+      }))
   }
 
   addGroup(groupId: any) {
@@ -117,74 +100,41 @@ export class HomeComponent implements OnInit {
       "id": this.userInfo.user.id,
       "group_id": groupId
     }
-
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "https://test.review-ty.com/users/groups",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-
-    axios
-      .request(config)
-      .then((response) => {
-      })
-      .catch((error) => {
-      });
+    this.apiService.post('users/groups', data, {
+      "Content-Type": "application/json",
+    }).subscribe(()=>{})
   }
 
   checkUserInGroup(groupId: any) {
-    const data = {
-      "id": this.userInfo.user.id,
-      "group_id": groupId
-    }
-
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "https://test.review-ty.com/is_user_in_group",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-
-    return axios
-      .request(config)
-      .then((response) => {
-        if (response.data.message == 'User is not a member') {
-          return false
+    return new Promise(
+      resolve => this.apiService.post(
+        'is_user_in_group',
+        {
+          "id": this.userInfo.user.id,
+          "group_id": groupId
+        },
+        {
+          "Content-Type": "application/json"
         }
-        return true
-      })
-      .catch((error) => {
-        return true;
-      });
+      ).subscribe((response: any) => {
+          if (response.message == 'User is not a member') {
+            return resolve(false)
+          } else {
+            return resolve(true)
+          }
+        })
+      )
   }
-
 
   addPoint(point: any) {
     const data = {
       "id": this.userInfo.user.id,
       "points": point
     }
-
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "https://test.review-ty.com/users/points",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-
-    axios
-      .request(config)
-      .then((response) => {
+    
+    this.apiService.post('users/points',data, {
+      "Content-Type": "application/json",
+    }).subscribe((response) => {
         Swal.fire({
           title: "OK!",
           text: "You got a reward!",
@@ -192,7 +142,5 @@ export class HomeComponent implements OnInit {
         });
         this.loadActivePoint()
       })
-      .catch((error) => {
-      });
   }
 }
