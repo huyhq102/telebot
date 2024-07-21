@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxLoadingModule } from 'ngx-loading';
+import { GlobalDataService } from './services/global.service';
 
 
 
@@ -17,7 +18,7 @@ import { NgxLoadingModule } from 'ngx-loading';
     HttpClientModule,
 		NgxLoadingModule.forRoot({}),
   ],
-  providers: [],
+  providers: [GlobalDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
