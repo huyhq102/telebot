@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import axios from 'axios';
 import { NgxLoadingModule } from 'ngx-loading';
 import Swal from 'sweetalert2'
 import { ApiService } from '../services/api.service';
@@ -72,6 +70,13 @@ export class FriendComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
+		Swal.fire({
+			text: "Copied successfully!",
+			position: "top",
+			showConfirmButton: false,
+			padding: "0 0 1em",
+  		timer: 1000
+		});
   }
 
 }

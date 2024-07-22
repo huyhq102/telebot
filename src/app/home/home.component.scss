@@ -32,6 +32,23 @@
                 background-image:url("../../assets/Rectangle\ 3.png");
 								background-repeat: no-repeat;
 								background-size: 100%;
+								.crown{
+									display: flex;
+									align-items: center;
+									span{
+										margin-left: 5px;
+									}
+								}
+								.cup{
+									display: flex;
+									align-items: center;
+									border: 1px solid #EED0EF;
+									padding: 2px 12px;
+									border-radius: 30px;
+									span{
+										margin-left: 5px;
+									}
+								}
             }
         } 
     }
@@ -96,7 +113,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-				padding: 16px 20px;
+				padding: 0px 20px;
         h1{
             text-align: left;
             font-size: 16px;

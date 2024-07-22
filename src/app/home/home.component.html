@@ -3,8 +3,14 @@
     <div class="content-header">
        <div class="scores">
         <div class="img-content">
-					<img src="../../assets/Group 2.png" alt="">
-					<img src="../../assets/Frame 4.png" alt="">
+					<div class="crown">
+						<img src="../../assets/crown.svg" alt="">
+						<span>Your Score</span>
+					</div>
+					<div class="cup">
+						<img src="../../assets/cup.svg" alt="">
+						<span>Bonus STUDIHUBS</span>
+					</div>
 				</div>
         <img style="margin-top: 20px;margin-bottom: 20px;" src="../../assets/image 4.png" alt="">
         <h1>{{totalPoint | number}} STUDIHUBS</h1>
@@ -41,13 +47,17 @@
     <div class="content-body-2">
         <div><h1>Your Rewards</h1></div>
         <div class="item">
-            <img src="../../assets/Frame 12.png" alt="" style="width: 36px; height: 36px;">
-            <p>Active Rewards</p>
+            <div style="display: flex;align-items: center;">
+							<img src="../../assets/Frame 12.png" alt="" style="width: 36px; height: 36px;">
+            	<p style="margin-left: 10px;">Active Rewards</p>
+						</div>
             <p> {{ totalActivePoint | number }} STUDIHUBS</p>
         </div>
         <div class="item">
-            <img src="../../assets/Frame 12 (1).png" alt=""style="width: 36px; height: 36px;">
-            <p>Invited Friends</p>
+            <div style="display: flex;align-items: center;">
+							<img src="../../assets/Frame 12 (1).png" alt=""style="width: 36px; height: 36px;">
+            	<p style="margin-left: 10px;">Invited Friends</p>
+						</div>
             <p>{{ totalFriendPoint | number }} STUDIHUBS</p>
         </div>
     </div>
