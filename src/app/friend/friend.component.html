@@ -1,0 +1,45 @@
+
+<div class="container">
+	<div class="content-header">
+		 <div class="scores">
+			<h1>Invite friends and get more STUDIHUBS </h1>
+			<img src="../../assets/image 4.png" alt="">
+			<h2>Tap on the button to invite your friends</h2>
+		 </div>
+	</div>
+	<div class="content-body">
+		<div class="content-title">
+				<span>{{this.listFriends.lenght}} Friend</span>
+		</div>
+		<div class="user" *ngFor="let item of listFriends">
+				<div class="user-infor">
+						<img src="../../assets/Avatar Image.png" alt="">
+						<div class="infor">
+								<div class="name">
+									{{item.first_name +" "+ item.last_name}}
+								</div>
+						</div>
+				</div>
+				<span>+{{item.point | number}} STUDIHUBS</span>
+		</div>		
+	</div>
+	<div class="footer">
+			<a class="button" [href]="inviteLink">
+				<div class="text">
+						Invite friends
+				</div>
+			</a>
+			<div class="footer-bar">
+				<img src="../../assets/State-home.svg" alt="" (click)="goToHome()">
+				<img src="../../assets/Leaderboard.png" alt="" (click)="goToLeaderboard()">
+				<img src="../../assets/earn untouch.png" alt="">
+				<img src="../../assets/State03.svg" alt="">
+			</div>
+	</div>
+</div>
+
+<ngx-loading
+	[show]="isChecking"
+	[config]="{ backdropBorderRadius: '3px' }"
+></ngx-loading>
+

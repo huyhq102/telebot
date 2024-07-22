@@ -20,7 +20,8 @@ export class HomeComponent implements OnInit {
   public loading: boolean = false;
   constructor(
     private apiService: ApiService,
-    private globalDataService: GlobalDataService
+    private globalDataService: GlobalDataService,
+		private router: Router
   ) { }
 
   totalActivePoint = 0;
@@ -179,9 +180,21 @@ export class HomeComponent implements OnInit {
 //   goToHome(){
 //     this.router.navigate(['/home'])
 //   }
-//   goToLeaderboard(){
-//     this.router.navigate(['/leaderboard'])
-//   }
+  goToLeaderboard(){
+		this.isChecking =true;
+		setTimeout(() => {
+			this.isChecking = false;
+      this.router.navigate(['/leaderboard'])
+		}, 1000);
+  }
+
+	goToFriends(){
+		this.isChecking =true;
+		setTimeout(() => {
+			this.isChecking = false;
+      this.router.navigate(['/friend'])
+		}, 1000);
+	}
 //   goToEarn(){
 //     this.router.navigate(['/earn'])
 //   }

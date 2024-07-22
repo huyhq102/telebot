@@ -7,14 +7,17 @@
                 <img src="../../assets/Avatar Image.png" alt="">
                 <div class="infor">
                     <div class="name">
-                        Sherry Vu
+											{{userPoint[0].first_name +" "+ userPoint[0].last_name}}
                     </div>
                     <div class="scores">
-                        6,870 STUDIHUBS
+											{{userPoint[0].total_point | number}} STUDIHUBS
                     </div>
                 </div>
             </div>
-            <span>#574,481</span>
+            <img src="../../assets/first.png" alt="" *ngIf="userPoint[0].rank==1">
+						<img src="../../assets/second.png" alt="" *ngIf="userPoint[0].rank==2">
+						<img src="../../assets/third.png" alt="" *ngIf="userPoint[0].rank==3">
+						<span *ngIf="+userPoint[0].rank>3">#{{userPoint[0].rank}}</span>
         </div>
     </div>
     <div style="padding: 0px 20px; width: 100%; display: flex; justify-content: center; align-items: center;">
@@ -27,70 +30,32 @@
     </div>
     <div class="content-body">
         <div class="content-header">
-            <span>1,605,710 Holder</span>
+            <span>{{totalPoints | number}} Holder</span>
         </div>
-        <div class="user">
+        <div class="user" *ngFor="let item of listUsers">
             <div class="user-infor">
-                <img src="../../assets/Avatar Image.png" alt="">
+                <img src="../../assets/Avatar Image.png" alt="" *ngIf="!item.avatar">
+								<img [src]="item.avatar" alt="" *ngIf="item.avatar" style="width: 40px; height: 40px; border-radius: 100%;">
                 <div class="infor">
                     <div class="name">
-                        Sherry Vu
+                        {{item.first_name +" "+ item.last_name}}
                     </div>
                     <div class="scores">
-                        6,870 STUDIHUBS
+                        {{item.total_point | number}} STUDIHUBS
                     </div>
                 </div>
             </div>
-            <img src="../../assets/first.png" alt="">
-        </div>
-        <div class="user">
-            <div class="user-infor">
-                <img src="../../assets/Avatar Image.png" alt="">
-                <div class="infor">
-                    <div class="name">
-                        Sherry Vu
-                    </div>
-                    <div class="scores">
-                        6,870 STUDIHUBS
-                    </div>
-                </div>
-            </div>
-            <img src="../../assets/second.png" alt="">
-        </div>
-        <div class="user">
-            <div class="user-infor">
-                <img src="../../assets/Avatar Image.png" alt="">
-                <div class="infor">
-                    <div class="name">
-                        Sherry Vu
-                    </div>
-                    <div class="scores">
-                        6,870 STUDIHUBS
-                    </div>
-                </div>
-            </div>
-            <img src="../../assets/third.png" alt="">
-        </div>
-        <div class="user">
-            <div class="user-infor">
-                <img src="../../assets/Avatar Image.png" alt="">
-                <div class="infor">
-                    <div class="name">
-                        Sherry Vu
-                    </div>
-                    <div class="scores">
-                        6,870 STUDIHUBS
-                    </div>
-                </div>
-            </div>
-            <span>#4</span>
-        </div>			
+            <img src="../../assets/first.png" alt="" *ngIf="item.rank==1">
+						<img src="../../assets/second.png" alt="" *ngIf="item.rank==2">
+						<img src="../../assets/third.png" alt="" *ngIf="item.rank==3">
+						<span *ngIf="+item.rank>3">#{{item.rank}}</span>
+        </div>		
     </div>
     <div class="footer">
         <img src="../../assets/home untouch.png" alt="" (click)="goToHome()">
-        <img src="../../assets/leaderboard activate.png" alt="" (click)="goToLeaderboard()">
-        <img src="../../assets/earn untouch.png" alt="" (click)="goToEarn()">
-        <img src="../../assets/State03.svg" alt="">
+        <img src="../../assets/leaderboard activate.png" alt="">
+        <img src="../../assets/earn untouch.png" alt="" >
+        <img src="../../assets/State03.svg" alt="" (click)="goToFriend()">
     </div>
 </div>
 

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { HomeComponent } from './home/home.component';
 import { ScoresComponent } from './scores/scores.component';
-import { EarnComponent } from './earn/earn.component';
+import { FriendComponent } from './friend/friend.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 const routes: Routes = [
@@ -20,8 +20,8 @@ const routes: Routes = [
         component: ScoresComponent,
     },
     {
-        path: 'earn',
-        component: EarnComponent,
+        path: 'friend',
+        component: FriendComponent,
     },
     {
         path: 'leaderboard',
