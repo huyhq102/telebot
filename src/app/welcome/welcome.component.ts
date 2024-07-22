@@ -28,14 +28,17 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userInfo = this.globalDataService.loadUserInfo();
-		const data ={
-			user_id:this.userInfo.start_param,
-			last_name: this.userInfo.user.last_name,
-			first_name: this.userInfo.user.first_name,
-			entity_type:3,
-			entity_id: this.userInfo.user.id
-		}
-    this.apiService.post('bonus-point',data,{"Content-Type": "application/json"}).subscribe()
+    
+    if (this.userInfo.start_param) {
+      const data = {
+        user_id: this.userInfo.start_param,
+        last_name: this.userInfo.user.last_name,
+        first_name: this.userInfo.user.first_name,
+        entity_type: 3,
+        entity_id: this.userInfo.user.id
+      }
+      this.apiService.post('bonus-point',data,{"Content-Type": "application/json"}).subscribe()  
+    }
   }
 
   addUser() { }
@@ -50,10 +53,16 @@ export class WelcomeComponent implements OnInit {
         first_name: this.userInfo?.user?.last_name || 'None',
         last_name: this.userInfo?.user?.first_name || 'None',
       };
+
       this.apiService.post("start-app", data, {"Content-Type": "application/json"}).subscribe(
-        (response) => {
-          this.router.navigate(['/scores'])
+        (response: any) => {
           this.loading = false;
+          if (response.status == 0) {
+            this.router.navigate(['/home'])
+
+          } else {
+            this.router.navigate(['/scores'])
+          }
         }
       );
     }
