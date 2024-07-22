@@ -24,16 +24,29 @@
 		</div>		
 	</div>
 	<div class="footer">
-			<a class="button" [href]="inviteLink">
-				<div class="text">
-						Invite friends
+			<div class="footer-btn">
+				<a class="button" [href]="inviteLink">
+					<div class="text">
+							Invite friends
+					</div>
+				</a>
+				<div class="clipboard">
+					<img src="../../assets/copy-svgrepo-com.svg" alt="">
 				</div>
-			</a>
+			</div>
 			<div class="footer-bar">
-				<img src="../../assets/State-home.svg" alt="" (click)="goToHome()">
-				<img src="../../assets/Leaderboard.png" alt="" (click)="goToLeaderboard()">
-				<img src="../../assets/earn untouch.png" alt="">
-				<img src="../../assets/State03.svg" alt="">
+				<div class="footer-menu" (click)="goToHome()">
+					<img src="../../assets/home-2.svg" alt="" >
+					<span>Home</span>
+				</div>
+				<div class="footer-menu"  (click)="goToLeaderboard()">
+					<img src="../../assets/kanban.svg" alt="">
+					<span>Leaderboard</span>
+				</div>
+				<div class="footer-menu">
+					<img src="../../assets/profile-2user.svg" alt="" class="filter">
+					<span style="color: #5B2EAC;">Friends</span>
+				</div> 
 			</div>
 	</div>
 </div>

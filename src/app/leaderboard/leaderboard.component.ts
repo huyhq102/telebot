@@ -47,8 +47,8 @@ export class LeaderboardComponent implements OnInit {
 			"offset":0,
 			"user_id": this.userInfo.user.id
 		}
-		this.apiService.post(`leaderboard`,data, {'Content-Type': 'application/json'}).subscribe(data=>{
-			this.userPoint = data
+		this.apiService.post(`leaderboard`,data, {'Content-Type': 'application/json'}).subscribe((data:any)=>{
+			this.userPoint = data.data
 		})
 	}
 	
@@ -59,9 +59,9 @@ export class LeaderboardComponent implements OnInit {
 			"offset":0,
 		}
 		this.apiService.post(`leaderboard`,data, {'Content-Type': 'application/json'}).subscribe((data:any)=>{
-			this.listUsers = data;
+			this.listUsers = data.data;
 			let total= 0
-			data.forEach((user:any) => {
+			data.data.forEach((user:any) => {
 				total += user.total_point
 			});
 			this.totalPoints =total;

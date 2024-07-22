@@ -10,7 +10,8 @@
         <h1>{{totalPoint | number}} STUDIHUBS</h1>
        </div>
     </div>
-    <div class="content-body">
+    <div class="content-container">
+			<div class="content-body">
         <h1>STUDIHUBS Community</h1>
         <div class="item">
             <h2>Join Studihub Channel ( +3,000 Studihubs)</h2>
@@ -50,12 +51,23 @@
             <p>0 STUDIHUBS</p>
         </div>
     </div>
+		</div>
     
     <div class="footer">
-        <img src="../../assets/State-home.svg" alt="">
-        <img src="../../assets/Leaderboard.png" alt="" (click)="goToLeaderboard()">
-        <img src="../../assets/earn untouch.png" alt="">
-        <img src="../../assets/State03.svg" alt="" (click)="goToFriends()">
+			<div class="footer">
+        <div class="footer-menu">
+					<img src="../../assets/home-2 activate.svg" alt="">
+					<span style="color: #5B2EAC;">Home</span>
+				</div>
+				<div class="footer-menu"  (click)="goToLeaderboard()">
+					<img src="../../assets/kanban.svg" alt="">
+					<span>Leaderboard</span>
+				</div>
+				<div class="footer-menu" (click)="goToFriends()">
+					<img src="../../assets/profile-2user.svg" alt="" >
+					<span>Friends</span>
+				</div> 
+    </div>
     </div>
 </div>
 

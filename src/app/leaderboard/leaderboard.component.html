@@ -14,9 +14,9 @@
                     </div>
                 </div>
             </div>
-            <img src="../../assets/first.png" alt="" *ngIf="userPoint[0].rank==1">
-						<img src="../../assets/second.png" alt="" *ngIf="userPoint[0].rank==2">
-						<img src="../../assets/third.png" alt="" *ngIf="userPoint[0].rank==3">
+            <img src="../../assets/Group 38.svg" alt="" *ngIf="userPoint[0].rank==1">
+						<img src="../../assets/Group 40.svg" alt="" *ngIf="userPoint[0].rank==2">
+						<img src="../../assets/Group 39.svg" alt="" *ngIf="userPoint[0].rank==3">
 						<span *ngIf="+userPoint[0].rank>3">#{{userPoint[0].rank}}</span>
         </div>
     </div>
@@ -45,17 +45,25 @@
                     </div>
                 </div>
             </div>
-            <img src="../../assets/first.png" alt="" *ngIf="item.rank==1">
-						<img src="../../assets/second.png" alt="" *ngIf="item.rank==2">
-						<img src="../../assets/third.png" alt="" *ngIf="item.rank==3">
+            <img src="../../assets/Group 38.svg" alt="" *ngIf="item.rank==1">
+						<img src="../../assets/Group 40.svg" alt="" *ngIf="item.rank==2">
+						<img src="../../assets/Group 39.svg" alt="" *ngIf="item.rank==3">
 						<span *ngIf="+item.rank>3">#{{item.rank}}</span>
         </div>		
     </div>
     <div class="footer">
-        <img src="../../assets/home untouch.png" alt="" (click)="goToHome()">
-        <img src="../../assets/leaderboard activate.png" alt="">
-        <img src="../../assets/earn untouch.png" alt="" >
-        <img src="../../assets/State03.svg" alt="" (click)="goToFriend()">
+        <div class="footer-menu" (click)="goToHome()">
+					<img src="../../assets/home-2.svg" alt="" >
+					<span>Home</span>
+				</div>
+				<div class="footer-menu">
+					<img src="../../assets/kanban activate.svg" alt="">
+					<span style="color: #5B2EAC;">Leaderboard</span>
+				</div>
+				<div class="footer-menu" (click)="goToFriend()">
+					<img src="../../assets/profile-2user.svg" alt="">
+					<span>Friends</span>
+				</div> 
     </div>
 </div>
 

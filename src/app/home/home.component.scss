@@ -5,7 +5,6 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-	justify-content: space-between;
     position: relative;
     .content-header{
         width: 100%;
@@ -36,7 +35,11 @@
             }
         } 
     }
-    .content-body{
+    .content-container{
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			.content-body{
         padding: 16px 20px;
 				width: 100%;
         h1{
@@ -141,12 +144,21 @@
             }
         }
     }
+		}
     .footer{
         display: flex;
-		align-items: center;
-		justify-content: space-around;
+				align-items: center;
+				justify-content: space-around;
         position: fixed;
+				width: 100%;
         bottom: 0px;
         background-color: white;
+				.footer-menu{
+					display: flex;
+					flex: 1 1;
+					flex-direction: column;
+					align-items: center;
+					color: #8E8E93;
+			}
     }
 }
