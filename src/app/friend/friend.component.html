@@ -3,20 +3,20 @@
 	<div class="content-header">
 		 <div class="scores">
 			<h1>Invite friends and get more STUDIHUBS </h1>
-			<img src="../../assets/image 4.png" alt="">
+			<img style="width: 150px;" src="../../assets/image 4.png" alt="">
 			<h2>Tap on the button to invite your friends</h2>
 		 </div>
 	</div>
 	<div class="content-body">
 		<div class="content-title">
-				<span>{{this.listFriends.lenght}} Friend</span>
+				<span>{{this.listFriends.length}} Friend</span>
 		</div>
 		<div class="user" *ngFor="let item of listFriends">
 				<div class="user-infor">
-						<img src="../../assets/Avatar Image.png" alt="">
+						<img style="width: 40px; height: 40px; border-radius: 100%;" [src]="item.entity_avatar ? item.entity_avatar : '../../assets/Avatar Image.png'" alt="">
 						<div class="infor">
 								<div class="name">
-									{{item.first_name +" "+ item.last_name}}
+									{{item.entity_first_name +" "+ item.entity_last_name}}
 								</div>
 						</div>
 				</div>
@@ -25,12 +25,12 @@
 	</div>
 	<div class="footer">
 			<div class="footer-btn">
-				<a class="button" [href]="inviteLink">
+				<a class="button" [href]="forwardToTelegramFriend">
 					<div class="text">
 							Invite friends
 					</div>
 				</a>
-				<div class="clipboard">
+				<div class="clipboard" (click)="copyInvitedLink()">
 					<img src="../../assets/copy-svgrepo-com.svg" alt="">
 				</div>
 			</div>

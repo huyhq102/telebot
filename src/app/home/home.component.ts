@@ -21,10 +21,11 @@ export class HomeComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private globalDataService: GlobalDataService,
-		private router: Router
+    private router: Router
   ) { }
 
   totalActivePoint = 0;
+  totalFriendPoint = 0;
   totalPoint = 0
   userInfo: any
   pointHistory: any
@@ -40,18 +41,22 @@ export class HomeComponent implements OnInit {
 
   loadActivePoint() {
     this.isChecking = true;
-    
-    const data = {user_id: this.userInfo.user.id};
-    this.apiService.post('my-point', data, {'Content-Type': 'application/json'}).subscribe((data:any) => {
-      let total = 0;  
-      data.forEach((element:any) => {
-        if(element.entity_type === 0 ||element.entity_type === 1 ||element.entity_type === 2 ){
-            total += +element.sum
+
+    const data = { user_id: this.userInfo.user.id };
+    this.apiService.post('my-point', data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
+
+      this.totalActivePoint = 0;
+      this.totalFriendPoint = 0;
+
+      data.forEach((element: any) => {
+        if (element.entity_type === 0 || element.entity_type === 1 || element.entity_type === 2) {
+          this.totalActivePoint += +element.sum
+        } else {
+          this.totalFriendPoint += +element.sum
         }
       });
       // console.log(total)
-      this.totalActivePoint = total;
-      this.totalPoint = this.totalActivePoint;
+      this.totalPoint = this.totalActivePoint + this.totalFriendPoint;
       this.isChecking = false;
     })
   }
@@ -67,30 +72,30 @@ export class HomeComponent implements OnInit {
   }
 
 
-  check(entity_type: any, entity_id : any) {
+  check(entity_type: any, entity_id: any) {
     this.isChecking = true;
-    const data = {...this.userInfo, entity_type, entity_id}
-    this.apiService.post('bonus-point', data, {'Content-Type': 'application/json'}).subscribe((res:any) =>{
-        this.isChecking = false;
-        if(res.status === 0){
-            Swal.fire({
-                title: "Oops!",
-                text: "You have not joined group or got the reward!",
-                icon: "warning"
-            });
-        }else if(res.status === 1){
-            Swal.fire({
-                title: "OK!",
-                text: "You got a reward!",
-                icon: "success"
-              });
-        }else{
-            Swal.fire({
-                title: "Oops!",
-                text: "Your account is invalid!",
-                icon: "warning"
-            });
-        }
+    const data = { ...this.userInfo, entity_type, entity_id }
+    this.apiService.post('bonus-point', data, { 'Content-Type': 'application/json' }).subscribe((res: any) => {
+      this.isChecking = false;
+      if (res.status === 0) {
+        Swal.fire({
+          title: "Oops!",
+          text: "You have not joined group or got the reward!",
+          icon: "warning"
+        });
+      } else if (res.status === 1) {
+        Swal.fire({
+          title: "OK!",
+          text: "You got a reward!",
+          icon: "success"
+        });
+      } else {
+        Swal.fire({
+          title: "Oops!",
+          text: "Your account is invalid!",
+          icon: "warning"
+        });
+      }
     })
     // this.checkJoinInTelegram(groupId).then(status => {
     //     return status ? this.checkUserInGroup(groupId): true 
@@ -115,7 +120,7 @@ export class HomeComponent implements OnInit {
 
   checkJoinInTelegram(groupId: any) {
     return new Promise(
-      resolve => this.apiService.post('telegram-webhook-group', 
+      resolve => this.apiService.post('telegram-webhook-group',
         {
           "id": this.userInfo.user.id,
           "group_id": groupId
@@ -135,7 +140,7 @@ export class HomeComponent implements OnInit {
     }
     this.apiService.post('users/groups', data, {
       "Content-Type": "application/json",
-    }).subscribe(()=>{})
+    }).subscribe(() => { })
   }
 
   checkUserInGroup(groupId: any) {
@@ -150,13 +155,13 @@ export class HomeComponent implements OnInit {
           "Content-Type": "application/json"
         }
       ).subscribe((response: any) => {
-          if (response.message == 'User is not a member') {
-            return resolve(false)
-          } else {
-            return resolve(true)
-          }
-        })
-      )
+        if (response.message == 'User is not a member') {
+          return resolve(false)
+        } else {
+          return resolve(true)
+        }
+      })
+    )
   }
 
   addPoint(point: any) {
@@ -164,38 +169,38 @@ export class HomeComponent implements OnInit {
       "id": this.userInfo.user.id,
       "points": point
     }
-    
-    this.apiService.post('users/points',data, {
+
+    this.apiService.post('users/points', data, {
       "Content-Type": "application/json",
     }).subscribe((response) => {
-        Swal.fire({
-          title: "OK!",
-          text: "You got a reward!",
-          icon: "success"
-        });
-        this.loadActivePoint()
-      })
+      Swal.fire({
+        title: "OK!",
+        text: "You got a reward!",
+        icon: "success"
+      });
+      this.loadActivePoint()
+    })
   }
 
-//   goToHome(){
-//     this.router.navigate(['/home'])
-//   }
-  goToLeaderboard(){
-		this.isChecking =true;
-		setTimeout(() => {
-			this.isChecking = false;
+  //   goToHome(){
+  //     this.router.navigate(['/home'])
+  //   }
+  goToLeaderboard() {
+    this.isChecking = true;
+    setTimeout(() => {
+      this.isChecking = false;
       this.router.navigate(['/leaderboard'])
-		}, 1000);
+    }, 300);
   }
 
-	goToFriends(){
-		this.isChecking =true;
-		setTimeout(() => {
-			this.isChecking = false;
+  goToFriends() {
+    this.isChecking = true;
+    setTimeout(() => {
+      this.isChecking = false;
       this.router.navigate(['/friend'])
-		}, 1000);
-	}
-//   goToEarn(){
-//     this.router.navigate(['/earn'])
-//   }
+    }, 300);
+  }
+  //   goToEarn(){
+  //     this.router.navigate(['/earn'])
+  //   }
 }

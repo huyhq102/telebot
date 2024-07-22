@@ -1,6 +1,6 @@
 
 <div class="container">
-    <h1>Studihubs Champs</h1>
+    <h1 style="margin-top: 30px;margin-bottom: 20px;">Studihubs Champs</h1>
     <div class="user-container">
         <div class="user">
             <div class="user-infor">
@@ -20,7 +20,7 @@
 						<span *ngIf="+userPoint[0].rank>3">#{{userPoint[0].rank}}</span>
         </div>
     </div>
-    <div style="padding: 0px 20px; width: 100%; display: flex; justify-content: center; align-items: center;">
+    <div style="margin-top: 30px;margin-bottom: 20px;padding: 0px 20px; width: 100%; display: flex; justify-content: center; align-items: center;">
         <div class="button">
             <div class="text">
                 Boost score
@@ -30,7 +30,7 @@
     </div>
     <div class="content-body">
         <div class="content-header">
-            <span>{{totalPoints | number}} Holder</span>
+            <span>{{totalHolder | number}} Holder</span>
         </div>
         <div class="user" *ngFor="let item of listUsers">
             <div class="user-infor">

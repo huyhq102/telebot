@@ -22,6 +22,8 @@ export class FriendComponent implements OnInit {
 	isChecking = false;
 	userInfo: any;
 	inviteLink: any;
+	forwardToTelegramFriend: string | undefined;
+
   constructor(private apiService: ApiService, 
 		private router: Router,
 		private globalDataService: GlobalDataService) { }
@@ -31,6 +33,7 @@ export class FriendComponent implements OnInit {
 	getListFriends(){
 		this.userInfo = this.globalDataService.loadUserInfo();
 		this.inviteLink = 'https://t.me/rvt_ma_bot/app?startapp='+this.userInfo.user.id
+		this.forwardToTelegramFriend = `https://t.me/share/url?url=${encodeURIComponent(this.inviteLink)}`
 		const data = {
 			"user_id": this.userInfo.user.id,
 		}
@@ -44,17 +47,31 @@ export class FriendComponent implements OnInit {
 		setTimeout(() => {
 			this.isChecking = false;
       this.router.navigate(['/home'])
-		}, 1000);
+		}, 300);
   }
   goToLeaderboard(){
     this.isChecking =true;
 		setTimeout(() => {
 			this.isChecking = false;
       this.router.navigate(['/leaderboard'])
-		}, 1000);
+		}, 300);
   }
   goToEarn(){
     this.router.navigate(['/earn'])
+  }
+
+  copyInvitedLink() {
+	const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = this.inviteLink;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
   }
 
 }
