@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
             total += +element.sum
         }
       });
-      console.log(total)
+      // console.log(total)
       this.totalActivePoint = total;
       this.totalPoint = this.totalActivePoint;
       this.isChecking = false;
