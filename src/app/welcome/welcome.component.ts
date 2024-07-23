@@ -50,8 +50,8 @@ export class WelcomeComponent implements OnInit {
     ) {
       const data = {
         user_id : this.userInfo?.user?.id,
-        first_name: this.userInfo?.user?.last_name || 'None',
-        last_name: this.userInfo?.user?.first_name || 'None',
+        first_name: this.userInfo?.user?.first_name || '',
+        last_name: this.userInfo?.user?.last_name || '',
       };
 
       this.apiService.post("start-app", data, {"Content-Type": "application/json"}).subscribe(

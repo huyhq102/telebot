@@ -7,11 +7,11 @@ import { ApiService } from '../services/api.service';
 import { GlobalDataService } from '../services/global.service';
 
 @Component({
-  selector: 'app-friend',
+	selector: 'app-friend',
 	standalone: true,
-	imports: [CommonModule,NgxLoadingModule],
-  templateUrl: './friend.component.html',
-  styleUrls: ['./friend.component.scss']
+	imports: [CommonModule, NgxLoadingModule],
+	templateUrl: './friend.component.html',
+	styleUrls: ['./friend.component.scss']
 })
 export class FriendComponent implements OnInit {
 
@@ -22,61 +22,66 @@ export class FriendComponent implements OnInit {
 	inviteLink: any;
 	forwardToTelegramFriend: string | undefined;
 
-  constructor(private apiService: ApiService, 
+	constructor(private apiService: ApiService,
 		private router: Router,
 		private globalDataService: GlobalDataService) { }
-  ngOnInit(): void {
-    this.getListFriends()
-  }
-	getListFriends(){
+	ngOnInit(): void {
+		this.getListFriends()
+	}
+	getListFriends() {
 		this.userInfo = this.globalDataService.loadUserInfo();
-		this.inviteLink = 'https://t.me/rvt_ma_bot/app?startapp='+this.userInfo.user.id
+		// this.inviteLink = 'https://t.me/rvt_ma_bot/app?startapp='+this.userInfo.user.id
+		this.inviteLink = 'https://t.me/joinstudihub_bot/app?startapp=' + this.userInfo.user.id
+
 		this.forwardToTelegramFriend = `https://t.me/share/url?url=${encodeURIComponent(this.inviteLink)}`
 		const data = {
 			"user_id": this.userInfo.user.id,
 		}
-		this.apiService.post(`friend-point`,data, {'Content-Type': 'application/json'}).subscribe(data=>{
+		this.apiService.post(`friend-point`, data, { 'Content-Type': 'application/json' }).subscribe(data => {
 			this.listFriends = data;
 		})
 	}
 
-  goToHome(){
-    this.isChecking =true;
+	formatName(name: any) {
+		return name && name == 'None' ? '' : name;
+	}
+	goToHome() {
+		this.isChecking = true;
 		setTimeout(() => {
 			this.isChecking = false;
-      this.router.navigate(['/home'])
+			this.router.navigate(['/home'])
 		}, 300);
-  }
-  goToLeaderboard(){
-    this.isChecking =true;
+	}
+	goToLeaderboard() {
+		this.isChecking = true;
 		setTimeout(() => {
 			this.isChecking = false;
-      this.router.navigate(['/leaderboard'])
+			this.router.navigate(['/leaderboard'])
 		}, 300);
-  }
-  goToEarn(){
-    this.router.navigate(['/earn'])
-  }
+	}
+	goToEarn() {
+		this.router.navigate(['/earn'])
+	}
 
-  copyInvitedLink() {
-	const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = this.inviteLink;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+	copyInvitedLink() {
+		const selBox = document.createElement('textarea');
+		selBox.style.position = 'fixed';
+		selBox.style.left = '0';
+		selBox.style.top = '0';
+		selBox.style.opacity = '0';
+		selBox.value = this.inviteLink;
+		document.body.appendChild(selBox);
+		selBox.focus();
+		selBox.select();
+		document.execCommand('copy');
+		document.body.removeChild(selBox);
 		Swal.fire({
 			text: "Copied successfully!",
 			position: "top",
 			showConfirmButton: false,
 			padding: "0 0 1em",
-  		timer: 1000
+			timer: 1000
 		});
-  }
+	}
 
 }

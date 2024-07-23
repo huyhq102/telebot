@@ -16,7 +16,7 @@
 						<img style="width: 40px; height: 40px; border-radius: 100%;" [src]="item.entity_avatar ? item.entity_avatar : '../../assets/Avatar Image.png'" alt="">
 						<div class="infor">
 								<div class="name">
-									{{item.entity_first_name +" "+ item.entity_last_name}}
+									{{formatName(item.entity_first_name) + " " + formatName(item.entity_last_name)}}
 								</div>
 						</div>
 				</div>
