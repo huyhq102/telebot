@@ -1,6 +1,5 @@
 .container{
     width: 100%;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -26,6 +25,7 @@
         justify-content: center;
         .text{
             color: #636366;
+						background-color: #EED0EF;
         }
     }
     .user-container{
@@ -65,8 +65,8 @@
         }
     }
     .content-body{
-        padding: 8px 20px;
-		width: 100%;
+        padding: 8px 20px 50px 20px;
+				width: 100%;
         .content-header{
             width: 100%;
             display: flex;
@@ -127,4 +127,7 @@
 						color: #8E8E93;
 				}
     }
+}
+::ng-deep.spinner-three-bounce{
+	background-color: transparent !important;
 }

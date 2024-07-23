@@ -1,6 +1,5 @@
 .container{
     width: 100%;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -95,11 +94,11 @@
                     .circle{
                         img{
                             position: absolute;
-                            top: 5px;
-                            left: 6px;
+                            top: 6px;
+                            left: 7px;
                         }
                         position: relative;
-                        padding: 20px;
+                        padding: 22px;
                         border-radius: 100%;
                         background-color: #5B2EAC;
 												border: none;
@@ -113,7 +112,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-				padding: 0px 20px;
+				padding: 0px 20px 50px 20px;
         h1{
             text-align: left;
             font-size: 16px;
@@ -178,4 +177,7 @@
 					color: #8E8E93;
 			}
     }
+}
+::ng-deep.spinner-three-bounce{
+	background-color: transparent !important;
 }
