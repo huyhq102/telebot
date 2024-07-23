@@ -43,6 +43,11 @@
         justify-content: center;
         .text{
 					color: white;
+					background-color: #EED0EF;
         }
     }
+}
+
+::ng-deep.spinner-three-bounce{
+	background-color: transparent !important;
 }
