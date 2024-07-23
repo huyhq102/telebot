@@ -1,19 +1,25 @@
 
 <div class="container">
     <div class="content">
-        <img style="margin-bottom: 20px;width: 150px" src="../../assets/image 4.png" alt="">
+        <div class="image-container">
+					<div class="image-content">
+						<img src="../../assets/welcome.png" alt="">
+					</div>
+				</div>
         <div class="waving-hand">
-            <img src="../../assets/Waving Hand.png" alt="">
-            <h1>Hey!</h1>
+            <!-- <img src="../../assets/Waving Hand.png" alt=""> -->
+            <h1>Welcome!</h1>
         </div>
         <p>You’ve been using Telegram for a while, now it’s time to get rewarded!</p>
     </div>
-    <div class="button" (click)="goToScore()">
+		<div style="display: flex; align-items: center; flex-direction: column;justify-content: center;">
+			<img src="../../assets/Frame 23.png" alt="">
+			<div class="button" (click)="goToScore()">
         <div class="text">
-            Let’s go 
-        </div>
-        <img src="../../assets/arrow-right.png" alt="" style="background-color: #EED0EF;">
-    </div>
+					Let's get it 
+				</div>	
+    	</div>
+		</div>
 		<ngx-loading 
     [show]="loading"
     [config]="{ backdropBorderRadius: '3px' }"
