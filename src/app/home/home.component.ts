@@ -74,7 +74,14 @@ export class HomeComponent implements OnInit {
 
   check(entity_type: any, entity_id: any) {
     this.isChecking = true;
-    const data = { ...this.userInfo, entity_type, entity_id }
+    const data = {
+      user_id: this.userInfo?.user.id,
+      first_name: this.userInfo?.user.first_name,
+      last_name: this.userInfo?.user.last_name,
+      entity_type: entity_type,
+      entity_id: entity_id
+    }
+
     this.apiService.post('bonus-point', data, { 'Content-Type': 'application/json' }).subscribe((res: any) => {
       this.isChecking = false;
       if (res.status === 0) {

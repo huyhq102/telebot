@@ -7,7 +7,7 @@
                 <img src="../../assets/Avatar Image.png" alt="">
                 <div class="infor">
                     <div class="name">
-											{{userPoint[0].first_name +" "+ userPoint[0].last_name}}
+											{{formatName(userPoint[0].first_name) +" "+ formatName(userPoint[0].last_name)}}
                     </div>
                     <div class="scores">
 											{{userPoint[0].total_point | number}} STUDIHUBS
@@ -20,7 +20,7 @@
 						<span *ngIf="+userPoint[0].rank>3">#{{userPoint[0].rank}}</span>
         </div>
     </div>
-    <div style="margin-top: 30px;margin-bottom: 20px;padding: 0px 20px; width: 100%; display: flex; justify-content: center; align-items: center;">
+    <div style="margin-top: 30px;margin-bottom: 20px;padding: 0px 20px; width: 100%; display: flex; justify-content: center; align-items: center;" (click)="goToFriend()">
         <div class="button">
             <div class="text">
                 Boost score
@@ -38,7 +38,7 @@
 								<img [src]="item.avatar" alt="" *ngIf="item.avatar" style="width: 40px; height: 40px; border-radius: 100%;">
                 <div class="infor">
                     <div class="name">
-                        {{item.first_name +" "+ item.last_name}}
+                        {{formatName(item.first_name) + " " + formatName(item.last_name)}}
                     </div>
                     <div class="scores">
                         {{item.total_point | number}} STUDIHUBS

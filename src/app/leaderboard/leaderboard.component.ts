@@ -55,7 +55,7 @@ export class LeaderboardComponent implements OnInit {
 	getListUser() {
 		this.userInfo = this.globalDataService.loadUserInfo();
 		const data = {
-			"limit": 10,
+			"limit": 50,
 			"offset": 0,
 		}
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
@@ -84,5 +84,7 @@ export class LeaderboardComponent implements OnInit {
 			this.router.navigate(['/friend'])
 		}, 300);
 	}
-
+	formatName(name: any) {
+		return name && name == 'None' ? '' : name;
+	}
 }
