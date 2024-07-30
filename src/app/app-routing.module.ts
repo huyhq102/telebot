@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { ScoresComponent } from './scores/scores.component';
 import { FriendComponent } from './friend/friend.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { EarnComponent } from './earn/earn.component';
 
 const routes: Routes = [
     {
@@ -26,7 +27,11 @@ const routes: Routes = [
     {
         path: 'leaderboard',
         component: LeaderboardComponent,
-    }, 
+    },
+    {
+        path: 'earn',
+        component: EarnComponent,
+    },  
   ];
 
 @NgModule({

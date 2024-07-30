@@ -1,132 +1,221 @@
 .container{
-    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
     flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    justify-content: center;
     position: relative;
-    h1{
-        color: #1A1A1A;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 32px;
-        padding: 0px 50px;
-        text-align: center;
-    }
-    .button{
-        background-color: #EED0EF;
-        width: 100%;
-        height: 44px;
-        padding: 10px 20px 10px 20px;
-        gap: 10px;
-        border-radius: 30px;
+    width: 100%;
+    .tab-panel{
         display: flex;
         align-items: center;
-        justify-content: center;
-        .text{
-            color: #636366;
-						background-color: #EED0EF;
+        width: 100%;
+        padding: 8px;
+        border-radius: 16px;
+        background-color: #F3F5F7;
+        margin-bottom: 20px;
+        .tab-activate{
+            background: linear-gradient(90deg, #6C1C95 0%, #89216B 100%);
+            flex: 1;
+            color: white;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 5px 20px;
+            font-weight: 700;
+            border-radius: 12px;
+            margin-right: 5px;
+            text-align: center;
+        }
+        .tab{
+            flex: 1;
+            background: #F3F5F7;
+            flex: 1;
+            color: #8796AB;
+            border: 1px solid #B0BFD1;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 5px 20px;
+            font-weight: 500;
+            border-radius: 12px;
+            margin-left: 5px;
+            text-align: center;
         }
     }
-    .user-container{
+    .top-rank{
         display: flex;
-        width: 100%;
-        padding: 8px 20px;
         align-items: center;
-        .user{
-            border-radius: 12px;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 20px;
+        .top-person{
             display: flex;
-            width: 100%;
-            padding: 8px 10px;
             align-items: center;
-            justify-content: space-between;
-            border: 1px solid #E5E5EA;
-            .user-infor{
+            flex-direction: column;
+            .avata{
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                height: 100px;
+                margin-bottom: 10px;
+            }
+            .rank{
                 display: flex;
                 align-items: center;
-                .infor{
-                    display: flex;
-                    flex-direction: column;
-                    padding-left: 5px;
-                    .name{
-                        font-weight: 500;
-                        font-size: 16px;
-                        color: #1A1A1A;
-                        line-height: 24px;
-                    }
-                    .scores{
-                        color: #636366;
-                        font-size: 12px;
-                        font-weight: 400;
-                        line-height: 20px;
-                    }
+                justify-content: center;
+                margin-bottom: 15px;
+                font-size: 12px;
+                line-height: 16px;
+                font-weight: 700;
+                color: #647691;
+                span{
+                    margin-right: 5px;
                 }
+            }
+            .name{
+                color: #0F151F;
+                font-size: 12px;
+                line-height: 16px;
+                font-weight: 700;
+                margin-bottom: 5px;
+            }
+            .score{
+                font-size: 12px;
+                line-height: 16px;
+                font-weight: 500;
+                color: #35445C;
             }
         }
     }
-    .content-body{
-        padding: 8px 20px 50px 20px;
-				width: 100%;
-        .content-header{
-            width: 100%;
+    .user-content{
+        display: flex;
+        width: 100%;
+        padding: 12px;
+        border-radius: 12px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        border: 1px solid #D8E3F0;
+        margin-bottom: 20px;
+        .user-infor{
+            display: flex;
+            align-items: center;
+            .user-avata{
+                width: 48px;
+                height: 48px;
+                margin-right: 5px;
+            }
+            .user-name{
+                font-size: 16px;
+                line-height: 24px;
+                color: #0F151F;
+                font-weight: 700;
+            }
+            .user-score{
+                font-size: 14px;
+                line-height: 20px;
+                color: #647691;
+                font-weight: 500;
+            }
+        }
+        .user-rank{
+            font-size: 16px;
+            line-height: 24px;
+            color: #0F151F;
+            font-weight: 700;
+        }
+    }
+    .sub-content{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        padding-bottom: 100px;
+        .sub-title{
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            span{
+            margin-bottom: 10px;
+            .title{
                 font-size: 14px;
-                font-weight: 400;
-                line-height: 24px;
-                color: #8E8E93;
+                font-weight: 600;
+                line-height: 20px;
+                color: #35445C;
             }
         }
-        .user{
-            border-radius: 12px;
+        .user-content{
             display: flex;
             width: 100%;
-            padding: 8px 10px;
+            padding: 12px;
+            border-radius: 12px;
             align-items: center;
             justify-content: space-between;
-            border: 1px solid #E5E5EA;
-            margin-bottom: 8px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            border: 1px solid #D8E3F0;
+            margin-bottom: 10px;
             .user-infor{
                 display: flex;
                 align-items: center;
-                .infor{
-                    display: flex;
-                    flex-direction: column;
-                    padding-left: 5px;
-                    .name{
-                        font-weight: 500;
-                        font-size: 16px;
-                        color: #1A1A1A;
-                        line-height: 24px;
-                    }
-                    .scores{
-                        color: #636366;
-                        font-size: 12px;
-                        font-weight: 400;
-                        line-height: 20px;
-                    }
+                .user-avata{
+                    width: 48px;
+                    height: 48px;
+                    margin-right: 5px;
                 }
+                .user-name{
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #0F151F;
+                    font-weight: 700;
+                }
+                .user-score{
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #647691;
+                    font-weight: 500;
+                }
+            }
+            .user-rank{
+                font-size: 16px;
+                line-height: 24px;
+                color: #0F151F;
+                font-weight: 700;
             }
         }
     }
     .footer{
-        display: flex;
-				align-items: center;
-				justify-content: space-around;
+        width: 100%;
         position: fixed;
-        bottom: 0px;
-				width: 100%;
-        background-color: white;
-				.footer-menu{
-						display: flex;
-						flex: 1 1;
-						flex-direction: column;
-						align-items: center;
-						color: #8E8E93;
-				}
+        bottom: 20px;
+        padding: 20px;
+        display: flex;
+        background-color: transparent;
+        .footer-content{
+            display: flex;
+            border: 1px solid #D8E3F0;
+            width: 100%;
+            justify-content: space-between;
+            border-radius: 16px;
+            padding: 12px;
+            box-shadow: 0px 6px 16px -8px #00000014;
+            .footer-item{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-direction: column;
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: 500;
+                color: #647691;
+                .activate{
+                    background: -webkit-linear-gradient(90deg, #6C1C95 0%, #89216B 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+        }
     }
+   
 }
 ::ng-deep.spinner-three-bounce{
 	background-color: transparent !important;

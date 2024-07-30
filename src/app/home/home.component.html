@@ -1,89 +1,68 @@
 
 <div class="container">
-    <div class="content-header">
-       <div class="scores">
-        <div class="img-content">
-					<div class="crown">
-						<img src="../../assets/crown.svg" alt="">
-						<span>Your Score</span>
-					</div>
-					<div class="cup">
-						<img src="../../assets/cup.svg" alt="">
-						<span>Bonus STUDIHUBS</span>
-					</div>
-				</div>
-        <img style="margin-top: 20px;margin-bottom: 20px;" src="../../assets/image 4.png" alt="">
-        <h1>{{totalPoint | number}} STUDIHUBS</h1>
-       </div>
-    </div>
-    <div class="content-container">
-			<div class="content-body">
-        <h1>STUDIHUBS Community</h1>
-        <div class="item">
-            <h2>Subscribe Studihub Channel ( +3,000 Studihubs)</h2>
-            <div class="button-group" >
-                <div class="btn" (click)="gotoPage('https://t.me/studihubgroupchat')">
-                    <button class="circle">
-                        <img src="../../assets/arrow-right-2.png" alt="" style="background-color: #5B2EAC;">
-                    </button>
-                    <div style="font-size: 14px; line-height: 24px; padding-left: 5px; font-weight: 500;">Subscribe</div>
-                </div>
-                <button [disabled]="isChecking ? 'disabled': null" (click)="check(2,-1002206293719)">Check</button>
+    <div class="user-content">
+        <div class="user-infor">
+            <img src="../../assets/Ellipse 10.png" alt="">
+            <div class="user-name">
+                Alexander Mayor
             </div>
         </div>
-				<div class="item">
-					<h2>Join Studihub Community ( +3,000 Studihubs)</h2>
-            <div class="button-group" >
-                <div class="btn" (click)="gotoPage('https://t.me/studihubedu')">
-                    <button class="circle">
-                        <img src="../../assets/arrow-right-2.png" alt="" style="background-color: #5B2EAC;">
-                    </button>
-                    <div style="font-size: 14px; line-height: 24px; padding-left: 5px; font-weight: 500;">Join</div>
-                </div>
-                <button [disabled]="isChecking ? 'disabled': null" (click)="check(1,-1002188041826)">Check</button>
+        <div class="user-score">
+            <div class="score">
+                <div class="point">10,837</div>
+                <div class="name-point">Studihubs</div>
             </div>
-				</div>
-    </div>
-    <div class="content-body-2">
-        <div><h1>Your Rewards</h1></div>
-        <div class="item">
-            <div style="display: flex;align-items: center;">
-							<img src="../../assets/Frame 12.png" alt="" style="width: 36px; height: 36px;">
-            	<p style="margin-left: 10px;">Active Rewards</p>
-						</div>
-            <p> {{ totalActivePoint | number }} STUDIHUBS</p>
-        </div>
-        <div class="item">
-            <div style="display: flex;align-items: center;">
-							<img src="../../assets/Frame 12 (1).png" alt=""style="width: 36px; height: 36px;">
-            	<p style="margin-left: 10px;">Invited Friends</p>
-						</div>
-            <p>{{ totalFriendPoint | number }} STUDIHUBS</p>
+            <div class="prize-pool">
+                <img src="../../assets/bonus.png" alt="">
+                <span>Prize Pool</span>
+            </div>
         </div>
     </div>
-		</div>
-    
+    <div class="connect-btn">
+        Connect Wallet
+    </div>
+    <div class="sub-content">
+        <div class="sub-title">
+            <div class="title">Studihub community</div>
+            <div class="count">03</div>
+        </div>
+        <div class="sub-item">
+            <div class="item-title">
+                <img src="../../assets/facebook 1.png" alt="">
+                <span>Join Studihub Community</span>
+                <img src="../../assets/right.png" alt="">
+            </div>
+            <div class="sub-point">
+                <span>+2,500 Studihubs</span>
+                <button class="sub-btn">Subscribe</button>
+            </div>
+        </div>
+    </div>
     <div class="footer">
-			<div class="footer">
-        <div class="footer-menu">
-					<img src="../../assets/home-2 activate.svg" alt="">
-					<span style="color: #5B2EAC;">Home</span>
-				</div>
-				<div class="footer-menu"  (click)="goToLeaderboard()">
-					<img src="../../assets/kanban.svg" alt="">
-					<span>Leaderboard</span>
-				</div>
-				<div class="footer-menu" (click)="goToFriends()">
-					<img src="../../assets/profile-2user.svg" alt="" >
-					<span>Friends</span>
-				</div> 
+        <div class="footer-content">
+            <div class="footer-item">
+                <img src="../../assets/home-2.png" alt="">
+                <span class="activate">Home</span>
+            </div>
+            <div class="footer-item">
+                <img src="../../assets/Vector.png" alt="">
+                <span>Leader board</span>
+            </div>
+            <div class="footer-item">
+                <img src="../../assets/earn.png" alt="">
+                <span>Earn</span>
+            </div>
+            <div class="footer-item">
+                <img src="../../assets/friends.png" alt="">
+                <span>Friends</span>
+            </div>
+        </div>
     </div>
-    </div>
-		<ngx-loading
+</div>
+<!-- <ngx-loading
     [show]="isChecking"
     [config]="{ backdropBorderRadius: '3px' }"
-  ></ngx-loading>
-</div>
+  ></ngx-loading> -->
 
 
 
