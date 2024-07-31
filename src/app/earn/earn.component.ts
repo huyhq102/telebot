@@ -24,7 +24,11 @@ export class EarnComponent implements OnInit {
 	listUsers: any;
 	
 	totalPoints: any;
-	totalHolder: any
+	totalHolder: any;
+    tabIndex: number = 1;
+    tabIndexSocial: number = 1;
+    isMiniGanme: boolean = false;
+    isComming: boolean = true;
 
 	public loading: boolean = false;
 	constructor(
@@ -95,4 +99,22 @@ export class EarnComponent implements OnInit {
 	formatName(name: any) {
 		return name && name == 'None' ? '' : name;
 	}
+
+    changeTab(tabIndex:number){
+        this.tabIndex =  tabIndex;
+        if(tabIndex ===2 ){
+            this.isMiniGanme = true;
+        }else{
+            this.isMiniGanme = false;
+        }
+    }
+
+    changeTabSocial(tabIndex:number){
+        this.tabIndexSocial =  tabIndex;
+        if(tabIndex === 1){
+            this.isComming = true;
+        }else{
+            this.isComming = false;
+        }
+    }
 }

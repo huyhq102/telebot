@@ -18,17 +18,18 @@ import { map, pipe } from 'rxjs';
 })
 export class LeaderboardComponent implements OnInit {
 	isChecking = false;
+    tabIndex : number = 1;
 
 	userInfo: any;
 
 	userPoint: any;
-	listUsers: any[] = [];
+	listUsers: any;
 
 	totalPoints: any;
 	totalHolder: any;
 	topRankUser: any[] = [];
 
-	public loading: boolean = false;
+	loading: boolean = false;
 	constructor(
 		private apiService: ApiService,
 		private router: Router,
@@ -49,12 +50,12 @@ export class LeaderboardComponent implements OnInit {
 			"offset": 0,
 			"user_id": this.userInfo.user.id
 		}
-		const dataUser = {
-			user_list: [this.userInfo.user.id]
-		}
-		this.apiService.post('referrals', dataUser, { 'Content-Type': 'application/json' }).subscribe(data => {
-			console.log(data)
-		})
+		// const dataUser = {
+		// 	user_list: [this.userInfo.user.id]
+		// }
+		// this.apiService.post('referrals', dataUser, { 'Content-Type': 'application/json' }).subscribe(data => {
+		// 	console.log(data)
+		// })
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
 			if (!data.data[0].avatar) {
 				this.userPoint = { ...data.data[0], avatar: '../../assets/Avatar Image.png' }
@@ -65,6 +66,7 @@ export class LeaderboardComponent implements OnInit {
 	}
 
 	getListUser() {
+        this.isChecking = true;
 		this.userInfo = this.globalDataService.loadUserInfo();
 		const data = {
 			"limit": 50,
@@ -72,6 +74,7 @@ export class LeaderboardComponent implements OnInit {
 		}
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
 			let total = 0;
+            this.listUsers = data.data;
 			data.data.forEach((user: any) => {
 				total += user.total_point;
 				if (!user.avatar) {
@@ -85,6 +88,7 @@ export class LeaderboardComponent implements OnInit {
 			});
 			this.totalPoints = total;
 			this.totalHolder = data.total;
+            this.isChecking = false;
 		})
 	}
 
@@ -110,4 +114,8 @@ export class LeaderboardComponent implements OnInit {
 	goToEarn() {
 		this.router.navigate(['/earn'])
 	}
+
+    changeTab(tabIndex:number){
+        this.tabIndex =  tabIndex;
+    }
 }

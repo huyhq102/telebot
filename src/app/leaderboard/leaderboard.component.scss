@@ -25,7 +25,7 @@
             padding: 5px 20px;
             font-weight: 700;
             border-radius: 12px;
-            margin-right: 5px;
+            margin: 0px 5px;
             text-align: center;
         }
         .tab{
@@ -39,7 +39,7 @@
             padding: 5px 20px;
             font-weight: 500;
             border-radius: 12px;
-            margin-left: 5px;
+            margin: 0px 5px;
             text-align: center;
         }
     }
@@ -199,13 +199,13 @@
         position: fixed;
         bottom: 0;
         padding: 0px 20px 20px 20px;
-        display: flex;
         background-color: white;
+        display: flex;
         .footer-content{
             display: flex;
             border: 1px solid #D8E3F0;
-						background-color: white;
             width: 100%;
+            background-color: white;
             justify-content: space-between;
             border-radius: 16px;
             padding: 12px;

@@ -1,50 +1,61 @@
 
 <div class="container">
     <div class="tab-panel">
-        <div class="tab-activate">Mission</div>
-        <div class="tab">Minigame</div>
+        <div [ngClass]="tabIndex ===1 ?'tab-activate': 'tab'" (click)="changeTab(1)">Mission</div>
+        <div [ngClass]="tabIndex ===2 ?'tab-activate': 'tab'" (click)="changeTab(2)">Minigame</div>
     </div>
-    <div class="tab-social">
-        <div class="social-active">Studihubs</div>
-        <div class="social">C98</div>
-        <div class="social">Solona</div>
-        <div class="social">Instagram</div>
-    </div>
-    <div class="sub-content">
-        <div class="sub-item">
-            <div class="item-title">
-                <img src="../../assets/facebook 1.png" alt="">
-                <span>Join Studihub Community</span>
-                <img src="../../assets/right.png" alt="">
-            </div>
-            <div class="sub-point">
-                <span>+2,500 Studihubs</span>
-                <button class="sub-btn">Subscribe</button>
-            </div>
+    <ng-template #hasMinigame>
+       <div class="container-content">
+        <div class="tab-social">
+            <div [ngClass]="tabIndexSocial ===1 ?'social-active': 'social'" (click)="changeTabSocial(1)">Studihubs</div>
+            <div [ngClass]="tabIndexSocial ===2 ?'social-active': 'social'" (click)="changeTabSocial(2)">C98</div>
+            <div [ngClass]="tabIndexSocial ===3 ?'social-active': 'social'" (click)="changeTabSocial(3)">Solona</div>
+            <div [ngClass]="tabIndexSocial ===4 ?'social-active': 'social'" (click)="changeTabSocial(4)">Instagram</div>
         </div>
-        <div class="sub-item">
-            <div class="item-title">
-                <img src="../../assets/facebook 1.png" alt="">
-                <span>Join Studihub Community</span>
-                <img src="../../assets/right.png" alt="">
-            </div>
-            <div class="sub-point">
-                <span>+2,500 Studihubs</span>
-                <button class="sub-btn">Subscribe</button>
-            </div>
+        <div class="coming-soon" *ngIf="!isComming; else isContent">
+            <img src="../../assets/coming-soon (1) 1.png" alt="">
+            <span>COMING SOON</span>
+            <p>We are working in the final details.</p>
         </div>
-        <div class="sub-item">
-            <div class="item-title">
-                <img src="../../assets/facebook 1.png" alt="">
-                <span>Join Studihub Community</span>
-                <img src="../../assets/right.png" alt="">
+        <ng-template #isContent>
+            <div class="sub-content">
+                <div class="sub-item">
+                    <div class="item-title">
+                        <img src="../../assets/facebook 1.png" alt="">
+                        <span>Join Studihub Community</span>
+                        <img src="../../assets/right.png" alt="">
+                    </div>
+                    <div class="sub-point">
+                        <span>+2,500 Studihubs</span>
+                        <button class="sub-btn">Subscribe</button>
+                    </div>
+                </div>
+                <div class="sub-item">
+                    <div class="item-title">
+                        <img src="../../assets/facebook 1.png" alt="">
+                        <span>Join Studihub Community</span>
+                        <img src="../../assets/right.png" alt="">
+                    </div>
+                    <div class="sub-point">
+                        <span>+2,500 Studihubs</span>
+                        <button class="sub-btn">Subscribe</button>
+                    </div>
+                </div>
+                <div class="sub-item">
+                    <div class="item-title">
+                        <img src="../../assets/facebook 1.png" alt="">
+                        <span>Join Studihub Community</span>
+                        <img src="../../assets/right.png" alt="">
+                    </div>
+                    <div class="sub-point">
+                        <span>+2,500 Studihubs</span>
+                        <button class="sub-btn">Subscribe</button>
+                    </div>
+                </div>
             </div>
-            <div class="sub-point">
-                <span>+2,500 Studihubs</span>
-                <button class="sub-btn">Subscribe</button>
-            </div>
-        </div>
-    </div>
+        </ng-template>
+       </div>
+    </ng-template>
     <div class="footer">
         <div class="footer-content">
             <div class="footer-item" (click)="goToHome()">
@@ -66,6 +77,13 @@
         </div>
     </div>
 </div>
+<div class="minigame" *ngIf="isMiniGanme; else hasMinigame">
+    <img src="../../assets/coming-soon (1) 1.png" alt="">
+    <span>COMING SOON</span>
+    <p>We are working in the final details.</p>
+</div>
+
+
 <!-- <ngx-loading
     [show]="isChecking"
     [config]="{ backdropBorderRadius: '3px' }"

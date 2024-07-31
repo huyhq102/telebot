@@ -163,13 +163,16 @@
     .footer{
         width: 100%;
         position: fixed;
-        bottom: 20px;
+        bottom: 0;
+        padding: 0px 20px 20px 20px;
+        background-color: white;
         padding: 20px;
         display: flex;
         .footer-content{
             display: flex;
             border: 1px solid #D8E3F0;
             width: 100%;
+            background-color: white;
             justify-content: space-between;
             border-radius: 16px;
             padding: 12px;

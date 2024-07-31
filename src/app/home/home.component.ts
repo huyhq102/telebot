@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
 
 
   isChecking = false;
+  isTick = false;
   ngOnInit(): void {
 		// this.openBottomSheet();
 
@@ -252,5 +253,6 @@ export class HomeComponent implements OnInit {
 
 	openBottomSheet(): void {
     this._bottomSheet.open(ModalComponent);
-  }
+    }
+
 }

@@ -112,38 +112,39 @@
 			}
 	}
 	.footer{
-			width: 100%;
-			position: fixed;
-			bottom: 0;
-			padding: 0px 20px 20px 20px;
-			display: flex;
-			background-color: white;
-			.footer-content{
-					display: flex;
-					border: 1px solid #D8E3F0;
-					background-color: white;
-					width: 100%;
-					justify-content: space-between;
-					border-radius: 16px;
-					padding: 12px;
-					box-shadow: 0px 6px 16px -8px #00000014;
-					.footer-item{
-							display: flex;
-							align-items: center;
-							justify-content: space-between;
-							flex-direction: column;
-							font-size: 14px;
-							line-height: 20px;
-							font-weight: 500;
-							color: #647691;
-							.activate{
-									background: -webkit-linear-gradient(90deg, #6C1C95 0%, #89216B 100%);
-									-webkit-background-clip: text;
-									-webkit-text-fill-color: transparent;
-							}
-					}
-			}
-	}
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        padding: 0px 20px 20px 20px;
+        background-color: white;
+        padding: 20px;
+        display: flex;
+        .footer-content{
+            display: flex;
+            border: 1px solid #D8E3F0;
+            width: 100%;
+            justify-content: space-between;
+            border-radius: 16px;
+            background-color: white;
+            padding: 12px;
+            box-shadow: 0px 6px 16px -8px #00000014;
+            .footer-item{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-direction: column;
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: 500;
+                color: #647691;
+                .activate{
+                    background: -webkit-linear-gradient(90deg, #6C1C95 0%, #89216B 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+        }
+    }
 
 	.invite-button{
 		width: 100%;

@@ -1,7 +1,7 @@
-<div class="container" *ngIf='topRankUser'>
+<div class="container" *ngIf='!isChecking'>
     <div class="tab-panel">
-        <div class="tab-activate">Hall of Fame</div>
-        <div class="tab">Top Referral</div>
+        <div [ngClass]="tabIndex ===1 ?'tab-activate': 'tab'" (click)="changeTab(1)">Hall of Fame</div>
+        <div [ngClass]="tabIndex ===2 ?'tab-activate': 'tab'" (click)="changeTab(2)">Top Referral</div>
     </div>
     <div class="top-rank">
         <div class="top-person">
@@ -97,7 +97,8 @@
         </div>
     </div>
 </div>
-<!-- <ngx-loading
+<ngx-loading
     [show]="isChecking"
     [config]="{ backdropBorderRadius: '3px' }"
-  ></ngx-loading> -->
+></ngx-loading>
+
