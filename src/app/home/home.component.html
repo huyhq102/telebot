@@ -2,7 +2,7 @@
     <div class="user-content">
         <div class="user-infor">
             <img style="width: 48px;border-radius: 50%;"
-                [src]="myInfo.avatar ? myInfo.avatar: '../../assets/Avatar Image.png'" alt="">
+                [src]="myInfo?.avatar ? myInfo.avatar: '../../assets/Avatar Image.png'" alt="">
             <div class="user-name">
                 {{ userInfo.user.first_name + ' ' + userInfo.user.last_name}}
             </div>
@@ -31,12 +31,12 @@
         <div class="sub-item">
             <div class="item-title">
                 <img src="../../assets/tele.png" alt="">
-                <span>Subscribe Studihub Chanel</span>
+                <span>Subscribe Studihub Channel</span>
                 <img src="../../assets/right.png" alt="">
             </div>
             <div class="sub-point">
                 <span>+2,500 Studihubs</span>
-                <button class="sub-btn">Subscribe</button>
+                <button class="sub-btn" [disabled]="isChecking ? 'disabled': null" (click)="check(1,-1002188041826)">Subscribe</button>
             </div>
         </div>
         <div class="sub-item">
@@ -47,7 +47,7 @@
             </div>
             <div class="sub-point">
                 <span>+2,500 Studihubs</span>
-                <button class="sub-btn">Join Now</button>
+                <button class="sub-btn" >Join Now</button>
             </div>
         </div>
         <div class="sub-item">
