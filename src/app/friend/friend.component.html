@@ -1,59 +1,57 @@
 
 <div class="container">
-	<div class="content-header">
-		 <div class="scores">
-			<h1>Invite friends and get more STUDIHUBS </h1>
-			<img style="width: 150px;" src="../../assets/image 4.png" alt="">
-			<h2>Tap on the button to invite your friends</h2>
-		 </div>
+	<div class="user-content">
+			<div class="user-infor">
+					<div class="user-avata">
+							<img src="../../assets/Avatar Image.png" alt="">
+					</div>
+					<div style="display: flex;flex-direction: column; justify-content: center;">
+							<div class="user-name">Me</div>
+							<div class="user-score">122 Referrals</div>
+					</div>
+			</div>
+			<div class="user-rank">#123,456</div>
 	</div>
-	<div class="content-body">
-		<div class="content-title">
-				<span>{{this.listFriends.length}} Friend</span>
-		</div>
-		<div class="user" *ngFor="let item of listFriends">
-				<div class="user-infor">
-						<img style="width: 40px; height: 40px; border-radius: 100%;" [src]="item.entity_avatar ? item.entity_avatar : '../../assets/Avatar Image.png'" alt="">
-						<div class="infor">
-								<div class="name">
-									{{formatName(item.entity_first_name) + " " + formatName(item.entity_last_name)}}
-								</div>
-						</div>
-				</div>
-				<span>+{{item.point | number}} STUDIHUBS</span>
-		</div>		
+	<div class="sub-content">
+			<div class="sub-title">
+					<div class="title">Friends list</div>
+					<div class="count">{{listFriends?.length | number}}</div>
+			</div>
+			<div class="user-content" *ngFor="let item of listFriends">
+					<div class="user-infor">
+							<div class="user-avata">
+									<img src="../../assets/Avatar Image.png" alt="">
+							</div>
+							<div class="user-name">{{item.first_name + " " + item.last_name}}</div>
+					</div>
+					<div class="user-rank">{{item.total_point}} Studihubs</div>
+			</div>
 	</div>
 	<div class="footer">
-			<div class="footer-btn">
-				<a class="button" [href]="forwardToTelegramFriend">
-					<div class="text">
-							Invite friends
+			<div class="footer-content">
+					<div class="footer-item">
+							<img src="../../assets/home-not-active.png" alt="" (click)="goToHome()">
+							<span>Home</span>
 					</div>
-				</a>
-				<div class="clipboard" (click)="copyInvitedLink()">
-					<img src="../../assets/copy-svgrepo-com.svg" alt="">
-				</div>
-			</div>
-			<div class="footer-bar">
-				<div class="footer-menu" (click)="goToHome()">
-					<img src="../../assets/home-2.svg" alt="" >
-					<span>Home</span>
-				</div>
-				<div class="footer-menu"  (click)="goToLeaderboard()">
-					<img src="../../assets/kanban.svg" alt="">
-					<span>Leaderboard</span>
-				</div>
-				<div class="footer-menu">
-					<img src="../../assets/profile-2user.svg" alt="" class="filter">
-					<span style="color: #5B2EAC;">Friends</span>
-				</div> 
+					<div class="footer-item">
+							<img src="../../assets/Vector.png" alt="" (click)="goToLeaderboard()">
+							<span>Leader board</span>
+					</div>
+					<div class="footer-item">
+							<img src="../../assets/earn.png" alt="" (click)="goToEarn()">
+							<span>Earn</span>
+					</div>
+					<div class="footer-item">
+							<img src="../../assets/friend activa.png" alt="">
+							<span class="activate">Friends</span>
+					</div>
 			</div>
 	</div>
-	<ngx-loading
+</div>
+<!-- <ngx-loading
 	[show]="isChecking"
 	[config]="{ backdropBorderRadius: '3px' }"
-></ngx-loading>
-</div>
+></ngx-loading> -->
 
 
 

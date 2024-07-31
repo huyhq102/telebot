@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxLoadingModule } from 'ngx-loading';
 import { GlobalDataService } from './services/global.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -17,6 +18,7 @@ import { GlobalDataService } from './services/global.service';
     AppRoutingModule,
     HttpClientModule,
 		NgxLoadingModule.forRoot({}),
+		BrowserAnimationsModule,
   ],
   providers: [GlobalDataService],
   bootstrap: [AppComponent]

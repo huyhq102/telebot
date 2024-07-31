@@ -7,11 +7,13 @@ import { NgxLoadingModule } from 'ngx-loading';
 import Swal from 'sweetalert2'
 import { ApiService } from '../services/api.service';
 import { GlobalDataService } from '../services/global.service';
+import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, NgxLoadingModule],
+  imports: [CommonModule, NgxLoadingModule, MatBottomSheetModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -21,6 +23,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private globalDataService: GlobalDataService,
+		private _bottomSheet: MatBottomSheet,
     private router: Router
   ) { }
 
@@ -32,6 +35,7 @@ export class HomeComponent implements OnInit {
 
   isChecking = false;
   ngOnInit(): void {
+		this.openBottomSheet();
     this.userInfo = this.globalDataService.loadUserInfo();
 
     this.loadActivePoint()
@@ -207,7 +211,11 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/friend'])
     }, 300);
   }
-  //   goToEarn(){
-  //     this.router.navigate(['/earn'])
-  //   }
+    goToEarn(){
+      this.router.navigate(['/earn'])
+    }
+
+	openBottomSheet(): void {
+    this._bottomSheet.open(ModalComponent);
+  }
 }

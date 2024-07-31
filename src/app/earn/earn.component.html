@@ -47,20 +47,20 @@
     </div>
     <div class="footer">
         <div class="footer-content">
-            <div class="footer-item">
+            <div class="footer-item" (click)="goToHome()">
                 <img src="../../assets/home-not-active.png" alt="">
                 <span>Home</span>
             </div>
-            <div class="footer-item">
-                <img src="../../assets/rank.png" alt="">
-                <span class="activate">Leader board</span>
+            <div class="footer-item" (click)="goToLeaderboard()">
+                <img src="../../assets/Vector.png" alt="">
+                <span>Leader board</span>
             </div>
             <div class="footer-item">
-                <img src="../../assets/earn.png" alt="">
-                <span>Earn</span>
+                <img src="../../assets/earn-activate.png" alt="">
+                <span class="activate">Earn</span>
             </div>
             <div class="footer-item">
-                <img src="../../assets/friends.png" alt="">
+                <img src="../../assets/friends.png" alt="" (click)="goToFriend()">
                 <span>Friends</span>
             </div>
         </div>

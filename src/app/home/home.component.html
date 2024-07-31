@@ -4,12 +4,12 @@
         <div class="user-infor">
             <img src="../../assets/Ellipse 10.png" alt="">
             <div class="user-name">
-                Alexander Mayor
+                {{ userInfo.user.first_name + ' ' + userInfo.user.last_name}}
             </div>
         </div>
         <div class="user-score">
             <div class="score">
-                <div class="point">10,837</div>
+                <div class="point">{{totalActivePoint | number}}</div>
                 <div class="name-point">Studihubs</div>
             </div>
             <div class="prize-pool">
@@ -28,8 +28,8 @@
         </div>
         <div class="sub-item">
             <div class="item-title">
-                <img src="../../assets/facebook 1.png" alt="">
-                <span>Join Studihub Community</span>
+                <img src="../../assets/tele.png" alt="">
+                <span>Subscribe Studihub Chanel</span>
                 <img src="../../assets/right.png" alt="">
             </div>
             <div class="sub-point">
@@ -37,6 +37,28 @@
                 <button class="sub-btn">Subscribe</button>
             </div>
         </div>
+				<div class="sub-item">
+					<div class="item-title">
+							<img src="../../assets/x.png" alt="">
+							<span>Follow Studihub on X</span>
+							<img src="../../assets/right.png" alt="">
+					</div>
+					<div class="sub-point">
+							<span>+2,500 Studihubs</span>
+							<button class="sub-btn">Subscribe</button>
+					</div>
+			</div>
+			<div class="sub-item">
+				<div class="item-title">
+						<img src="../../assets/facebook 1.png" alt="">
+						<span>Join Studihub Community</span>
+						<img src="../../assets/right.png" alt="">
+				</div>
+				<div class="sub-point">
+						<span>+2,500 Studihubs</span>
+						<button class="sub-btn">Subscribe</button>
+				</div>
+			</div>
     </div>
     <div class="footer">
         <div class="footer-content">
@@ -44,16 +66,16 @@
                 <img src="../../assets/home-2.png" alt="">
                 <span class="activate">Home</span>
             </div>
-            <div class="footer-item">
+            <div class="footer-item" (click)="goToLeaderboard()">
                 <img src="../../assets/Vector.png" alt="">
                 <span>Leader board</span>
             </div>
-            <div class="footer-item">
+            <div class="footer-item"  (click)="goToEarn()">
                 <img src="../../assets/earn.png" alt="">
                 <span>Earn</span>
             </div>
             <div class="footer-item">
-                <img src="../../assets/friends.png" alt="">
+                <img src="../../assets/friends.png" alt="" (click)="goToFriends()">
                 <span>Friends</span>
             </div>
         </div>

@@ -84,6 +84,14 @@ export class EarnComponent implements OnInit {
 			this.router.navigate(['/friend'])
 		}, 300);
 	}
+
+	goToLeaderboard() {
+		this.isChecking = true;
+		setTimeout(() => {
+			this.isChecking = false;
+			this.router.navigate(['/leaderboard'])
+		}, 300);
+	}
 	formatName(name: any) {
 		return name && name == 'None' ? '' : name;
 	}

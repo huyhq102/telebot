@@ -6,80 +6,80 @@
     </div>
     <div class="top-rank">
         <div class="top-person">
-            <div class="avata"><img src="../../assets/Ellipse 9.png" alt=""></div>
+            <div class="avata">
+							<img [src]="topRankUser[1]?.avatar" alt="" style="width: 75px;
+							height: 75px;
+							border-radius: 50%;">
+						</div>
             <div class="rank">
                 <span>2st</span>
                 <img src="../../assets/bronze-medal.svg" alt="">
             </div>
-            <div class="name">Abram Mango</div>
-            <div class="score">41,234,567</div>
+            <div class="name">{{topRankUser[1]?.first_name + " " + topRankUser[1]?.last_name}}</div>
+            <div class="score">{{topRankUser[1]?.total_point | number}}</div>
             <div class="score">Studihubs</div>
         </div>
         <div class="top-person">
-            <div class="avata"><img src="../../assets/Ellipse 9 (1).png" alt=""></div>
-            <div class="rank">
-                <span>2st</span>
-                <img src="../../assets/gold-medal.svg" alt="">
-            </div>
-            <div class="name">Abram Mango</div>
-            <div class="score">41,234,567</div>
-            <div class="score">Studihubs</div>
+					<div class="avata">
+						<img [src]="topRankUser[0]?.avatar" alt="" style="width: 100px;
+						height: 100px;
+						border-radius: 50%;">
+					</div>
+					<div class="rank">
+							<span>1st</span>
+							<img src="../../assets/bronze-medal.svg" alt="">
+					</div>
+					<div class="name">{{topRankUser[0]?.first_name + " " + topRankUser[0]?.last_name}}</div>
+					<div class="score">{{topRankUser[0]?.total_point | number}}</div>
+					<div class="score">Studihubs</div>
         </div>
         <div class="top-person">
-            <div class="avata"><img src="../../assets/Ellipse 9 (2).png" alt=""></div>
-            <div class="rank">
-                <span>2st</span>
-                <img src="../../assets/Group.svg" alt="">
-            </div>
-            <div class="name">Abram Mango</div>
-            <div class="score">41,234,567</div>
-            <div class="score">Studihubs</div>
+					<div class="avata">
+						<img [src]="topRankUser[2]?.avatar" alt="" style="width: 75px;
+						height: 75px;
+						border-radius: 50%;">
+					</div>
+					<div class="rank">
+							<span>3st</span>
+							<img src="../../assets/bronze-medal.svg" alt="">
+					</div>
+					<div class="name">{{topRankUser[2]?.first_name + " " + topRankUser[2]?.last_name}}</div>
+					<div class="score">{{topRankUser[2]?.total_point | number}}</div>
+					<div class="score">Studihubs</div>
         </div>
     </div>
     <div class="user-content">
         <div class="user-infor">
             <div class="user-avata">
-                <img src="../../assets/Avatar Image.png" alt="">
+                <img [src]="userPoint?.avatar" alt="">
             </div>
             <div style="display: flex;flex-direction: column; justify-content: center;">
-                <div class="user-name">Me</div>
-                <div class="user-score">122 Referrals</div>
+                <div class="user-name">{{userPoint?.first_name+" "+ userPoint?.last_name}}</div>
+                <div class="user-score">{{userPoint?.total_point | number}} Referrals</div>
             </div>
         </div>
-        <div class="user-rank">#123,456</div>
+        <div class="user-rank">#{{userPoint?.rank}}</div>
     </div>
     <div class="sub-content">
         <div class="sub-title">
-            <div class="title">1,234,567 Holders</div>
+            <div class="title">{{listUsers.length | number}} Holders</div>
         </div>
-        <div class="user-content">
+        <div class="user-content" *ngFor="let item of listUsers">
             <div class="user-infor">
                 <div class="user-avata">
-                    <img src="../../assets/Avatar Image.png" alt="">
+                    <img [src]="item.avatar" alt="">
                 </div>
                 <div style="display: flex;flex-direction: column; justify-content: center;">
-                    <div class="user-name">Me</div>
-                    <div class="user-score">122 Referrals</div>
+                    <div class="user-name">{{item.first_name+" "+ item.last_name}}</div>
+                    <div class="user-score">{{item.total_point | number}} Referrals</div>
                 </div>
             </div>
-            <div class="user-rank">#123,456</div>
-        </div>
-        <div class="user-content">
-            <div class="user-infor">
-                <div class="user-avata">
-                    <img src="../../assets/Avatar Image.png" alt="">
-                </div>
-                <div style="display: flex;flex-direction: column; justify-content: center;">
-                    <div class="user-name">Me</div>
-                    <div class="user-score">122 Referrals</div>
-                </div>
-            </div>
-            <div class="user-rank">#123,456</div>
+            <div class="user-rank">#{{item.rank}}</div>
         </div>
     </div>
     <div class="footer">
         <div class="footer-content">
-            <div class="footer-item">
+            <div class="footer-item" (click)="goToHome()">
                 <img src="../../assets/home-not-active.png" alt="">
                 <span>Home</span>
             </div>
@@ -87,11 +87,11 @@
                 <img src="../../assets/rank.png" alt="">
                 <span class="activate">Leader board</span>
             </div>
-            <div class="footer-item">
+            <div class="footer-item" (click)="goToEarn()">
                 <img src="../../assets/earn.png" alt="">
                 <span>Earn</span>
             </div>
-            <div class="footer-item">
+            <div class="footer-item" (click)="goToFriend()">
                 <img src="../../assets/friends.png" alt="">
                 <span>Friends</span>
             </div>

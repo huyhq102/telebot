@@ -51,6 +51,7 @@
             display: flex;
             align-items: center;
             flex-direction: column;
+						flex: 1;
             .avata{
                 display: flex;
                 align-items: flex-end;
@@ -77,6 +78,9 @@
                 line-height: 16px;
                 font-weight: 700;
                 margin-bottom: 5px;
+								overflow: hidden;
+								white-space: nowrap;
+								text-overflow: ellipsis;
             }
             .score{
                 font-size: 12px;
@@ -161,6 +165,11 @@
                     width: 48px;
                     height: 48px;
                     margin-right: 5px;
+										img{
+											width: 48px;
+											height: 48px;
+											border-radius: 50%;
+										}
                 }
                 .user-name{
                     font-size: 16px;
@@ -186,13 +195,14 @@
     .footer{
         width: 100%;
         position: fixed;
-        bottom: 20px;
-        padding: 20px;
+        bottom: 0;
+        padding: 0px 20px 20px 20px;
         display: flex;
-        background-color: transparent;
+        background-color: white;
         .footer-content{
             display: flex;
             border: 1px solid #D8E3F0;
+						background-color: white;
             width: 100%;
             justify-content: space-between;
             border-radius: 16px;

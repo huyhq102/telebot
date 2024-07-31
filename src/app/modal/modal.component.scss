@@ -1,0 +1,58 @@
+::ng-deep.mat-bottom-sheet-container{
+	border-top-left-radius: 16px;
+	border-top-right-radius: 16px;
+}
+.container{
+	display: flex;
+	padding-bottom: 20px;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	width: 100%;
+	.prize{
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 10px;
+	}
+	.referral{
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		.title-referral{
+			font-size: 14px;
+			font-weight: 700;
+			line-height: 20px;
+			color: #0F151F;
+			margin-bottom: 15px;
+		}
+		.referral-item{
+			display: flex;
+			align-items: center;
+			padding: 10px;
+			justify-content: space-between;
+			border: 1px solid #D8E3F0;
+			width: 100%;
+			border-radius: 8px;
+			margin-bottom: 15px;
+			.referral-rank{
+				span{
+					font-size: 12px;
+					font-weight: 700;
+					line-height: 16px;
+					color: #647691;
+					margin-left: 3px;
+				}
+			}
+			.referral-point{
+				span{
+					font-size: 14px;
+					line-height: 12px;
+					font-weight: 500;
+					color: #35445C;
+				}
+			}
+		}
+	}
+}

@@ -7,6 +7,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import Swal from 'sweetalert2'
 import { ApiService } from '../services/api.service';
 import { GlobalDataService } from '../services/global.service';
+import { map, pipe } from 'rxjs';
 
 @Component({
 	selector: 'app-leaderboard',
@@ -20,11 +21,12 @@ export class LeaderboardComponent implements OnInit {
 
 	userInfo: any;
 
-	userPoint: any;
-	listUsers: any;
+	userPoint:  any;
+	listUsers: any[] =[];
 	
 	totalPoints: any;
-	totalHolder: any
+	totalHolder: any;
+	topRankUser: any[] =[];
 
 	public loading: boolean = false;
 	constructor(
@@ -47,8 +49,18 @@ export class LeaderboardComponent implements OnInit {
 			"offset": 0,
 			"user_id": this.userInfo.user.id
 		}
+		const dataUser = {
+			user_list:[this.userInfo.user.id]
+		}
+		this.apiService.post('referrals',dataUser,{ 'Content-Type': 'application/json' }).subscribe(data =>{
+			console.log(data)
+		})
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
-			this.userPoint = data.data
+			if(!data.data[0].avatar){
+				this.userPoint = {...data.data[0], avatar:'../../assets/Avatar Image.png'}
+			}else{
+				this.userPoint = data.data[0]
+			}
 		})
 	}
 
@@ -59,13 +71,20 @@ export class LeaderboardComponent implements OnInit {
 			"offset": 0,
 		}
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
-			this.listUsers = data.data;
-			let total = 0
+			let total = 0;
 			data.data.forEach((user: any) => {
-				total += user.total_point
+				total += user.total_point;
+				if(!user.avatar){
+					user.avatar = '../../assets/Avatar Image.png'
+				}
+				if(user.rank <= 3){
+					this.topRankUser.push(user);
+				}else{
+					this.listUsers.push(user);
+				}
 			});
 			this.totalPoints = total;
-			this.totalHolder = data.total
+			this.totalHolder = data.total;
 		})
 	}
 
@@ -86,5 +105,9 @@ export class LeaderboardComponent implements OnInit {
 	}
 	formatName(name: any) {
 		return name && name == 'None' ? '' : name;
+	}
+
+	goToEarn(){
+		this.router.navigate(['/earn'])
 	}
 }
