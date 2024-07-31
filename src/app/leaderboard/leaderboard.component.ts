@@ -21,12 +21,12 @@ export class LeaderboardComponent implements OnInit {
 
 	userInfo: any;
 
-	userPoint:  any;
-	listUsers: any[] =[];
-	
+	userPoint: any;
+	listUsers: any[] = [];
+
 	totalPoints: any;
 	totalHolder: any;
-	topRankUser: any[] =[];
+	topRankUser: any[] = [];
 
 	public loading: boolean = false;
 	constructor(
@@ -50,15 +50,15 @@ export class LeaderboardComponent implements OnInit {
 			"user_id": this.userInfo.user.id
 		}
 		const dataUser = {
-			user_list:[this.userInfo.user.id]
+			user_list: [this.userInfo.user.id]
 		}
-		this.apiService.post('referrals',dataUser,{ 'Content-Type': 'application/json' }).subscribe(data =>{
+		this.apiService.post('referrals', dataUser, { 'Content-Type': 'application/json' }).subscribe(data => {
 			console.log(data)
 		})
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
-			if(!data.data[0].avatar){
-				this.userPoint = {...data.data[0], avatar:'../../assets/Avatar Image.png'}
-			}else{
+			if (!data.data[0].avatar) {
+				this.userPoint = { ...data.data[0], avatar: '../../assets/Avatar Image.png' }
+			} else {
 				this.userPoint = data.data[0]
 			}
 		})
@@ -74,12 +74,12 @@ export class LeaderboardComponent implements OnInit {
 			let total = 0;
 			data.data.forEach((user: any) => {
 				total += user.total_point;
-				if(!user.avatar){
+				if (!user.avatar) {
 					user.avatar = '../../assets/Avatar Image.png'
 				}
-				if(user.rank <= 3){
+				if (user.rank <= 3) {
 					this.topRankUser.push(user);
-				}else{
+				} else {
 					this.listUsers.push(user);
 				}
 			});
@@ -107,7 +107,7 @@ export class LeaderboardComponent implements OnInit {
 		return name && name == 'None' ? '' : name;
 	}
 
-	goToEarn(){
+	goToEarn() {
 		this.router.navigate(['/earn'])
 	}
 }

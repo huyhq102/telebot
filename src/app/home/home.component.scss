@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    margin-top: 20px;
     justify-content: center;
     position: relative;
     width: 100%;
@@ -24,7 +25,7 @@
                 color: #EE5A24;
                 margin-left: 5px;
                 background-color: #F3F5F7;
-                font-size: 12px;
+                font-size: 16px;
                 line-height: 16px;
                 font-weight: 700;
             }
@@ -43,8 +44,8 @@
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     font-weight: 700;
-                    font-size: 32px;
-                    line-height: 38px;
+                    font-size: 24px;
+                    // line-height: 30px;
                 }
                 .name-point{
                     background-color: #F3F5F7;
@@ -52,6 +53,8 @@
                     font-weight: 700;
                     line-height: 16px;
                     color: #35445C;
+                    padding-left:5px;
+                    // line-height: 30px;
                 }
             }
         }
@@ -95,7 +98,9 @@
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            padding-top:40px;
+
             .title{
                 font-size: 14px;
                 font-weight: 700;
@@ -135,6 +140,8 @@
                 align-items: center;
                 justify-content: space-between;
                 width: 100%;
+                // padding-bottom: 5px;
+                padding-top: 5px;
                 span{
                     color: #0F151F;
                     font-size: 20px;

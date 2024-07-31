@@ -53,21 +53,19 @@ export class FriendComponent implements OnInit {
 			"user_id": this.userInfo.user.id
 		}
 		const dataUser = {
-			user_list:[this.userInfo.user.id]
+			user_list: [this.userInfo.user.id]
 		}
 
-		this.apiService.post('referrals',dataUser,{ 'Content-Type': 'application/json' }).subscribe((response:any) =>{
-			console.log('data',data)
+		this.apiService.post('referrals', dataUser, { 'Content-Type': 'application/json' }).subscribe((response: any) => {
 			this.myReferrals = response.data[this.userInfo.user.id]
 		})
-		
+
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
-			if(!data.data[0].avatar){
-				this.myInfo = {...data.data[0], avatar:'../../assets/Avatar Image.png'}
-			}else{
+			if (!data.data[0].avatar) {
+				this.myInfo = { ...data.data[0], avatar: '../../assets/Avatar Image.png' }
+			} else {
 				this.myInfo = data.data[0]
 			}
-			console.log(data)
 		})
 	}
 

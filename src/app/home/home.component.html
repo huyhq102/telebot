@@ -1,26 +1,28 @@
-
 <div class="container">
     <div class="user-content">
         <div class="user-infor">
-            <img src="../../assets/Ellipse 10.png" alt="">
+            <img style="width: 48px;border-radius: 50%;"
+                [src]="myInfo.avatar ? myInfo.avatar: '../../assets/Avatar Image.png'" alt="">
             <div class="user-name">
                 {{ userInfo.user.first_name + ' ' + userInfo.user.last_name}}
             </div>
         </div>
         <div class="user-score">
             <div class="score">
-                <div class="point">{{totalActivePoint | number}}</div>
+                <div class="point">{{totalPoint | number}}</div>
                 <div class="name-point">Studihubs</div>
             </div>
-            <div class="prize-pool">
+            <div class="prize-pool" (click)="openBottomSheet()">
                 <img src="../../assets/bonus.png" alt="">
                 <span>Prize Pool</span>
             </div>
         </div>
     </div>
-    <div class="connect-btn">
+
+    <!-- <div class="connect-btn">
         Connect Wallet
-    </div>
+    </div> -->
+
     <div class="sub-content">
         <div class="sub-title">
             <div class="title">Studihub community</div>
@@ -37,28 +39,28 @@
                 <button class="sub-btn">Subscribe</button>
             </div>
         </div>
-				<div class="sub-item">
-					<div class="item-title">
-							<img src="../../assets/x.png" alt="">
-							<span>Follow Studihub on X</span>
-							<img src="../../assets/right.png" alt="">
-					</div>
-					<div class="sub-point">
-							<span>+2,500 Studihubs</span>
-							<button class="sub-btn">Subscribe</button>
-					</div>
-			</div>
-			<div class="sub-item">
-				<div class="item-title">
-						<img src="../../assets/facebook 1.png" alt="">
-						<span>Join Studihub Community</span>
-						<img src="../../assets/right.png" alt="">
-				</div>
-				<div class="sub-point">
-						<span>+2,500 Studihubs</span>
-						<button class="sub-btn">Subscribe</button>
-				</div>
-			</div>
+        <div class="sub-item">
+            <div class="item-title">
+                <img src="../../assets/tele.png" alt="">
+                <span>Join Studihub Community</span>
+                <img src="../../assets/right.png" alt="">
+            </div>
+            <div class="sub-point">
+                <span>+2,500 Studihubs</span>
+                <button class="sub-btn">Join Now</button>
+            </div>
+        </div>
+        <div class="sub-item">
+            <div class="item-title">
+                <img src="../../assets/x.png" alt="">
+                <span>Follow Studihub on X</span>
+                <img src="../../assets/right.png" alt="">
+            </div>
+            <div class="sub-point">
+                <span>+2,500 Studihubs</span>
+                <button class="sub-btn">Follow</button>
+            </div>
+        </div>
     </div>
     <div class="footer">
         <div class="footer-content">
@@ -70,7 +72,7 @@
                 <img src="../../assets/Vector.png" alt="">
                 <span>Leader board</span>
             </div>
-            <div class="footer-item"  (click)="goToEarn()">
+            <div class="footer-item" (click)="goToEarn()">
                 <img src="../../assets/earn.png" alt="">
                 <span>Earn</span>
             </div>
@@ -85,7 +87,3 @@
     [show]="isChecking"
     [config]="{ backdropBorderRadius: '3px' }"
   ></ngx-loading> -->
-
-
-
-  

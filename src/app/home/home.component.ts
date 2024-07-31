@@ -20,6 +20,7 @@ import { ModalComponent } from '../modal/modal.component';
 export class HomeComponent implements OnInit {
 
   public loading: boolean = false;
+  myInfo: any;
   constructor(
     private apiService: ApiService,
     private globalDataService: GlobalDataService,
@@ -35,11 +36,11 @@ export class HomeComponent implements OnInit {
 
   isChecking = false;
   ngOnInit(): void {
-		this.openBottomSheet();
+		// this.openBottomSheet();
+
     this.userInfo = this.globalDataService.loadUserInfo();
-
+    this.getMyInfo()
     this.loadActivePoint()
-
     // this.loadTotalPoint()
   }
 
@@ -59,11 +60,31 @@ export class HomeComponent implements OnInit {
           this.totalFriendPoint += +element.sum
         }
       });
-      // console.log(total)
       this.totalPoint = this.totalActivePoint + this.totalFriendPoint;
       this.isChecking = false;
     })
   }
+
+  getMyInfo() {
+		this.userInfo = this.globalDataService.loadUserInfo();
+		const data = {
+			"limit": 1,
+			"offset": 0,
+			"user_id": this.userInfo.user.id
+		}
+		const dataUser = {
+			user_list:[this.userInfo.user.id]
+		}
+		
+		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
+			if(!data.data[0].avatar){
+				this.myInfo = {...data.data[0], avatar:'../../assets/Avatar Image.png'}
+			}else{
+				this.myInfo = data.data[0]
+			}
+		})
+	}
+
 
   loadTotalPoint() {
     this.apiService.get('users').subscribe((response: any) => {

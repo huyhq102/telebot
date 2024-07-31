@@ -1,5 +1,4 @@
-
-<div class="container">
+<div class="container" *ngIf='topRankUser'>
     <div class="tab-panel">
         <div class="tab-activate">Hall of Fame</div>
         <div class="tab">Top Referral</div>
@@ -7,10 +6,10 @@
     <div class="top-rank">
         <div class="top-person">
             <div class="avata">
-							<img [src]="topRankUser[1]?.avatar" alt="" style="width: 75px;
+                <img [src]="topRankUser[1]?.avatar" alt="" style="width: 75px;
 							height: 75px;
 							border-radius: 50%;">
-						</div>
+            </div>
             <div class="rank">
                 <span>2st</span>
                 <img src="../../assets/bronze-medal.svg" alt="">
@@ -20,38 +19,38 @@
             <div class="score">Studihubs</div>
         </div>
         <div class="top-person">
-					<div class="avata">
-						<img [src]="topRankUser[0]?.avatar" alt="" style="width: 100px;
+            <div class="avata">
+                <img [src]="topRankUser[0]?.avatar" alt="" style="width: 100px;
 						height: 100px;
 						border-radius: 50%;">
-					</div>
-					<div class="rank">
-							<span>1st</span>
-							<img src="../../assets/bronze-medal.svg" alt="">
-					</div>
-					<div class="name">{{topRankUser[0]?.first_name + " " + topRankUser[0]?.last_name}}</div>
-					<div class="score">{{topRankUser[0]?.total_point | number}}</div>
-					<div class="score">Studihubs</div>
+            </div>
+            <div class="rank">
+                <span>1st</span>
+                <img src="../../assets/bronze-medal.svg" alt="">
+            </div>
+            <div class="name">{{topRankUser[0]?.first_name + " " + topRankUser[0]?.last_name}}</div>
+            <div class="score">{{topRankUser[0]?.total_point | number}}</div>
+            <div class="score">Studihubs</div>
         </div>
         <div class="top-person">
-					<div class="avata">
-						<img [src]="topRankUser[2]?.avatar" alt="" style="width: 75px;
+            <div class="avata">
+                <img [src]="topRankUser[2]?.avatar" alt="" style="width: 75px;
 						height: 75px;
 						border-radius: 50%;">
-					</div>
-					<div class="rank">
-							<span>3st</span>
-							<img src="../../assets/bronze-medal.svg" alt="">
-					</div>
-					<div class="name">{{topRankUser[2]?.first_name + " " + topRankUser[2]?.last_name}}</div>
-					<div class="score">{{topRankUser[2]?.total_point | number}}</div>
-					<div class="score">Studihubs</div>
+            </div>
+            <div class="rank">
+                <span>3st</span>
+                <img src="../../assets/bronze-medal.svg" alt="">
+            </div>
+            <div class="name">{{topRankUser[2]?.first_name + " " + topRankUser[2]?.last_name}}</div>
+            <div class="score">{{topRankUser[2]?.total_point | number}}</div>
+            <div class="score">Studihubs</div>
         </div>
     </div>
     <div class="user-content">
         <div class="user-infor">
             <div class="user-avata">
-                <img [src]="userPoint?.avatar" alt="">
+                <img class="user-avata" [src]="userPoint?.avatar" alt="">
             </div>
             <div style="display: flex;flex-direction: column; justify-content: center;">
                 <div class="user-name">{{userPoint?.first_name+" "+ userPoint?.last_name}}</div>
@@ -67,7 +66,7 @@
         <div class="user-content" *ngFor="let item of listUsers">
             <div class="user-infor">
                 <div class="user-avata">
-                    <img [src]="item.avatar" alt="">
+                    <img  [src]="item.avatar" alt="">
                 </div>
                 <div style="display: flex;flex-direction: column; justify-content: center;">
                     <div class="user-name">{{item.first_name+" "+ item.last_name}}</div>
@@ -102,7 +101,3 @@
     [show]="isChecking"
     [config]="{ backdropBorderRadius: '3px' }"
   ></ngx-loading> -->
-
-
-
-  
