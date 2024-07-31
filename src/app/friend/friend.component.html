@@ -7,10 +7,10 @@
 					</div>
 					<div style="display: flex;flex-direction: column; justify-content: center;">
 							<div class="user-name">Me</div>
-							<div class="user-score">122 Referrals</div>
+							<div class="user-score">{{myReferrals}} Referrals</div>
 					</div>
 			</div>
-			<div class="user-rank">#123,456</div>
+			<div class="user-rank">#{{myInfo.rank}}</div>
 	</div>
 	<div class="sub-content">
 			<div class="sub-title">
@@ -22,9 +22,9 @@
 							<div class="user-avata">
 									<img src="../../assets/Avatar Image.png" alt="">
 							</div>
-							<div class="user-name">{{item.first_name + " " + item.last_name}}</div>
+							<div class="user-name">{{formatName(item.first_name) + " " + formatName(item.last_name)}}</div>
 					</div>
-					<div class="user-rank">{{item.total_point}} Studihubs</div>
+					<div class="user-rank">{{item.point}} Studihubs</div>
 			</div>
 	</div>
 	<div class="footer">

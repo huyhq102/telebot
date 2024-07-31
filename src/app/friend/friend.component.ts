@@ -21,11 +21,14 @@ export class FriendComponent implements OnInit {
 	userInfo: any;
 	inviteLink: any;
 	forwardToTelegramFriend: string | undefined;
+	myInfo: any;
+	myReferrals: any;
 
 	constructor(private apiService: ApiService,
 		private router: Router,
 		private globalDataService: GlobalDataService) { }
 	ngOnInit(): void {
+		this.getMyReferrals()
 		this.getListFriends()
 	}
 	getListFriends() {
@@ -39,6 +42,32 @@ export class FriendComponent implements OnInit {
 		}
 		this.apiService.post(`friend-point`, data, { 'Content-Type': 'application/json' }).subscribe(data => {
 			this.listFriends = data;
+		})
+	}
+
+	getMyReferrals() {
+		this.userInfo = this.globalDataService.loadUserInfo();
+		const data = {
+			"limit": 1,
+			"offset": 0,
+			"user_id": this.userInfo.user.id
+		}
+		const dataUser = {
+			user_list:[this.userInfo.user.id]
+		}
+
+		this.apiService.post('referrals',dataUser,{ 'Content-Type': 'application/json' }).subscribe((response:any) =>{
+			console.log('data',data)
+			this.myReferrals = response.data[this.userInfo.user.id]
+		})
+		
+		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
+			if(!data.data[0].avatar){
+				this.myInfo = {...data.data[0], avatar:'../../assets/Avatar Image.png'}
+			}else{
+				this.myInfo = data.data[0]
+			}
+			console.log(data)
 		})
 	}
 
