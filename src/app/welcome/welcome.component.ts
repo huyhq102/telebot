@@ -32,8 +32,8 @@ export class WelcomeComponent implements OnInit {
     if (this.userInfo.start_param) {
       const data = {
         user_id: this.userInfo.start_param,
-        last_name: this.userInfo.user.last_name,
-        first_name: this.userInfo.user.first_name,
+        last_name: '',
+        first_name: '',
         entity_type: 3,
         entity_id: this.userInfo.user.id
       }

@@ -1,59 +1,146 @@
-
 <div class="container">
 	<div class="content-header">
-		 <div class="scores">
-			<h1>Invite friends and get more STUDIHUBS </h1>
-			<img style="width: 150px;" src="../../assets/image 4.png" alt="">
-			<h2>Tap on the button to invite your friends</h2>
-		 </div>
+		<div class="scores">
+			<h1 style='font-family: SF Pro Display;
+			padding-top:10px;
+			font-size: 20px;
+			font-weight: 600;
+			line-height: 23.87px;
+			letter-spacing: -0.30000001192092896px;
+			text-align: center;
+			'>Invite friends and get more STUDIHUBS </h1>
+			<img style="width: 120px;" src="../../assets/image 4.png" alt="">
+			<!-- <h2>Tap on the button to invite your friends</h2> -->
+		</div>
 	</div>
 	<div class="content-body">
 		<div class="content-title">
-				<span>{{this.listFriends.length}} Friend</span>
+			<span>{{this.listFriends.length}} friends invited</span>
 		</div>
+
+		<div style="font-family: SF Pro Display;
+		margin-top: 40px;
+		margin-bottom: 20px;
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 19.09px;
+		letter-spacing: -0.30000001192092896px;
+		text-align: left;
+		color: 000000;
+		">
+			Invite friends to get USDT and more!
+		</div>
+
+		<div class="award">
+			<div class="rank-award">
+				<img style="width: 21px; height: 25px;margin-right: 5px;" src="../../assets/Group 38.svg" alt="">
+				<span class='title'> Top 1 Referral </span>
+			</div>
+
+			<div style='
+			font-family: SF Pro Display;
+			font-size: 16px;
+			text-align: left;
+			line-height: 20px;
+			color: #6C1C95;
+			'>
+				<span> <span class='bold-color'> 5000 USDT </span>  and <span class='bold-color'> 500,000 </span> Studihub Coins </span>
+			</div>
+		</div>
+
+
+		<div class="award">
+			<div class="rank-award-smaller">
+				<img style="width: 21px; height: 24px;margin-right: 5px;" src="../../assets/Group 40.svg" alt="">
+				<span class='title'> Top 2 Referral </span>
+			</div>
+
+			<div>
+				<span> 
+					<span class='bold'> 2500 USDT </span> 
+					and 
+					<span class='bold'> 250,000 </span> 
+					Studihub Coins
+				 </span>
+			</div>
+		</div>
+
+		<div class="award">
+			<div class="rank-award-smaller">
+				<img style="width: 21px; height: 24px;margin-right: 5px;" src="../../assets/Group 39.svg" alt="">
+				<span class='title'> Top 3 Referral </span>
+			</div>
+
+			<div>
+				<span> 
+					<span class='bold'> 1000 USDT </span> 
+					and 
+					<span class='bold'> 100,000 </span> 
+					Studihub Coins
+				 </span>
+			</div>
+		</div>
+
+		<div class="award">
+			<div class="rank-award-smaller">
+				<span class='title'> Top 4-10 </span>
+			</div>
+
+			<div>
+				<span> 
+					<span class='bold'> 100 USDT </span> 
+					and 
+					<span class='bold'> 10,000 </span> 
+					Studihub Coins
+				 </span>
+			</div>
+		</div>
+
+
+		<div class="content-title">
+			<span style='margin-bottom: 10px;'>Friends List</span>
+		</div>
+
+
 		<div class="user" *ngFor="let item of listFriends">
-				<div class="user-infor">
-						<img style="width: 40px; height: 40px; border-radius: 100%;" [src]="item.entity_avatar ? item.entity_avatar : '../../assets/Avatar Image.png'" alt="">
-						<div class="infor">
-								<div class="name">
-									{{formatName(item.entity_first_name) + " " + formatName(item.entity_last_name)}}
-								</div>
-						</div>
+			<div class="user-infor">
+				<img style="width: 40px; height: 40px; border-radius: 100%;"
+					[src]="item.entity_avatar ? item.entity_avatar : '../../assets/Avatar Image.png'" alt="">
+				<div class="infor">
+					<div class="name">
+						{{formatName(item.entity_first_name) + " " + formatName(item.entity_last_name)}}
+					</div>
 				</div>
-				<span>+{{item.point | number}} STUDIHUBS</span>
-		</div>		
+			</div>
+			<span>+{{item.point | number}} STUDIHUBS</span>
+		</div>
 	</div>
 	<div class="footer">
-			<div class="footer-btn">
-				<a class="button" [href]="forwardToTelegramFriend">
-					<div class="text">
-							Invite friends
-					</div>
-				</a>
-				<div class="clipboard" (click)="copyInvitedLink()">
-					<img src="../../assets/copy-svgrepo-com.svg" alt="">
-				</div>
+		<div class="footer-btn">
+			<a class="button" [href]="forwardToTelegramFriend">
+				Invite friends
+
+				<!-- <div class="text">
+				</div> -->
+			</a>
+			<div class="clipboard" (click)="copyInvitedLink()">
+				<img src="../../assets/copy-svgrepo-com.svg" alt="">
 			</div>
-			<div class="footer-bar">
-				<div class="footer-menu" (click)="goToHome()">
-					<img src="../../assets/home-2.svg" alt="" >
-					<span>Home</span>
-				</div>
-				<div class="footer-menu"  (click)="goToLeaderboard()">
-					<img src="../../assets/kanban.svg" alt="">
-					<span>Leaderboard</span>
-				</div>
-				<div class="footer-menu">
-					<img src="../../assets/profile-2user.svg" alt="" class="filter">
-					<span style="color: #5B2EAC;">Friends</span>
-				</div> 
+		</div>
+		<div class="footer-bar">
+			<div class="footer-menu" (click)="goToHome()">
+				<img src="../../assets/home-2.svg" alt="">
+				<span>Home</span>
 			</div>
+			<div class="footer-menu" (click)="goToLeaderboard()">
+				<img src="../../assets/kanban.svg" alt="">
+				<span>Leaderboard</span>
+			</div>
+			<div class="footer-menu">
+				<img src="../../assets/profile-2user.svg" alt="" class="filter">
+				<span style="color: #5B2EAC;">Friends</span>
+			</div>
+		</div>
 	</div>
-	<ngx-loading
-	[show]="isChecking"
-	[config]="{ backdropBorderRadius: '3px' }"
-></ngx-loading>
+	<ngx-loading [show]="isChecking" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
 </div>
-
-
-

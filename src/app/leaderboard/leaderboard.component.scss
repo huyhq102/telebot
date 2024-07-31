@@ -14,7 +14,9 @@
         text-align: center;
     }
     .button{
-        background-color: #EED0EF;
+        background-image: linear-gradient(#6C1C95 0%, #89216B 100%);
+
+        // background-color: #EED0EF;
         width: 100%;
         height: 44px;
         padding: 10px 20px 10px 20px;
@@ -23,10 +25,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        .text{
-            color: #636366;
-						background-color: #EED0EF;
-        }
+        color: #ffffff;
+        // .text{
+        //     color: #636366;
+		// 				// background-color: #EED0EF;
+        //                 					// background-image: linear-gradient(#6C1C95 0%, #89216B 100%);
+
+        // }
     }
     .user-container{
         display: flex;
