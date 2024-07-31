@@ -7,7 +7,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { GlobalDataService } from './services/global.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
 		NgxLoadingModule.forRoot({}),
 		BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
   providers: [GlobalDataService],
   bootstrap: [AppComponent]

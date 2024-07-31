@@ -36,7 +36,8 @@
             </div>
             <div class="sub-point">
                 <span>+2,500 Studihubs</span>
-                <button class="sub-btn" [disabled]="isChecking ? 'disabled': null" (click)="check(1,-1002188041826)">Subscribe</button>
+                <button class="sub-btn" [disabled]="isChecking ? 'disabled': null"
+                    (click)="check(1,-1002188041826)">Subscribe</button>
             </div>
         </div>
         <div class="sub-item">
@@ -47,7 +48,8 @@
             </div>
             <div class="sub-point">
                 <span>+2,500 Studihubs</span>
-                <button class="sub-btn" >Join Now</button>
+                <button class="sub-btn" [disabled]="isChecking ? 'disabled': null"
+                    (click)="check(2,-1002206293719)">Join Now</button>
             </div>
         </div>
         <div class="sub-item">
@@ -58,7 +60,11 @@
             </div>
             <div class="sub-point">
                 <span>+2,500 Studihubs</span>
-                <button class="sub-btn">Follow</button>
+                <button class="sub-btn" *ngIf='followMode=="determinate"' (click)="followX()">Follow</button>
+                <mat-progress-spinner style='width:5px' *ngIf='followMode=="indeterminate"' class="example-margin"
+                    [mode]="followMode" [value]="value">
+                </mat-progress-spinner>
+
             </div>
         </div>
     </div>

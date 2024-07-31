@@ -9,11 +9,12 @@ import { ApiService } from '../services/api.service';
 import { GlobalDataService } from '../services/global.service';
 import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { ModalComponent } from '../modal/modal.component';
+import { MatProgressSpinnerModule, ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, NgxLoadingModule, MatBottomSheetModule],
+  imports: [CommonModule, NgxLoadingModule, MatBottomSheetModule, MatProgressSpinnerModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -33,6 +34,10 @@ export class HomeComponent implements OnInit {
   totalPoint = 0
   userInfo: any
   pointHistory: any
+
+  followMode: ProgressSpinnerMode = 'determinate';
+  value = 50;
+
 
   isChecking = false;
   ngOnInit(): void {
@@ -128,6 +133,7 @@ export class HomeComponent implements OnInit {
           icon: "warning"
         });
       }
+      
     })
     // this.checkJoinInTelegram(groupId).then(status => {
     //     return status ? this.checkUserInGroup(groupId): true 
@@ -163,6 +169,14 @@ export class HomeComponent implements OnInit {
       ).subscribe((response: any) => {
         response.message == 'User had joined group' ? resolve(true) : resolve(false)
       }))
+  }
+
+  followX() {
+    window.open('https://x.com', '_blank')
+    this.followMode = 'indeterminate';
+    setTimeout(()=>{
+      this.followMode = 'determinate';
+    }, 10000)
   }
 
   addGroup(groupId: any) {
