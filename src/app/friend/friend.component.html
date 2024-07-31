@@ -1,57 +1,68 @@
-
 <div class="container">
 	<div class="user-content">
-			<div class="user-infor">
-					<div class="user-avata">
-							<img src="../../assets/Avatar Image.png" alt="">
-					</div>
-					<div style="display: flex;flex-direction: column; justify-content: center;">
-							<div class="user-name">Me</div>
-							<div class="user-score">{{myReferrals}} Referrals</div>
-					</div>
+		<div class="user-infor">
+			<div class="user-avata">
+				<img src="../../assets/Avatar Image.png" alt="">
 			</div>
-			<div class="user-rank">#{{myInfo.rank}}</div>
+			<div style="display: flex;flex-direction: column; justify-content: center;">
+				<div class="user-name">Me</div>
+				<div class="user-score">{{myReferrals}} Referrals</div>
+			</div>
+		</div>
+		<div class="user-rank">#{{myInfo?.rank}}</div>
 	</div>
 	<div class="sub-content">
-			<div class="sub-title">
-					<div class="title">Friends list</div>
-					<div class="count">{{listFriends?.length | number}}</div>
+		<div class="sub-title">
+			<div class="title">Friends list</div>
+			<div class="count">{{listFriends?.length | number}}</div>
+		</div>
+		<div class="user-content" *ngFor="let item of listFriends">
+			<div class="user-infor">
+				<div class="user-avata">
+					<img src="../../assets/Avatar Image.png" alt="">
+				</div>
+				<div class="user-name">{{formatName(item.first_name) + " " + formatName(item.last_name)}}</div>
 			</div>
-			<div class="user-content" *ngFor="let item of listFriends">
-					<div class="user-infor">
-							<div class="user-avata">
-									<img src="../../assets/Avatar Image.png" alt="">
-							</div>
-							<div class="user-name">{{formatName(item.first_name) + " " + formatName(item.last_name)}}</div>
-					</div>
-					<div class="user-rank">{{item.point}} Studihubs</div>
-			</div>
+			<div class="user-rank">+{{item.point}} Studihubs</div>
+		</div>
 	</div>
+
+	<!-- <div >
+		<a class="button" [href]="forwardToTelegramFriend">
+			Invite friends
+		</a>
+		<div class="clipboard" (click)="copyInvitedLink()">
+			<img src="../../assets/copy-svgrepo-com.svg" alt="">
+		</div>
+	</div> -->
+	<div class="footer-button">
+		<button>cccc </button>
+		
+	</div>
+
 	<div class="footer">
-			<div class="footer-content">
-					<div class="footer-item">
-							<img src="../../assets/home-not-active.png" alt="" (click)="goToHome()">
-							<span>Home</span>
-					</div>
-					<div class="footer-item">
-							<img src="../../assets/Vector.png" alt="" (click)="goToLeaderboard()">
-							<span>Leader board</span>
-					</div>
-					<div class="footer-item">
-							<img src="../../assets/earn.png" alt="" (click)="goToEarn()">
-							<span>Earn</span>
-					</div>
-					<div class="footer-item">
-							<img src="../../assets/friend activa.png" alt="">
-							<span class="activate">Friends</span>
-					</div>
+		
+		<div class="footer-content">
+			<div class="footer-item">
+				<img src="../../assets/home-not-active.png" alt="" (click)="goToHome()">
+				<span>Home</span>
 			</div>
+			<div class="footer-item">
+				<img src="../../assets/Vector.png" alt="" (click)="goToLeaderboard()">
+				<span>Leader board</span>
+			</div>
+			<div class="footer-item">
+				<img src="../../assets/earn.png" alt="" (click)="goToEarn()">
+				<span>Earn</span>
+			</div>
+			<div class="footer-item">
+				<img src="../../assets/friend activa.png" alt="">
+				<span class="activate">Friends</span>
+			</div>
+		</div>
 	</div>
 </div>
 <!-- <ngx-loading
 	[show]="isChecking"
 	[config]="{ backdropBorderRadius: '3px' }"
 ></ngx-loading> -->
-
-
-

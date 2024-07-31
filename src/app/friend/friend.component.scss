@@ -142,6 +142,15 @@
 					}
 			}
 	}
+
+	.footer-button{
+		width: 100%;
+		position: fixed;
+		bottom: 100px;
+		
+		display: flex;
+		background-color: white;
+	}
  
 }
 ::ng-deep.spinner-three-bounce{
