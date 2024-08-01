@@ -1,0 +1,32 @@
+
+<div class="container">
+   <div class="container-content">
+		<div class="header-close">
+			<img src="../../assets/close white.png" alt="" (click)="close()">
+			<span>Spin to Win</span>
+		</div>
+		<div class="header-title">
+			Add to your earnings! 
+		</div>
+		<div id="wheelOfFortune">
+			<canvas #wheel  width="318" height="318" class="wheel"></canvas>
+			<div class="center-circle"></div>
+			<div class="border-circle"></div>
+			<img src="../../assets/Polygon 2.svg" alt="" class="triangle">
+			<div style="display: flex;width: 100%;padding: 20px;">
+				<div class="btn-spin" (click)="spinner()" #spin>Spin the Wheel</div>
+			</div>
+		</div>
+	 </div>
+</div>
+
+
+
+<!-- <ngx-loading
+    [show]="isChecking"
+    [config]="{ backdropBorderRadius: '3px' }"
+  ></ngx-loading> -->
+
+
+
+  

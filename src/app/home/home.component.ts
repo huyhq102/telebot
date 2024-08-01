@@ -8,8 +8,8 @@ import Swal from 'sweetalert2'
 import { ApiService } from '../services/api.service';
 import { GlobalDataService } from '../services/global.service';
 import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { ModalComponent } from '../modal/modal.component';
 import { MatProgressSpinnerModule, ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { WheelComponent } from '../wheel/wheel.component';
 
 @Component({
   selector: 'app-home',
@@ -252,7 +252,7 @@ export class HomeComponent implements OnInit {
     }
 
 	openBottomSheet(): void {
-    this._bottomSheet.open(ModalComponent);
+    this._bottomSheet.open(WheelComponent);
     }
 
 }

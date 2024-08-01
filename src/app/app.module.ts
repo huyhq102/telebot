@@ -8,6 +8,7 @@ import { GlobalDataService } from './services/global.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { DataService } from './wheel/data.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 		BrowserAnimationsModule,
     MatProgressSpinnerModule
   ],
-  providers: [GlobalDataService],
+  providers: [GlobalDataService,DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

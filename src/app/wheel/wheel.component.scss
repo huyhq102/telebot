@@ -1,0 +1,86 @@
+.container{
+		height: 80vh;
+		background: linear-gradient(180deg, #9D44CB 0%, #55083F 100%);
+		display: flex;
+		.container-content{
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-direction: column;
+			background-image: url('../../assets/Confetti.png');
+			.header-close{
+				display: flex;
+				width: 100%;
+				align-items: center;
+				justify-content: center;
+				padding: 20px;
+				span{
+					flex: 1;
+					text-align: center;
+					font-size: 14px;
+					line-height: 20px;
+					font-weight: 700;
+					color: white;
+				}
+			}
+			.header-title{
+				font-size: 32px;
+				line-height: 40px;
+				font-weight: 800;
+				margin-bottom: 20px;
+				color: white;
+			}
+			.btn-spin{
+				padding: 10px;
+				width: 100%;
+				border-radius: 16px;
+				background-color: #FFFFFF;
+				text-align: center;
+				color: #55083F;
+				font-size: 16px;
+				line-height: 24px;
+				font-weight: 700;
+			}
+		}
+}
+::ng-deep.mat-bottom-sheet-container{
+	border-top-left-radius: 16px;
+	border-top-right-radius: 16px;
+	padding: 0px;
+}
+
+#wheelOfFortune {
+  position: relative;
+}
+
+#wheel {
+  display: block;
+}
+
+.center-circle {
+  width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	top: 37%;
+	left: 47%;
+	position: absolute;
+	background-color: white;
+}
+.border-circle{
+	width: 318px;
+	height: 318px;
+	position: absolute;
+	top: 0;
+  color: #EE9D24;
+	box-shadow: 0 0 0 12px currentColor, 0 0px 15px 5px rgba(0, 0, 0, 0.6);
+	left: 0;
+	border-radius: 50%;
+}
+.triangle{
+	position: absolute;
+	top: -4px;
+	left: 44%;
+}
+
+
