@@ -39,8 +39,9 @@ export class FriendComponent implements OnInit {
 		this.forwardToTelegramFriend = `https://t.me/share/url?url=${encodeURIComponent(this.inviteLink)}`
 		const data = {
 			"user_id": this.userInfo.user.id,
+			"limit": 50
 		}
-		this.apiService.post(`friend-point`, data, { 'Content-Type': 'application/json' }).subscribe(data => {
+		this.apiService.post(`friend-point-v2`, data, { 'Content-Type': 'application/json' }).subscribe(data => {
 			this.listFriends = data;
 		})
 	}
@@ -72,6 +73,7 @@ export class FriendComponent implements OnInit {
 	formatName(name: any) {
 		return name && name == 'None' ? '' : name;
 	}
+
 	goToHome() {
 		this.isChecking = true;
 		setTimeout(() => {

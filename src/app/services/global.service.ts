@@ -10,9 +10,9 @@ constructor(private http: HttpClient) {}
     loadUserInfo() {
         return {
             user: {
-                id: '1893048886',
-                first_name: 'Nguyen',
-                last_name: 'Son'    
+                id: '5976804079',
+                first_name: 'Megamind',
+                last_name: ''    
             },
              start_param: '1804277515'
         }

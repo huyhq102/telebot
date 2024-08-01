@@ -53,8 +53,8 @@
                 <img class="user-avata" [src]="userPoint?.avatar" alt="">
             </div>
             <div style="display: flex;flex-direction: column; justify-content: center;">
-                <div class="user-name">{{userPoint?.first_name+" "+ userPoint?.last_name}}</div>
-                <div class="user-score">{{userPoint?.total_point | number}} Referrals</div>
+                <div class="user-name">{{userPoint?.first_name + " " + userPoint?.last_name}}</div>
+                <div class="user-score">{{userPoint?.total_point | number}} Studihubs</div>
             </div>
         </div>
         <div class="user-rank">#{{userPoint?.rank}}</div>
@@ -69,8 +69,8 @@
                     <img  [src]="item.avatar" alt="">
                 </div>
                 <div style="display: flex;flex-direction: column; justify-content: center;">
-                    <div class="user-name">{{item.first_name+" "+ item.last_name}}</div>
-                    <div class="user-score">{{item.total_point | number}} Referrals</div>
+                    <div class="user-name">{{item.first_name + " " + item.last_name}}</div>
+                    <div class="user-score">{{item.total_point | number}} Studihubs</div>
                 </div>
             </div>
             <div class="user-rank">#{{item.rank}}</div>
