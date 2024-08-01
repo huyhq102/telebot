@@ -15,7 +15,7 @@
 	</div>
 	<div class="content-body">
 		<div class="content-title">
-			<span>{{this.listFriends.length}} friends invited</span>
+			<span>{{this.listFriends.total}} friends invited</span>
 		</div>
 
 		<div style="font-family: SF Pro Display;
@@ -102,7 +102,7 @@
 		</div>
 
 
-		<div class="user" *ngFor="let item of listFriends">
+		<div class="user" *ngFor="let item of listFriends.data">
 			<div class="user-infor">
 				<img style="width: 40px; height: 40px; border-radius: 100%;"
 					[src]="item.entity_avatar ? item.entity_avatar : '../../assets/Avatar Image.png'" alt="">
