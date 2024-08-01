@@ -36,9 +36,13 @@
             </div>
             <div class="sub-point">
                 <span>+2,500 Studihubs</span>
-                <img src="../../assets/Tick.png" alt="" *ngIf="isTick">
-                <button class="sub-btn" [disabled]="isChecking ? 'disabled': null" *ngIf="!isTick"
-                    (click)="check(1,-1002188041826)">Subscribe</button>
+
+                <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus?.joinStudihubGroup">
+
+                <div *ngIf="! bonusStatus?.joinStudihubGroup">
+                    <button class="sub-btn" (click)="check(1,-1002188041826)">Join
+                        Now</button>
+                </div>
             </div>
         </div>
         <div class="sub-item">
@@ -49,9 +53,12 @@
             </div>
             <div class="sub-point">
                 <span>+2,500 Studihubs</span>
-                <img src="../../assets/Tick.png" alt="" *ngIf="isTick">
-                <button class="sub-btn" [disabled]="isChecking ? 'disabled': null" *ngIf="!isTick"
-                    (click)="check(2,-1002206293719)">Join Now</button>
+
+                <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus?.subcribeStudihubChannel">
+
+                <div *ngIf="! bonusStatus?.subcribeStudihubChannel">
+                    <button class="sub-btn" (click)="check(2,-1002206293719)">Subscribe</button>
+                </div>
             </div>
         </div>
         <div class="sub-item">
@@ -62,12 +69,15 @@
             </div>
             <div class="sub-point">
                 <span>+2,500 Studihubs</span>
-                <img src="../../assets/Tick.png" alt="" *ngIf="isTick">
-                <button class="sub-btn" *ngIf='followMode=="determinate"' (click)="followX()">Follow</button>
-                <mat-progress-spinner style='width:5px' *ngIf='followMode=="indeterminate"' class="example-margin"
-                    [mode]="followMode" [value]="value">
-                </mat-progress-spinner>
 
+                <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus?.followX">
+
+                <div *ngIf="! bonusStatus?.followX">
+                    <button class="sub-btn" *ngIf='followMode=="determinate"' (click)="followX()">Follow</button>
+                    <mat-progress-spinner [diameter]="20" *ngIf='followMode=="indeterminate"' class="example-margin"
+                        [mode]="followMode" [value]="value">
+                    </mat-progress-spinner>
+                </div>
             </div>
         </div>
     </div>

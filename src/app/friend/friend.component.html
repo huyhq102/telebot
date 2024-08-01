@@ -2,7 +2,7 @@
 	<div class="user-content">
 		<div class="user-infor">
 			<div class="user-avata">
-				<img class="user-avata" [src]="myInfo.avatar ? myInfo.avatar: '../../assets/Avatar Image.png'" alt="">
+				<img class="user-avata" [src]="myInfo?.avatar ? myInfo.avatar: '../../assets/Avatar Image.png'" alt="">
 			</div>
 			<div style="display: flex;flex-direction: column; justify-content: center;">
 				<div class="user-name">Me</div>
@@ -14,12 +14,12 @@
 	<div class="sub-content">
 		<div class="sub-title">
 			<div class="title">Friends list</div>
-			<div class="count">{{listFriends?.length | number}}</div>
+			<div class="count">{{listFriends?.total | number}}</div>
 		</div>
-		<div class="user-content" *ngFor="let item of listFriends">
+		<div class="user-content" *ngFor="let item of listFriends.data">
 			<div class="user-infor">
 				<div class="user-avata">
-					<img src="../../assets/Avatar Image.png" alt="">
+					<img [src]="item?.entity_avatar ? item?.entity_avatar: '../../assets/Avatar Image.png'" alt="">
 				</div>
 				<div class="user-name">{{formatName(item.first_name) + " " + formatName(item.last_name)}}</div>
 			</div>

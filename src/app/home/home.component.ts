@@ -34,8 +34,12 @@ export class HomeComponent implements OnInit {
   totalPoint = 0
   userInfo: any
   pointHistory: any
+  bonusStatus: any = {};
 
   followMode: ProgressSpinnerMode = 'determinate';
+  joinStudihubGroupMode: ProgressSpinnerMode = 'determinate';
+  subcribeStudihubChannelMode: ProgressSpinnerMode = 'determinate';
+
   value = 50;
 
 
@@ -47,6 +51,7 @@ export class HomeComponent implements OnInit {
     this.userInfo = this.globalDataService.loadUserInfo();
     this.getMyInfo()
     this.loadActivePoint()
+    this.getBonusStatus()
     // this.loadTotalPoint()
   }
 
@@ -91,6 +96,38 @@ export class HomeComponent implements OnInit {
 		})
 	}
 
+  getBonusStatus() {
+		const payload = {
+			"user_id": this.userInfo.user.id,
+			"entity_list": [
+				{
+					"entity_type": 1,
+					"entity_id": "-1002188041826"
+				},
+				{
+					"entity_type": 2,
+					"entity_id": "-1002206293719"
+				},
+        {
+					"entity_type": 4,
+					"entity_id": "https://x.com/Studihubedu"
+				}
+			]
+		}
+    this.apiService.post(`check-bonus-point`, payload, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
+      const state = data.data
+
+      this.bonusStatus.subcribeStudihubChannel =  this.checkBonus(state, 2,'-1002206293719')
+      this.bonusStatus.joinStudihubGroup =  this.checkBonus(state, 1,'-1002188041826')
+      this.bonusStatus.followX =  this.checkBonus(state, 4, 'https://x.com/Studihubedu')
+      console.log(this.bonusStatus)
+		})
+	}
+
+  checkBonus(state:any, entity_type: any, entity_id:any) {
+    const status = state.find((x: any)=> x.entity_id = String(entity_id) && x.entity_type == entity_type)
+    return status ? status.status : false
+  }
 
   loadTotalPoint() {
     this.apiService.get('users').subscribe((response: any) => {
@@ -134,26 +171,8 @@ export class HomeComponent implements OnInit {
           icon: "warning"
         });
       }
-      
+      this.getBonusStatus();
     })
-    // this.checkJoinInTelegram(groupId).then(status => {
-    //     return status ? this.checkUserInGroup(groupId): true 
-    // }).then(
-    //   groupStatus => {
-    //     if (groupStatus == false) {
-    //       this.addGroup(groupId)
-    //       this.addPoint(3000)
-    //     } else {
-    //       Swal.fire({
-    //         title: "Oops!",
-    //         text: "You have not joined group or got the reward!",
-    //         icon: "success"
-    //       });
-    //     }
-    //   }
-    // ).finally(()=> {
-    //   this.isChecking = false
-    // })
     return true;
   }
 
@@ -173,11 +192,16 @@ export class HomeComponent implements OnInit {
   }
 
   followX() {
-    window.open('https://x.com', '_blank')
+    window.open('https://x.com/Studihubedu', '_blank')
     this.followMode = 'indeterminate';
     setTimeout(()=>{
       this.followMode = 'determinate';
-    }, 10000)
+      this.check(4, 'https://x.com/Studihubedu')
+    }, 7000)
+  }
+  
+  addFollowPointOnX() {
+
   }
 
   addGroup(groupId: any) {

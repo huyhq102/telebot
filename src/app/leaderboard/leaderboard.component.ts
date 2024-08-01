@@ -18,7 +18,7 @@ import { map, pipe } from 'rxjs';
 })
 export class LeaderboardComponent implements OnInit {
 	isChecking = false;
-    tabIndex : number = 1;
+	tabIndex: number = 1;
 
 	userInfo: any;
 
@@ -66,7 +66,7 @@ export class LeaderboardComponent implements OnInit {
 	}
 
 	getListUser() {
-        this.isChecking = true;
+		this.isChecking = true;
 		this.userInfo = this.globalDataService.loadUserInfo();
 		const data = {
 			"limit": 50,
@@ -74,7 +74,7 @@ export class LeaderboardComponent implements OnInit {
 		}
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
 			let total = 0;
-            this.listUsers = data.data;
+			this.listUsers = data.data;
 			data.data.forEach((user: any) => {
 				total += user.total_point;
 				if (!user.avatar) {
@@ -88,7 +88,7 @@ export class LeaderboardComponent implements OnInit {
 			});
 			this.totalPoints = total;
 			this.totalHolder = data.total;
-            this.isChecking = false;
+			this.isChecking = false;
 		})
 	}
 
@@ -115,7 +115,7 @@ export class LeaderboardComponent implements OnInit {
 		this.router.navigate(['/earn'])
 	}
 
-    changeTab(tabIndex:number){
-        this.tabIndex =  tabIndex;
-    }
+	changeTab(tabIndex: number) {
+		this.tabIndex = tabIndex;
+	}
 }
