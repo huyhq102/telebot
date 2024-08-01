@@ -186,16 +186,12 @@
 			.clipboard {
 				display: flex;
 				align-items: center;
-				background-color: #c0bec3;
-				border-radius: 50%;
-				padding: 7px;
-				margin-left: 15px;
-
-				img {
-					width: 25px;
-					filter: invert(84%) sepia(100%) saturate(2%) hue-rotate(141deg) brightness(111%) contrast(100%);
-					background-color: transparent;
-				}
+				border-radius: 16px;
+				border: 1px solid #6C1C95;
+				width: 48px;
+				justify-content: center;
+				height: 48px;
+				margin-left: 10px;
 			}
 		}
 	}
