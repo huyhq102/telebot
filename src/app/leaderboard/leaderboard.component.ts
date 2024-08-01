@@ -30,6 +30,9 @@ export class LeaderboardComponent implements OnInit {
 	topRankUser: any[] = [];
 
 	loading: boolean = false;
+
+	currentTab = 'Hall of Fame';
+
 	constructor(
 		private apiService: ApiService,
 		private router: Router,
@@ -39,23 +42,17 @@ export class LeaderboardComponent implements OnInit {
 
 
 	ngOnInit(): void {
-		this.getDataUser();
-		this.getListUser();
+		this.getUserRanking();
+		this.loadData();
 	}
 
-	getDataUser() {
+	getUserRanking() {
 		this.userInfo = this.globalDataService.loadUserInfo();
 		const data = {
 			"limit": 1,
 			"offset": 0,
 			"user_id": this.userInfo.user.id
 		}
-		// const dataUser = {
-		// 	user_list: [this.userInfo.user.id]
-		// }
-		// this.apiService.post('referrals', dataUser, { 'Content-Type': 'application/json' }).subscribe(data => {
-		// 	console.log(data)
-		// })
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
 			if (!data.data[0].avatar) {
 				this.userPoint = { ...data.data[0], avatar: '../../assets/Avatar Image.png' }
@@ -65,7 +62,27 @@ export class LeaderboardComponent implements OnInit {
 		})
 	}
 
-	getListUser() {
+	getReferralLeaderboard() {
+		this.userInfo = this.globalDataService.loadUserInfo();
+		const data = {
+			"limit": 50,
+			"offset": 0,
+			"entity_type": 3
+		}
+		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
+			this.updateLeaderBoardRank(data.data)
+		})
+	}
+
+	loadData() {
+		if (this.currentTab == 'Hall of Fame') {
+			this.getLeaderboard();
+		} else {
+			this.getReferralLeaderboard()
+		}
+	}
+
+	getLeaderboard() {
 		this.isChecking = true;
 		this.userInfo = this.globalDataService.loadUserInfo();
 		const data = {
@@ -73,23 +90,27 @@ export class LeaderboardComponent implements OnInit {
 			"offset": 0,
 		}
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
-			let total = 0;
-			this.listUsers = data.data;
-			data.data.forEach((user: any) => {
-				total += user.total_point;
-				if (!user.avatar) {
-					user.avatar = '../../assets/Avatar Image.png'
-				}
-				if (user.rank <= 3) {
-					this.topRankUser.push(user);
-				} else {
-					this.listUsers.push(user);
-				}
-			});
-			this.totalPoints = total;
-			this.totalHolder = data.total;
-			this.isChecking = false;
+			this.updateLeaderBoardRank(data.data)
 		})
+	}
+
+	updateLeaderBoardRank(data: any) {
+		let total = 0;
+		this.listUsers = data;
+		data.forEach((user: any) => {
+			total += user.total_point;
+			if (!user.avatar) {
+				user.avatar = '../../assets/Avatar Image.png'
+			}
+			if (user.rank <= 3) {
+				this.topRankUser.push(user);
+			} else {
+				this.listUsers.push(user);
+			}
+		});
+		this.totalPoints = total;
+		this.totalHolder = data.total;
+		this.isChecking = false;
 	}
 
 	goToHome() {

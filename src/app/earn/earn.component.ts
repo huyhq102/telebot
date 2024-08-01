@@ -117,4 +117,8 @@ export class EarnComponent implements OnInit {
             this.isComming = false;
         }
     }
+
+	likeXPost() {}
+	retweetXPost() {}
+
 }
