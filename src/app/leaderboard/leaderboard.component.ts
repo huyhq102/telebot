@@ -31,8 +31,6 @@ export class LeaderboardComponent implements OnInit {
 
 	loading: boolean = false;
 
-	currentTab = 'Hall of Fame';
-
 	constructor(
 		private apiService: ApiService,
 		private router: Router,
@@ -67,7 +65,7 @@ export class LeaderboardComponent implements OnInit {
 		const data = {
 			"limit": 50,
 			"offset": 0,
-			"entity_type": 3
+			"is_referral": true
 		}
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
 			this.updateLeaderBoardRank(data.data)
@@ -75,13 +73,16 @@ export class LeaderboardComponent implements OnInit {
 	}
 
 	loadData() {
-		if (this.currentTab == 'Hall of Fame') {
+		if (this.tabIndex == 1) {
 			this.getLeaderboard();
 		} else {
 			this.getReferralLeaderboard()
 		}
 	}
-
+	// changeTab(nameOfTab: any) {
+	// 	this.currentTab = nameOfTab
+	// 	this.loadData()
+	// }
 	getLeaderboard() {
 		this.isChecking = true;
 		this.userInfo = this.globalDataService.loadUserInfo();
@@ -138,5 +139,6 @@ export class LeaderboardComponent implements OnInit {
 
 	changeTab(tabIndex: number) {
 		this.tabIndex = tabIndex;
+		this.loadData();
 	}
 }

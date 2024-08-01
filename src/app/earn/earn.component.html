@@ -27,7 +27,13 @@
                     </div>
                     <div class="sub-point">
                         <span>+2,000 Studihubs</span>
-                        <button class="sub-btn" (click)="likeXPost()">Like now</button>
+
+                        <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[5]">
+
+                        <div *ngIf="! bonusStatus[5]">
+                            <button class="sub-btn" (click)="likeXPost()">Like now</button>
+                        </div>
+        
                     </div>
                 </div>
                 <div class="sub-item">
@@ -38,7 +44,12 @@
                     </div>
                     <div class="sub-point">
                         <span>+2,000 Studihubs</span>
-                        <button class="sub-btn" (click)="retweetXPost()">Re-tweet</button>
+
+                        <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[6]">
+
+                        <div *ngIf="! bonusStatus[6]">
+                            <button class="sub-btn" (click)="likeXPost()">Re-tweet</button>
+                        </div>
                     </div>
                 </div>
                 <div class="sub-item">
@@ -49,7 +60,13 @@
                     </div>
                     <div class="sub-point">
                         <span>+3,000 Studihubs</span>
-                        <button class="sub-btn">Chat now</button>
+
+
+                        <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[7]">
+
+                        <div *ngIf="! bonusStatus[7]">
+                            <button class="sub-btn" (click)="gotoStudihubGroup()">Chat now</button>
+                        </div>
                     </div>
                 </div>
                 <div class="sub-item">
@@ -60,7 +77,11 @@
                     </div>
                     <div class="sub-point">
                         <span>+3,000 Studihubs</span>
-                        <button class="sub-btn">Tag now</button>
+                        <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[8]">
+
+                        <div *ngIf="! bonusStatus[8]">
+                            <button class="sub-btn" (click)="gotoStudihubGroup()">Tag now</button>
+                        </div>
                     </div>
                 </div>
                 <div class="sub-item">
@@ -71,7 +92,11 @@
                     </div>
                     <div class="sub-point">
                         <span>+3,000 Studihubs</span>
-                        <button class="sub-btn">Add now</button>
+                        <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[9]">
+                        <div *ngIf="! bonusStatus[9]">
+                            <button class="sub-btn" (click)="gotoStudihubGroup()">Add now</button>
+                        </div>
+
                     </div>
                 </div>
                 <div class="sub-item">
@@ -82,7 +107,11 @@
                     </div>
                     <div class="sub-point">
                         <span>+1,000 Studihubs</span>
-                        <button class="sub-btn">Got icon</button>
+                        <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[10]">
+                        <div *ngIf="! bonusStatus[10]">
+                            <button class="sub-btn" (click)="copyIcon()">Copy icon</button>
+                        </div>
+
                     </div>
                 </div>
             </div>
