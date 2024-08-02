@@ -6,18 +6,18 @@ import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 const COLORS = ['#570F63', '#6C1C95', '#987ACF', '#D7D2EF','#570F63', '#6C1C95', '#987ACF', '#D7D2EF','#570F63', '#6C1C95', '#987ACF', '#D7D2EF',];
 const _defaultOpts = [
+	"10 STH",
+	"20 STH",
+	"30 STH",
+	"40 STH",
 	"50 STH",
-	"50 STH",
-	"50 STH",
-	"50 STH",
-	"50 STH",
-	"50 STH",
-	"50 STH",
-	"50 STH",
-	"50 STH",
-	"50 STH",
-	"50 STH",
-	"50 STH"
+	"60 STH",
+	"70 STH",
+	"80 STH",
+	"90 STH",
+	"100 STH",
+	"110 STH",
+	"120 STH"
 ];
 @Component({
 	selector: 'app-wheel',

@@ -8,11 +8,12 @@ import Swal from 'sweetalert2'
 import { ApiService } from '../services/api.service';
 import { GlobalDataService } from '../services/global.service';
 import { PointEntityType } from '../services/point-type';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
 	selector: 'app-earn',
 	standalone: true,
-	imports: [CommonModule, NgxLoadingModule],
+	imports: [CommonModule, NgxLoadingModule, MatProgressSpinnerModule],
 	templateUrl: './earn.component.html',
 	styleUrls: ['./earn.component.scss']
 })
@@ -33,13 +34,18 @@ export class EarnComponent implements OnInit {
 
 	public loading: boolean = false;
 	bonusStatus: any = {};
+	likeModeSpinner: string = 'determinate';
+	retweetModeSpinner: string = 'determinate';
+
+	likeSpinnerValue: any;
+	retweetSpinnerValue: any;
+	retweetLink = 'https://twitter.com/intent/tweet?text=Check%20out%20%40StudiHubIO%21%20%F0%9F%9A%80%20A%20cutting-edge%20platform%20integrating%20Blockchain%2C%20eLearning%2C%20and%20AI%20Interactive%20technologies.%20Explore%20more%20at%20https%3A%2F%2Fstudihub.io%2F%20%23Blockchain%20%23eLearning%20%23AI%20%23EdTech'
+
 	constructor(
 		private apiService: ApiService,
 		private router: Router,
 		private globalDataService: GlobalDataService
 	) { }
-
-
 
 	ngOnInit(): void {
 		this.userInfo = this.globalDataService.loadUserInfo();
@@ -121,11 +127,6 @@ export class EarnComponent implements OnInit {
 		}
 	}
 
-	likeXPost() {
-		window.open('https://x.com/Studihubedu/status/1818137149784396281', '_blank')
-	}
-
-	retweetXPost() { }
 
 	copyIcon() {
 		const selBox = document.createElement('textarea');
@@ -152,6 +153,42 @@ export class EarnComponent implements OnInit {
 		window.open('https://t.me/studihubedu')
 	}
 
+	check(entity_type: any, entity_id: any) {
+		this.isChecking = true;
+		const data = {
+			user_id: this.userInfo?.user.id,
+			first_name: this.userInfo?.user.first_name,
+			last_name: this.userInfo?.user.last_name,
+			entity_type: entity_type,
+			entity_id: entity_id
+		}
+
+		this.apiService.post('bonus-point', data, { 'Content-Type': 'application/json' }).subscribe((res: any) => {
+			this.isChecking = false;
+			if (res.status === 0) {
+				Swal.fire({
+					title: "Oops!",
+					text: "You have not joined group or got the reward!",
+					icon: "warning"
+				});
+			} else if (res.status === 1) {
+				Swal.fire({
+					title: "OK!",
+					text: "You got a reward!",
+					icon: "success"
+				});
+			} else {
+				Swal.fire({
+					title: "Oops!",
+					text: "Your account is invalid!",
+					icon: "warning"
+				});
+			}
+			this.getBonusStatus();
+		})
+		return true;
+	}
+
 	getBonusStatus() {
 		const userId = this.userInfo.user.id
 		const payload = {
@@ -163,7 +200,7 @@ export class EarnComponent implements OnInit {
 				},
 				{
 					"entity_type": PointEntityType.SharePostOnX,
-					"entity_id": "https://x.com/Studihubedu/status/1818137149784396281"
+					"entity_id": this.retweetLink
 				},
 				{
 					"entity_type": PointEntityType.Chat10Messages,
@@ -192,6 +229,31 @@ export class EarnComponent implements OnInit {
 			console.log(this.bonusStatus)
 		})
 	}
+
+	likeXPost() {
+		window.open('https://x.com/Studihubedu/status/1818137149784396281', '_blank')
+
+		this.likeModeSpinner = 'indeterminate';
+
+		setTimeout(
+			() => {
+				this.likeModeSpinner = 'determinate';
+				this.check(PointEntityType.LikeStudihubX, 'https://x.com/Studihubedu/status/1818137149784396281')
+			}, 
+			7000
+		)
+	}
+
+	retweetXPost() {
+		window.open(this.retweetLink, '_blank')
+
+		this.retweetModeSpinner = 'indeterminate';
+		setTimeout(() => {
+			this.retweetModeSpinner = 'determinate';
+			this.check(PointEntityType.SharePostOnX, this.retweetLink)
+		}, 7000)
+
+	 }
 
 	checkBonus(state: any, entity_type: any, entity_id: any) {
 		const status = state.find((x: any) => x.entity_id = String(entity_id) && x.entity_type == entity_type)
