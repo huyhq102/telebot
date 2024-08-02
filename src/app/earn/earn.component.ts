@@ -204,7 +204,7 @@ export class EarnComponent implements OnInit {
 				},
 				{
 					"entity_type": PointEntityType.Chat10Messages,
-					"entity_id": userId
+					"entity_id": (new Date()).toISOString().split('T')[0]
 				},
 				{
 					"entity_type": PointEntityType.Tag3MembersOnPinnedMessage,

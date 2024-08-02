@@ -150,7 +150,7 @@ export class WheelComponent implements OnInit {
 
     spinAnimation.addEventListener("finish", () => {
 			Swal.fire({
-				title: "You got prize!",
+				title: "You got a reward!",
 				text: `${data.prize}`,
 				icon: "success"
 			}).then((result) => {
@@ -163,15 +163,22 @@ export class WheelComponent implements OnInit {
   }
 
   spinLuckyWheel() {
-    const data = { user_id: this.userInfo.id }
+    const data = { user_id: this.userInfo.user.id }
     this.apiService.post(`spin-lucky-wheel`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
-      console.log(data)
       if (data.status == 1) {
-        console.log(_defaultOpts.indexOf(data.prize))
         const sectorIdx = _defaultOpts.indexOf(data.prize)
-        console.log(sectorIdx, data, this.sectors)
 
         this.spinToSector(this.tot - sectorIdx, data)
+      } else {
+        Swal.fire({
+          title: "You got a reward today!",
+          text: "Let's come back tomorrow",
+          icon: "success"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.close();
+          }
+        });
       }
     })
   }

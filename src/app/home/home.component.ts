@@ -10,6 +10,7 @@ import { GlobalDataService } from '../services/global.service';
 import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatProgressSpinnerModule, ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { WheelComponent } from '../wheel/wheel.component';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-home',
@@ -113,8 +114,8 @@ export class HomeComponent implements OnInit {
 					"entity_id": "https://x.com/Studihubedu"
 				},
         {
-					"entity_type": 4,
-					"entity_id": "https://x.com/Studihubedu"
+					"entity_type": 11,
+					"entity_id": (new Date()).toISOString().split('T')[0]
 				}
 			]
 		}
@@ -124,6 +125,10 @@ export class HomeComponent implements OnInit {
       this.bonusStatus.subcribeStudihubChannel =  this.checkBonus(state, 2,'-1002206293719')
       this.bonusStatus.joinStudihubGroup =  this.checkBonus(state, 1,'-1002188041826')
       this.bonusStatus.followX =  this.checkBonus(state, 4, 'https://x.com/Studihubedu')
+      this.bonusStatus.spinLuckyWheelDaily =  this.checkBonus(state, 11, (new Date()).toISOString().split('T')[0])
+      if (this.bonusStatus.spinLuckyWheelDaily == false) {
+        this._bottomSheet.open(WheelComponent);
+      }
       console.log(this.bonusStatus)
 		})
 	}
@@ -280,9 +285,7 @@ export class HomeComponent implements OnInit {
     }
 
 	openBottomSheet(): void {
-    this._bottomSheet.open(WheelComponent);
+    this._bottomSheet.open(ModalComponent);
     }
 
-
-    
 }
