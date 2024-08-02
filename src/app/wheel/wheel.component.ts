@@ -5,6 +5,7 @@ import { DataService } from './data.service';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { GlobalDataService } from '../services/global.service';
 import { ApiService } from '../services/api.service';
+import Swal from 'sweetalert2'
 
 const COLORS = ['#570F63', '#6C1C95', '#987ACF', '#D7D2EF', '#570F63', '#6C1C95', '#987ACF']; // '#D7D2EF', '#570F63', '#6C1C95', '#987ACF', '#D7D2EF',
 const _defaultOpts = [
@@ -50,6 +51,7 @@ export class WheelComponent implements OnInit {
   winners = [];
 
   modeDelete = true;
+	isDissible = false;
 
   friction = 0.995; // 0.995=soft, 0.99=mid, 0.98=hard
   angVel = 0; // Angular velocity
@@ -104,7 +106,7 @@ export class WheelComponent implements OnInit {
 
   spinner() {
     // this.spinToSector(5)
-
+		this.isDissible = true;
     this.spinLuckyWheel()
 
     // const sectorIdx = 1;
@@ -129,7 +131,7 @@ export class WheelComponent implements OnInit {
     //   // alert('You got prize')
     // });
   }
-  spinToSector(sectorIdx: number) {
+  spinToSector(sectorIdx: number, data: any) {
     let angNew = this.arc0 * sectorIdx
     angNew -= this.rand(0, this.arc0)
     angNew = this.mod(angNew, this.TAU)
@@ -147,7 +149,15 @@ export class WheelComponent implements OnInit {
     });
 
     spinAnimation.addEventListener("finish", () => {
-      // alert('You got prize')
+			Swal.fire({
+				title: "You got prize!",
+				text: `${data.prize}`,
+				icon: "success"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					this.close();
+				}
+			});
     });
 
   }
@@ -156,13 +166,12 @@ export class WheelComponent implements OnInit {
     const data = { user_id: this.userInfo.id }
     this.apiService.post(`spin-lucky-wheel`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
       console.log(data)
-
       if (data.status == 1) {
         console.log(_defaultOpts.indexOf(data.prize))
         const sectorIdx = _defaultOpts.indexOf(data.prize)
         console.log(sectorIdx, data, this.sectors)
 
-        this.spinToSector(this.tot - sectorIdx)
+        this.spinToSector(this.tot - sectorIdx, data)
       }
     })
   }

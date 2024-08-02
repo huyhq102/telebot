@@ -6,8 +6,8 @@
 			flex: 1;
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
 			flex-direction: column;
+			justify-content: space-between;
 			background-image: url('../../assets/Confetti.png');
 			.header-close{
 				display: flex;
@@ -62,7 +62,7 @@
   width: 18px;
 	height: 18px;
 	border-radius: 50%;
-	top: 37%;
+	top: 46%;
 	left: 47%;
 	position: absolute;
 	background-color: white;
@@ -83,4 +83,7 @@
 	left: 44%;
 }
 
+.noClick {
+	pointer-events: none;
+}
 

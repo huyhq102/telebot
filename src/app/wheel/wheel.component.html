@@ -13,9 +13,9 @@
 			<div class="center-circle"></div>
 			<div class="border-circle"></div>
 			<img src="../../assets/Polygon 2.svg" alt="" class="triangle">
-			<div style="display: flex;width: 100%;padding: 20px;">
-				<div class="btn-spin" (click)="spinner()" #spin>Spin the Wheel</div>
-			</div>
+		</div>
+		<div style="display: flex;width: 100%;padding: 20px;">
+			<div class="btn-spin" (click)="spinner()" #spin [ngClass]="{'noClick': isDissible}">Spin the Wheel</div>
 		</div>
 	 </div>
 </div>
