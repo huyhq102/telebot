@@ -3,28 +3,34 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { NgxLoadingModule } from 'ngx-loading';
 import { DataService } from './data.service';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { GlobalDataService } from '../services/global.service';
+import { ApiService } from '../services/api.service';
 
-const COLORS = ['#570F63', '#6C1C95', '#987ACF', '#D7D2EF','#570F63', '#6C1C95', '#987ACF', '#D7D2EF','#570F63', '#6C1C95', '#987ACF', '#D7D2EF',];
+const COLORS = ['#570F63', '#6C1C95', '#987ACF', '#D7D2EF', '#570F63', '#6C1C95', '#987ACF']; // '#D7D2EF', '#570F63', '#6C1C95', '#987ACF', '#D7D2EF',
 const _defaultOpts = [
-	"10 STH",
-	"20 STH",
-	"30 STH",
-	"40 STH",
-	"50 STH",
-	"60 STH",
-	"70 STH",
-	"80 STH",
-	"90 STH",
-	"100 STH",
-	"110 STH",
-	"120 STH"
+  "200 STH", 
+  "500 STH", 
+  "1000 STH", 
+  "2000 STH", 
+  "4000 STH", 
+  "5000 STH", 
+  "10000 STH",
+  // "200 STH",
+  // "200 STH",
+  // "500 STH",
+  // "80 STH",
+  // "90 STH",
+  // "100 STH",
+  // "110 STH",
+  // "120 STH"
 ];
+
 @Component({
-	selector: 'app-wheel',
-	standalone: true,
-	imports: [CommonModule, NgxLoadingModule],
-	templateUrl: './wheel.component.html',
-	styleUrls: ['./wheel.component.scss']
+  selector: 'app-wheel',
+  standalone: true,
+  imports: [CommonModule, NgxLoadingModule],
+  templateUrl: './wheel.component.html',
+  styleUrls: ['./wheel.component.scss']
 })
 export class WheelComponent implements OnInit {
   @ViewChild('wheel') wheel!: ElementRef<HTMLCanvasElement>;
@@ -32,14 +38,14 @@ export class WheelComponent implements OnInit {
   colors = ['#f82', '#0bf', '#fb0', '#0fb', '#b0f', '#f0b', '#bf0'];
   sectors?: any[] = [];
 
-  rand = (m: any, M : any) => Math.random() * (M - m) + m;
-  tot:any;
-  ctx:any;
-  dia:any;
-  rad:any;
-  PI:any;
-  TAU:any;
-  arc0:any;
+  rand = (m: any, M: any) => Math.random() * (M - m) + m;
+  tot: any;
+  ctx: any;
+  dia: any;
+  rad: any;
+  PI: any;
+  TAU: any;
+  arc0: any;
 
   winners = [];
 
@@ -48,33 +54,39 @@ export class WheelComponent implements OnInit {
   friction = 0.995; // 0.995=soft, 0.99=mid, 0.98=hard
   angVel = 0; // Angular velocity
   ang = 0; // Angle in radians
-  lastSelection:any;
+  lastSelection: any;
+  userInfo: any;
 
-  constructor(private dataService: DataService,private bottomSheetRef: MatBottomSheetRef<WheelComponent>) {
-		this.sectors = _defaultOpts?.map((opts, i) => {
+  constructor(
+    private dataService: DataService,
+    private bottomSheetRef: MatBottomSheetRef<WheelComponent>,
+    private globalDataService: GlobalDataService,
+    private apiService: ApiService,
+  ) {
+    this.sectors = _defaultOpts?.map((opts, i) => {
       return {
         color: COLORS[(i >= COLORS.length ? i + 1 : i) % COLORS.length],
         label: opts,
       };
     });
-	}
-	
+  }
+
   ngDoCheck(): void {
     this.engine();
   }
 
   ngOnInit() {
-    // Initial rotation
-    // Start engine
+    this.userInfo = this.globalDataService.loadUserInfo();
   }
+
   ngAfterViewInit(): void {
     this.createWheel();
   }
 
   createWheel() {
-		if(!this.sectors){
-			return;
-		}
+    if (!this.sectors) {
+      return;
+    }
     this.ctx = this.wheel.nativeElement.getContext('2d');
     this.dia = this.ctx.canvas.width;
     this.tot = this.sectors?.length;
@@ -88,21 +100,81 @@ export class WheelComponent implements OnInit {
     this.restartWinner();
   }
 
+  mod = (n: number, m: number) => (n % m + m) % m;
+
   spinner() {
-    // console.log(this.reverseIndex(0));
-    console.log('this.ang', this.ang);
-    // console.log(this.rand(0.25, 0.35));
-    if (!this.angVel) this.angVel = this.rand(0, this.arc0);
+    // this.spinToSector(5)
+
+    this.spinLuckyWheel()
+
+    // const sectorIdx = 1;
+
+    // let angNew = this.arc0 * sectorIdx
+    // angNew -= this.rand(0, this.arc0)
+    // angNew = this.mod(angNew, this.TAU)
+
+    // const angAbs = this.mod(this.ang, this.TAU)
+
+    // const angDiff = this.mod(angNew - angAbs, this.TAU)
+    // const rev = this.TAU * Math.floor(this.rand(4, 6)) // extra 4 or 5 full turns
+    // this.ang += angDiff + rev;
+
+    // const spinAnimation = this.wheel.nativeElement.animate([{ rotate: `${this.ang}rad` }], {
+    //   duration: this.rand(4000, 8000),
+    //   easing: "cubic-bezier(0.2, 0, 0.1, 1)",
+    //   fill: "forwards"
+    // });
+
+    // spinAnimation.addEventListener("finish", () => {
+    //   // alert('You got prize')
+    // });
+  }
+  spinToSector(sectorIdx: number) {
+    let angNew = this.arc0 * sectorIdx
+    angNew -= this.rand(0, this.arc0)
+    angNew = this.mod(angNew, this.TAU)
+
+    const angAbs = this.mod(this.ang, this.TAU)
+
+    const angDiff = this.mod(angNew - angAbs, this.TAU)
+    const rev = this.TAU * Math.floor(this.rand(4, 6)) // extra 4 or 5 full turns
+    this.ang += angDiff + rev;
+
+    const spinAnimation = this.wheel.nativeElement.animate([{ rotate: `${this.ang}rad` }], {
+      duration: this.rand(4000, 8000),
+      easing: "cubic-bezier(0.2, 0, 0.1, 1)",
+      fill: "forwards"
+    });
+
+    spinAnimation.addEventListener("finish", () => {
+      // alert('You got prize')
+    });
+
+  }
+
+  spinLuckyWheel() {
+    const data = { user_id: this.userInfo.id }
+    this.apiService.post(`spin-lucky-wheel`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
+      console.log(data)
+
+      if (data.status == 1) {
+        console.log(_defaultOpts.indexOf(data.prize))
+        const sectorIdx = _defaultOpts.indexOf(data.prize)
+        console.log(sectorIdx, data, this.sectors)
+
+        this.spinToSector(this.tot - sectorIdx)
+      }
+    })
   }
 
   getIndex = () =>
     Math.floor(this.tot - (this.ang / this.TAU) * this.tot) % this.tot;
 
-  reverseIndex(idx:any) {
+  reverseIndex(idx: any) {
     return ((this.tot - idx) / this.tot) * this.TAU;
   }
 
-  drawSector(sector:any, i:any) {
+  drawSector(sector: any, i: any) {
     const ang = this.arc0 * i;
     this.ctx.save();
     // COLOR
@@ -119,15 +191,15 @@ export class WheelComponent implements OnInit {
     this.ctx.textAlign = 'right';
     this.ctx.fillStyle = '#fff';
     this.ctx.font = 'bold 12px sans-serif';
-    this.ctx.fillText(sector.label, this.rad -30, 8);
+    this.ctx.fillText(sector.label, this.rad - 30, 8);
     //
     this.ctx.restore();
   }
 
   rotate(first = false) {
-		if(!this.sectors){
-			return;
-		}
+    if (!this.sectors) {
+      return;
+    }
     const sector = this.sectors[this.getIndex()];
     this.ctx.canvas.style.transform = `rotate(${this.ang - this.PI / 2}rad)`;
     if (!first) {
@@ -151,9 +223,9 @@ export class WheelComponent implements OnInit {
   }
 
   deleteOption() {
-		if(!this.sectors){
-			return;
-		}
+    if (!this.sectors) {
+      return;
+    }
     if (this.modeDelete && !this.angVel) {
       console.log('eliminar', this.lastSelection);
       this.addNewWinner(this.sectors[this.lastSelection].label);
@@ -170,11 +242,11 @@ export class WheelComponent implements OnInit {
     //this.dataService.restartWinners();
   }
 
-  addNewWinner(value:any) {
+  addNewWinner(value: any) {
     this.dataService.addWinner(value);
   }
 
-	close(): void {
-    this.bottomSheetRef.dismiss(); 
-  } 
+  close(): void {
+    this.bottomSheetRef.dismiss();
+  }
 }

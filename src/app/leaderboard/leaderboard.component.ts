@@ -40,7 +40,6 @@ export class LeaderboardComponent implements OnInit {
 
 
 	ngOnInit(): void {
-		this.getUserRanking();
 		this.loadData();
 	}
 
@@ -50,6 +49,23 @@ export class LeaderboardComponent implements OnInit {
 			"limit": 1,
 			"offset": 0,
 			"user_id": this.userInfo.user.id
+		}
+		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
+			if (!data.data[0].avatar) {
+				this.userPoint = { ...data.data[0], avatar: '../../assets/Avatar Image.png' }
+			} else {
+				this.userPoint = data.data[0]
+			}
+		})
+	}
+
+	getUserReferralRanking() {
+		this.userInfo = this.globalDataService.loadUserInfo();
+		const data = {
+			"limit": 1,
+			"offset": 0,
+			"user_id": this.userInfo.user.id,
+			"is_referral": true
 		}
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
 			if (!data.data[0].avatar) {
@@ -75,7 +91,9 @@ export class LeaderboardComponent implements OnInit {
 	loadData() {
 		if (this.tabIndex == 1) {
 			this.getLeaderboard();
+			this.getUserRanking();
 		} else {
+			this.getUserReferralRanking()
 			this.getReferralLeaderboard()
 		}
 	}

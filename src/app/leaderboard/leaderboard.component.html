@@ -74,7 +74,15 @@
             </div>
             <div style="display: flex;flex-direction: column; justify-content: center;">
                 <div class="user-name">{{userPoint?.first_name + " " + userPoint?.last_name}}</div>
-                <div class="user-score">{{userPoint?.total_point | number}} Studihubs</div>
+                <!-- <div class="user-score">{{userPoint?.total_point | number}} Studihubs</div> -->
+
+                <div *ngIf="tabIndex ===1">
+                    <div class="user-score">{{userPoint?.total_point | number}} Studihubs</div>
+                </div>
+                <div *ngIf="tabIndex ===2">
+                    <div class="user-score">{{userPoint?.referral_point / 3000 | number}} Referrals</div>
+                </div>
+
             </div>
         </div>
         <div class="user-rank">#{{userPoint?.rank}}</div>

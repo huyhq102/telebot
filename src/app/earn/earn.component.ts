@@ -39,8 +39,8 @@ export class EarnComponent implements OnInit {
 
 	likeSpinnerValue: any;
 	retweetSpinnerValue: any;
-	retweetLink = 'https://twitter.com/intent/tweet?text=Check%20out%20%40StudiHubIO%21%20%F0%9F%9A%80%20A%20cutting-edge%20platform%20integrating%20Blockchain%2C%20eLearning%2C%20and%20AI%20Interactive%20technologies.%20Explore%20more%20at%20https%3A%2F%2Fstudihub.io%2F%20%23Blockchain%20%23eLearning%20%23AI%20%23EdTech'
-
+	retweetXLink = 'https://twitter.com/intent/tweet?text=Check%20out%20%40StudiHubIO%21%20%F0%9F%9A%80%20A%20cutting-edge%20platform%20integrating%20Blockchain%2C%20eLearning%2C%20and%20AI%20Interactive%20technologies.%20Join%20Studihub%20Exclusive%20Airdrop%20to%20earn%20up%20to%20%245000%20USDT%20and%20Studihub%20coins%3A%20t.me%2Fjoinstudihub_bot%20%20%23Blockchain%20%23eLearning%20%23AI%20%23EdTech'
+	likeXLink = 'https://x.com/Studihubedu/status/1816730552377946537'
 	constructor(
 		private apiService: ApiService,
 		private router: Router,
@@ -196,11 +196,11 @@ export class EarnComponent implements OnInit {
 			"entity_list": [
 				{
 					"entity_type": PointEntityType.LikeStudihubX,
-					"entity_id": 'https://x.com/Studihubedu/status/1818137149784396281'
+					"entity_id": this.likeXLink
 				},
 				{
 					"entity_type": PointEntityType.SharePostOnX,
-					"entity_id": this.retweetLink
+					"entity_id": this.retweetXLink
 				},
 				{
 					"entity_type": PointEntityType.Chat10Messages,
@@ -224,33 +224,33 @@ export class EarnComponent implements OnInit {
 			const state = data.data
 			for (const entity of payload.entity_list) {
 				this.bonusStatus[entity.entity_type] = this.checkBonus(state, entity.entity_type, entity.entity_id)
-
 			}
-			console.log(this.bonusStatus)
+			// console.log(this.bonusStatus)
 		})
 	}
 
 	likeXPost() {
-		window.open('https://x.com/Studihubedu/status/1818137149784396281', '_blank')
+		
+		window.open(this.likeXLink, '_blank')
 
 		this.likeModeSpinner = 'indeterminate';
 
 		setTimeout(
 			() => {
 				this.likeModeSpinner = 'determinate';
-				this.check(PointEntityType.LikeStudihubX, 'https://x.com/Studihubedu/status/1818137149784396281')
+				this.check(PointEntityType.LikeStudihubX, this.likeXLink)
 			}, 
 			7000
 		)
 	}
 
 	retweetXPost() {
-		window.open(this.retweetLink, '_blank')
+		window.open(this.retweetXLink, '_blank')
 
 		this.retweetModeSpinner = 'indeterminate';
 		setTimeout(() => {
 			this.retweetModeSpinner = 'determinate';
-			this.check(PointEntityType.SharePostOnX, this.retweetLink)
+			this.check(PointEntityType.SharePostOnX, this.retweetXLink)
 		}, 7000)
 
 	 }
@@ -259,6 +259,4 @@ export class EarnComponent implements OnInit {
 		const status = state.find((x: any) => x.entity_id = String(entity_id) && x.entity_type == entity_type)
 		return status ? status.status : false
 	}
-
-
 }

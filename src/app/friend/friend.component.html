@@ -16,7 +16,7 @@
 			<div class="title">Friends list</div>
 			<div class="count">{{listFriends?.total | number}}</div>
 		</div>
-		<div class="user-content" *ngFor="let item of listFriends.data">
+		<div class="user-content" *ngFor="let item of listFriends?.data">
 			<div class="user-infor">
 				<div class="user-avata">
 					<img [src]="item?.entity_avatar ? item?.entity_avatar: '../../assets/Avatar Image.png'" alt="">

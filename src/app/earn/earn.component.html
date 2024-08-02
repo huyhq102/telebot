@@ -31,14 +31,10 @@
                         <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[5]">
 
                         <div *ngIf="! bonusStatus[5]">
-<<<<<<< HEAD
-                            <button class="sub-btn" (click)="likeXPost()">Like now</button>
-=======
                             <button class="sub-btn" *ngIf='likeModeSpinner=="determinate"' (click)="likeXPost()">Like now</button>
                             <mat-progress-spinner [diameter]="20" *ngIf='likeModeSpinner=="indeterminate"' class="example-margin"
                                 [mode]="likeModeSpinner" [value]="likeSpinnerValue">
                             </mat-progress-spinner>
->>>>>>> fix-ui-v2
                         </div>
         
                     </div>
@@ -55,14 +51,10 @@
                         <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[6]">
 
                         <div *ngIf="! bonusStatus[6]">
-<<<<<<< HEAD
-                            <button class="sub-btn" (click)="likeXPost()">Re-tweet</button>
-=======
                             <button class="sub-btn" *ngIf='retweetModeSpinner=="determinate"' (click)="retweetXPost()">Re-tweet</button>
                             <mat-progress-spinner [diameter]="20" *ngIf='retweetModeSpinner=="indeterminate"' class="example-margin"
                                 [mode]="retweetModeSpinner" [value]="retweetSpinnerValue">
                             </mat-progress-spinner>
->>>>>>> fix-ui-v2
                         </div>
                     </div>
                 </div>
@@ -125,10 +117,6 @@
                         <div *ngIf="! bonusStatus[10]">
                             <button class="sub-btn" (click)="copyIcon()">Copy icon</button>
                         </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> fix-ui-v2
                     </div>
                 </div>
             </div>
