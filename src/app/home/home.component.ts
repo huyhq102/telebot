@@ -111,6 +111,10 @@ export class HomeComponent implements OnInit {
         {
 					"entity_type": 4,
 					"entity_id": "https://x.com/Studihubedu"
+				},
+        {
+					"entity_type": 4,
+					"entity_id": "https://x.com/Studihubedu"
 				}
 			]
 		}
@@ -279,4 +283,6 @@ export class HomeComponent implements OnInit {
     this._bottomSheet.open(WheelComponent);
     }
 
+
+    
 }
