@@ -8,8 +8,8 @@
        <div class="container-content">
         <div class="tab-social">
             <div [ngClass]="tabIndexSocial ===1 ?'social-active': 'social'" (click)="changeTabSocial(1)">Studihubs</div>
-            <div [ngClass]="tabIndexSocial ===2 ?'social-active': 'social'" (click)="changeTabSocial(2)">C98</div>
-            <div [ngClass]="tabIndexSocial ===3 ?'social-active': 'social'" (click)="changeTabSocial(3)">Solona</div>
+            <!-- <div [ngClass]="tabIndexSocial ===2 ?'social-active': 'social'" (click)="changeTabSocial(2)">C98</div> -->
+            <div [ngClass]="tabIndexSocial ===3 ?'social-active': 'social'" (click)="changeTabSocial(3)">Solana</div>
             <div [ngClass]="tabIndexSocial ===4 ?'social-active': 'social'" (click)="changeTabSocial(4)">Instagram</div>
         </div>
         <div class="coming-soon" *ngIf="!isComming; else isContent">

@@ -95,6 +95,7 @@ export class LeaderboardComponent implements OnInit {
 		} else {
 			this.getUserReferralRanking()
 			this.getReferralLeaderboard()
+
 		}
 	}
 	// changeTab(nameOfTab: any) {
@@ -115,7 +116,7 @@ export class LeaderboardComponent implements OnInit {
 
 	updateLeaderBoardRank(data: any) {
 		let total = 0;
-		this.listUsers = data;
+		this.listUsers = [];
 		data.forEach((user: any) => {
 			total += user.total_point;
 			if (!user.avatar) {

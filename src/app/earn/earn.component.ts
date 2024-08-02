@@ -150,7 +150,7 @@ export class EarnComponent implements OnInit {
 	}
 
 	gotoStudihubGroup() {
-		window.open('https://t.me/studihubedu')
+		window.open('https://t.me/studihubgroupchat')
 	}
 
 	check(entity_type: any, entity_id: any) {
@@ -216,7 +216,7 @@ export class EarnComponent implements OnInit {
 				},
 				{
 					"entity_type": PointEntityType.GotIconOnTelegramName,
-					"entity_id": userId
+					"entity_id": '📚'
 				}
 			]
 		}

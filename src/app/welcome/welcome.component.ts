@@ -43,7 +43,7 @@ export class WelcomeComponent implements OnInit {
   addUser() { }
 
   goToScore() {
-    this.router.navigate(['/scores'])
+    // this.router.navigate(['/scores'])
     this.loading = true
     if (
       this.userInfo?.user?.id
