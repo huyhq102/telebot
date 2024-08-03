@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
   isTick = false;
   ngOnInit(): void {
 		// this.openBottomSheet();
-
+        this._bottomSheet.open(WheelComponent);
     this.userInfo = this.globalDataService.loadUserInfo();
     this.getMyInfo()
     this.loadActivePoint()
