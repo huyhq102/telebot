@@ -22,7 +22,7 @@ export class LeaderboardComponent implements OnInit {
 
 	userInfo: any;
 
-	userPoint: any;
+	userPoint: any = undefined;
 	listUsers: any;
 
 	totalPoints: any;
@@ -95,7 +95,6 @@ export class LeaderboardComponent implements OnInit {
 		} else {
 			this.getUserReferralRanking()
 			this.getReferralLeaderboard()
-
 		}
 	}
 	// changeTab(nameOfTab: any) {
@@ -103,7 +102,7 @@ export class LeaderboardComponent implements OnInit {
 	// 	this.loadData()
 	// }
 	getLeaderboard() {
-		this.isChecking = true;
+		// this.isChecking = true;
 		this.userInfo = this.globalDataService.loadUserInfo();
 		const data = {
 			"limit": 50,
