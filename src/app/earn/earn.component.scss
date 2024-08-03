@@ -27,6 +27,7 @@
             border-radius: 12px;
             margin: 0px 5px;
             text-align: center;
+            cursor: pointer;
         }
         .tab{
             flex: 1;
@@ -41,6 +42,7 @@
             border-radius: 12px;
             margin: 0px 5px;
             text-align: center;
+            cursor: pointer;
         }
     }
     
@@ -62,6 +64,7 @@
             box-shadow: 0px 6px 16px -8px #00000014;
             .footer-item{
                 display: flex;
+                cursor: pointer;
                 align-items: center;
                 justify-content: space-between;
                 flex-direction: column;
@@ -113,6 +116,7 @@
         margin-bottom: 20px;
         .social-active{
             background-color: #0F151F;
+            cursor: pointer;
             padding: 3px 0px;
             flex: 1;
             color: #FFFFFF;
@@ -125,6 +129,7 @@
         .social{
             flex: 1;
             text-align: center;
+            cursor: pointer;
             font-size: 12px;
             font-weight: 700;
             line-height: 16px;
@@ -171,6 +176,7 @@
                 .sub-btn{
                     border: 1px solid #EE5A24;
                     padding: 5px 10px;
+                    cursor: pointer;
                     border-radius: 8px;
                     color: #EE5A24;
                     font-size: 14px;

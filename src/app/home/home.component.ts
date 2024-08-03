@@ -266,10 +266,7 @@ export class HomeComponent implements OnInit {
   //   }
   goToLeaderboard() {
     this.isChecking = true;
-    setTimeout(() => {
-      this.isChecking = false;
-      this.router.navigate(['/leaderboard'])
-    }, 300);
+    this.router.navigate(['/leaderboard'])
   }
 
   goToFriends() {

@@ -53,16 +53,16 @@
 	<div class="footer">
 		
 		<div class="footer-content">
-			<div class="footer-item">
-				<img src="../../assets/home-not-active.png" alt="" (click)="goToHome()">
+			<div class="footer-item" (click)="goToHome()">
+				<img src="../../assets/home-not-active.png" alt="" >
 				<span>Home</span>
 			</div>
-			<div class="footer-item">
-				<img src="../../assets/Vector.png" alt="" (click)="goToLeaderboard()">
+			<div class="footer-item"  (click)="goToLeaderboard()">
+				<img src="../../assets/Vector.png" alt="">
 				<span>Leader board</span>
 			</div>
-			<div class="footer-item">
-				<img src="../../assets/earn.png" alt="" (click)="goToEarn()">
+			<div class="footer-item" (click)="goToEarn()">
+				<img src="../../assets/earn.png" alt="" >
 				<span>Earn</span>
 			</div>
 			<div class="footer-item">
@@ -72,7 +72,7 @@
 		</div>
 	</div>
 </div>
-<!-- <ngx-loading
+<ngx-loading
 	[show]="isChecking"
 	[config]="{ backdropBorderRadius: '3px' }"
-></ngx-loading> -->
+></ngx-loading>

@@ -21,6 +21,7 @@
             flex: 1;
             color: white;
             font-size: 14px;
+            cursor: pointer;
             line-height: 20px;
             padding: 5px 20px;
             font-weight: 700;
@@ -32,6 +33,7 @@
             flex: 1;
             background: #F3F5F7;
             flex: 1;
+            cursor: pointer;
             color: #8796AB;
             border: 1px solid #B0BFD1;
             font-size: 14px;
@@ -212,6 +214,7 @@
             box-shadow: 0px 6px 16px -8px #00000014;
             .footer-item{
                 display: flex;
+                cursor: pointer;
                 align-items: center;
                 justify-content: space-between;
                 flex-direction: column;

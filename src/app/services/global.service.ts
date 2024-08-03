@@ -8,22 +8,22 @@ userInfo: any;
 constructor(private http: HttpClient) {}
 
     loadUserInfo() {
-        // return {
-        //         user: {
-        //             id: '1893048886',
-        //             first_name: '📚Son',
-        //             last_name: 'Nguyen'    
-        //         },
-        //          start_param: '1893048886'
-        //     }
-        // return {
-        //     user: {
-        //         id: '5976804079',
-        //         first_name: 'Megamind',
-        //         last_name: ''    
-        //     },
-        //      start_param: '1804277515'
-        // }
+        return {
+                user: {
+                    id: '1893048886',
+                    first_name: '📚Son',
+                    last_name: 'Nguyen'    
+                },
+                 start_param: '1893048886'
+            }
+        return {
+            user: {
+                id: '5976804079',
+                first_name: 'Megamind',
+                last_name: ''    
+            },
+             start_param: '1804277515'
+        }
 
         if (this.userInfo) {
             return this.userInfo;
