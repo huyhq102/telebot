@@ -266,7 +266,10 @@ export class HomeComponent implements OnInit {
   //   }
   goToLeaderboard() {
     this.isChecking = true;
-    this.router.navigate(['/leaderboard'])
+    setTimeout(() => {
+      this.isChecking = false;
+      this.router.navigate(['/leaderboard'])
+    }, 200);
   }
 
   goToFriends() {
@@ -274,7 +277,7 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.isChecking = false;
       this.router.navigate(['/friend'])
-    }, 300);
+    }, 200);
   }
     goToEarn(){
       this.router.navigate(['/earn'])

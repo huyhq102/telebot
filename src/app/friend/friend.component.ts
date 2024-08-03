@@ -79,17 +79,21 @@ export class FriendComponent implements OnInit {
 		setTimeout(() => {
 			this.isChecking = false;
 			this.router.navigate(['/home'])
-		}, 300);
+		}, 200);
 	}
 	goToLeaderboard() {
 		this.isChecking = true;
 		setTimeout(() => {
 			this.isChecking = false;
 			this.router.navigate(['/leaderboard'])
-		}, 300);
+		}, 200);
 	}
 	goToEarn() {
-		this.router.navigate(['/earn'])
+        this.isChecking = true;
+		setTimeout(() => {
+			this.isChecking = false;
+			this.router.navigate(['/earn'])
+		}, 200);
 	}
 
 	copyInvitedLink() {

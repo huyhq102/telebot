@@ -1,9 +1,9 @@
-<div class="container" *ngIf='!isChecking'>
+<div class="container">
     <div class="tab-panel">
         <div [ngClass]="tabIndex ===1 ?'tab-activate': 'tab'" (click)="changeTab(1)">Hall of Fame</div>
         <div [ngClass]="tabIndex ===2 ?'tab-activate': 'tab'" (click)="changeTab(2)">Top Referral</div>
     </div>
-    <div class="top-rank">
+    <div class="top-rank" *ngIf='topRankUser.length > 0'>
         <div class="top-person">
             <div class="avata">
                 <img [src]="topRankUser[1]?.avatar" alt="" style="width: 75px;
@@ -67,7 +67,7 @@
             </div>
         </div>
     </div>
-    <div class="user-content">
+    <div class="user-content" *ngIf='userPoint != undefined'>
         <div class="user-infor">
             <div class="user-avata">
                 <img class="user-avata" [src]="userPoint?.avatar" alt="">
@@ -87,7 +87,7 @@
         </div>
         <div class="user-rank">#{{userPoint?.rank}}</div>
     </div>
-    <div class="sub-content">
+    <div class="sub-content" *ngIf='listUsers?.length > 0'>
         <div class="sub-title">
             <div class="title">{{listUsers.length | number}} Holders</div>
         </div>
@@ -133,6 +133,6 @@
 </div>
 <ngx-loading
     [show]="isChecking"
-    [config]="{ backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(0,0,0,0.87)'}"
+    [config]="{ backdropBorderRadius: '3px'}"
 ></ngx-loading>
 

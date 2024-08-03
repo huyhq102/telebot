@@ -27,6 +27,6 @@ export class ScoresComponent implements OnInit {
 		setTimeout(() => {
 			this.loading = false;
       this.router.navigate(['/home'])
-		}, 1000);
+		}, 300);
   }
 }

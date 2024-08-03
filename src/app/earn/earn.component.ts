@@ -87,7 +87,7 @@ export class EarnComponent implements OnInit {
 		setTimeout(() => {
 			this.isChecking = false;
 			this.router.navigate(['/home'])
-		}, 300);
+		}, 200);
 	}
 
 	goToFriend() {
@@ -95,7 +95,7 @@ export class EarnComponent implements OnInit {
 		setTimeout(() => {
 			this.isChecking = false;
 			this.router.navigate(['/friend'])
-		}, 300);
+		}, 200);
 	}
 
 	goToLeaderboard() {
@@ -103,7 +103,7 @@ export class EarnComponent implements OnInit {
 		setTimeout(() => {
 			this.isChecking = false;
 			this.router.navigate(['/leaderboard'])
-		}, 300);
+		}, 200);
 	}
 	formatName(name: any) {
 		return name && name == 'None' ? '' : name;
