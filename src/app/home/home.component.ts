@@ -2,15 +2,20 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import axios from 'axios';
-import { NgxLoadingModule } from 'ngx-loading';
+
 import Swal from 'sweetalert2'
+import { NgxLoadingModule } from 'ngx-loading';
 import { ApiService } from '../services/api.service';
 import { GlobalDataService } from '../services/global.service';
 import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatProgressSpinnerModule, ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { WheelComponent } from '../wheel/wheel.component';
 import { ModalComponent } from '../modal/modal.component';
+
+const { ethers } = require('ethers');
+
 
 @Component({
   selector: 'app-home',
@@ -287,4 +292,52 @@ export class HomeComponent implements OnInit {
     this._bottomSheet.open(ModalComponent);
     }
 
+    // async loginWithCoin98 () {
+    //   const objWindow = window as any
+    //   if (typeof objWindow.ethereum !== 'undefined' || (typeof objWindow.web3 !== 'undefined')) {
+    //     const provider = objWindow['ethereum'] || objWindow.web3.currentProvider;
+
+    //     if (provider) {
+    //         const web3 = new Web3(provider);
+
+    //         try {
+    //             // Request account access if needed
+    //             await provider.request({ method: 'eth_requestAccounts' });
+
+    //             // Get the user's wallet address
+    //             const accounts = await web3.eth.getAccounts();
+    //             const account = accounts[0];
+
+    //             // Sign a message
+    //             const message = "Sign in to our application";
+    //             const signature = await web3.eth.personal.sign(message, account);
+
+    //             // Send the address and the signature to your server for verification
+    //             console.log("Account:", account);
+    //             console.log("Signature:", signature);
+
+    //             // You can now send the `account` and `signature` to your backend for verification
+    //             // For example, using fetch:
+    //             /*
+    //             fetch('/api/verify-signature', {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'application/json'
+    //                 },
+    //                 body: JSON.stringify({ account, signature })
+    //             }).then(response => {
+    //                 // Handle response
+    //             });
+    //             */
+    //         } catch (error) {
+    //             console.error("User denied account access or there was an error signing the message", error);
+    //         }
+    //     } else {
+    //         console.error('No provider found. Install Coin98 Wallet or another compatible wallet.');
+    //     }
+    // } else {
+    //     console.error('No web3 provider found. Install Coin98 Wallet or another compatible wallet.');
+    // }
+
+    // }
 }
