@@ -13,8 +13,13 @@ import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-s
 import { MatProgressSpinnerModule, ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { WheelComponent } from '../wheel/wheel.component';
 import { ModalComponent } from '../modal/modal.component';
+import { Web3 } from 'web3';
+import { WalletService } from '../services/wallet.service';
+// const Web3 = require("web3");
 
-const { ethers } = require('ethers');
+declare let window: any;
+
+// const { ethers } = require('ethers');
 
 
 @Component({
@@ -31,9 +36,12 @@ export class HomeComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private globalDataService: GlobalDataService,
-		private _bottomSheet: MatBottomSheet,
+    private _bottomSheet: MatBottomSheet,
+    private walletService: WalletService,
     private router: Router
   ) { }
+
+  walletAddress: any
 
   totalActivePoint = 0;
   totalFriendPoint = 0;
@@ -52,11 +60,13 @@ export class HomeComponent implements OnInit {
   isChecking = false;
   isTick = false;
   ngOnInit(): void {
-		// this.openBottomSheet();
+    // this.openBottomSheet();
     this.userInfo = this.globalDataService.loadUserInfo();
     this.getMyInfo()
     this.loadActivePoint()
     this.getBonusStatus()
+
+    this.walletService.getAccount().then(account=> {this.walletAddress = account})
     // this.loadTotalPoint()
   }
 
@@ -82,63 +92,63 @@ export class HomeComponent implements OnInit {
   }
 
   getMyInfo() {
-		this.userInfo = this.globalDataService.loadUserInfo();
-		const data = {
-			"limit": 1,
-			"offset": 0,
-			"user_id": this.userInfo.user.id
-		}
-		const dataUser = {
-			user_list:[this.userInfo.user.id]
-		}
-		
-		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
-			if(!data.data[0].avatar){
-				this.myInfo = {...data.data[0], avatar:'../../assets/Avatar Image.png'}
-			}else{
-				this.myInfo = data.data[0]
-			}
-		})
-	}
+    this.userInfo = this.globalDataService.loadUserInfo();
+    const data = {
+      "limit": 1,
+      "offset": 0,
+      "user_id": this.userInfo.user.id
+    }
+    const dataUser = {
+      user_list: [this.userInfo.user.id]
+    }
+
+    this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
+      if (!data.data[0].avatar) {
+        this.myInfo = { ...data.data[0], avatar: '../../assets/Avatar Image.png' }
+      } else {
+        this.myInfo = data.data[0]
+      }
+    })
+  }
 
   getBonusStatus() {
-		const payload = {
-			"user_id": this.userInfo.user.id,
-			"entity_list": [
-				{
-					"entity_type": 1,
-					"entity_id": "-1002188041826"
-				},
-				{
-					"entity_type": 2,
-					"entity_id": "-1002206293719"
-				},
+    const payload = {
+      "user_id": this.userInfo.user.id,
+      "entity_list": [
         {
-					"entity_type": 4,
-					"entity_id": "https://x.com/Studihubedu"
-				},
+          "entity_type": 1,
+          "entity_id": "-1002188041826"
+        },
         {
-					"entity_type": 11,
-					"entity_id": (new Date()).toISOString().split('T')[0]
-				}
-			]
-		}
+          "entity_type": 2,
+          "entity_id": "-1002206293719"
+        },
+        {
+          "entity_type": 4,
+          "entity_id": "https://x.com/Studihubedu"
+        },
+        {
+          "entity_type": 11,
+          "entity_id": (new Date()).toISOString().split('T')[0]
+        }
+      ]
+    }
     this.apiService.post(`check-bonus-point`, payload, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
       const state = data.data
 
-      this.bonusStatus.subcribeStudihubChannel =  this.checkBonus(state, 2,'-1002206293719')
-      this.bonusStatus.joinStudihubGroup =  this.checkBonus(state, 1,'-1002188041826')
-      this.bonusStatus.followX =  this.checkBonus(state, 4, 'https://x.com/Studihubedu')
-      this.bonusStatus.spinLuckyWheelDaily =  this.checkBonus(state, 11, (new Date()).toISOString().split('T')[0])
+      this.bonusStatus.subcribeStudihubChannel = this.checkBonus(state, 2, '-1002206293719')
+      this.bonusStatus.joinStudihubGroup = this.checkBonus(state, 1, '-1002188041826')
+      this.bonusStatus.followX = this.checkBonus(state, 4, 'https://x.com/Studihubedu')
+      this.bonusStatus.spinLuckyWheelDaily = this.checkBonus(state, 11, (new Date()).toISOString().split('T')[0])
       if (this.bonusStatus.spinLuckyWheelDaily == false) {
         this._bottomSheet.open(WheelComponent);
       }
       console.log(this.bonusStatus)
-		})
-	}
+    })
+  }
 
-  checkBonus(state:any, entity_type: any, entity_id:any) {
-    const status = state.find((x: any)=> x.entity_id = String(entity_id) && x.entity_type == entity_type)
+  checkBonus(state: any, entity_type: any, entity_id: any) {
+    const status = state.find((x: any) => x.entity_id = String(entity_id) && x.entity_type == entity_type)
     return status ? status.status : false
   }
 
@@ -207,12 +217,12 @@ export class HomeComponent implements OnInit {
   followX() {
     window.open('https://x.com/Studihubedu', '_blank')
     this.followMode = 'indeterminate';
-    setTimeout(()=>{
+    setTimeout(() => {
       this.followMode = 'determinate';
       this.check(4, 'https://x.com/Studihubedu')
     }, 7000)
   }
-  
+
   addFollowPointOnX() {
 
   }
@@ -269,12 +279,15 @@ export class HomeComponent implements OnInit {
   //   goToHome(){
   //     this.router.navigate(['/home'])
   //   }
+  
   goToLeaderboard() {
     this.isChecking = true;
     setTimeout(() => {
       this.isChecking = false;
       this.router.navigate(['/leaderboard'])
-    }, 200);
+    },
+      200
+    );
   }
 
   goToFriends() {
@@ -284,60 +297,19 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/friend'])
     }, 200);
   }
-    goToEarn(){
-      this.router.navigate(['/earn'])
-    }
 
-	openBottomSheet(): void {
+  goToEarn() {
+    this.router.navigate(['/earn'])
+  }
+
+  openBottomSheet(): void {
     this._bottomSheet.open(ModalComponent);
-    }
+  }
 
-    // async loginWithCoin98 () {
-    //   const objWindow = window as any
-    //   if (typeof objWindow.ethereum !== 'undefined' || (typeof objWindow.web3 !== 'undefined')) {
-    //     const provider = objWindow['ethereum'] || objWindow.web3.currentProvider;
-
-    //     if (provider) {
-    //         const web3 = new Web3(provider);
-
-    //         try {
-    //             // Request account access if needed
-    //             await provider.request({ method: 'eth_requestAccounts' });
-
-    //             // Get the user's wallet address
-    //             const accounts = await web3.eth.getAccounts();
-    //             const account = accounts[0];
-
-    //             // Sign a message
-    //             const message = "Sign in to our application";
-    //             const signature = await web3.eth.personal.sign(message, account);
-
-    //             // Send the address and the signature to your server for verification
-    //             console.log("Account:", account);
-    //             console.log("Signature:", signature);
-
-    //             // You can now send the `account` and `signature` to your backend for verification
-    //             // For example, using fetch:
-    //             /*
-    //             fetch('/api/verify-signature', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'Content-Type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify({ account, signature })
-    //             }).then(response => {
-    //                 // Handle response
-    //             });
-    //             */
-    //         } catch (error) {
-    //             console.error("User denied account access or there was an error signing the message", error);
-    //         }
-    //     } else {
-    //         console.error('No provider found. Install Coin98 Wallet or another compatible wallet.');
-    //     }
-    // } else {
-    //     console.error('No web3 provider found. Install Coin98 Wallet or another compatible wallet.');
-    // }
-
-    // }
+  async loginWithCoin98() {
+    this.walletService.loginCoin98Wallet().then(async () => {
+      this.walletAddress = await this.walletService.getAccount()
+      // this.walletAddress = account ? account : this.walletAddress
+    })
+  }
 }

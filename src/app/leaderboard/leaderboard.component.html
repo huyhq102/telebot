@@ -89,7 +89,7 @@
     </div>
     <div class="sub-content" *ngIf='listUsers?.length > 0'>
         <div class="sub-title">
-            <div class="title">{{listUsers.length | number}} Holders</div>
+            <div class="title">{{10000 + totalHolder | number}} Holders</div>
         </div>
         <div class="user-content" *ngFor="let item of listUsers">
             <div class="user-infor">

@@ -90,6 +90,20 @@
         border-radius: 8px;
         margin-bottom: 25px;
     }
+    .wallet-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        color: #647691;
+        font-size: 14px;
+        line-height: 16px;
+        font-weight: 700;
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 25px;
+        border: 1px solid var(--Border-Neutral-Border-neutral-low-contrast, #D8E3F0)
+    }
     .sub-content{
         display: flex;
         flex-direction: column;
