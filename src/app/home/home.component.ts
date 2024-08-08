@@ -11,6 +11,7 @@ import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-s
 import { MatProgressSpinnerModule, ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { WheelComponent } from '../wheel/wheel.component';
 import { ModalComponent } from '../modal/modal.component';
+import { WalletComponent } from '../wallet/wallet.component';
 
 @Component({
   selector: 'app-home',
@@ -285,6 +286,10 @@ export class HomeComponent implements OnInit {
 
 	openBottomSheet(): void {
     this._bottomSheet.open(ModalComponent);
+    }
+
+    openWalletSheet(): void {
+        this._bottomSheet.open(WalletComponent);
     }
 
 }

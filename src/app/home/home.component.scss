@@ -90,6 +90,25 @@
         border-radius: 8px;
         margin-bottom: 25px;
     }
+
+    .is-connect-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        padding: 8px;
+        border: 1px solid #D8E3F0;
+        width: 100%;
+        margin-bottom: 25px;
+        span{
+            color: #647691;
+            font-size: 12px;
+            line-height: 16px;
+            margin-left: 5px;
+            font-weight: 700;
+        }
+    }
+
     .sub-content{
         display: flex;
         flex-direction: column;
