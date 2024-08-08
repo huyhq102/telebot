@@ -1,2 +1,33 @@
-<p>wallet-connect works!</p>
-<button (click)="connectMetaMask()"> connect </button>
+<div class="container">
+    <div> 
+        <img style ='width: 200px' src='../../assets/image.png'> 
+    </div>
+    <div class="connect-btn" (click)="connectWallet()" *ngIf='! walletAddress'>
+        Connect Wallet
+    </div>
+    <div class="wallet-btn" *ngIf='walletAddress'>
+       <img src='../../assets/fox.svg' style='padding-right:10px'>
+        {{walletAddress.slice(0,18) + '...' + walletAddress.slice(-6)}}
+    </div>
+
+    <!-- <div class="footer">
+        <div class="footer-content">
+            <div class="footer-item">
+                <img src="../../assets/home-2.png" alt="">
+                <span class="activate">Home</span>
+            </div>
+            <div class="footer-item" (click)="goToLeaderboard()">
+                <img src="../../assets/Vector.png" alt="">
+                <span>Leader board</span>
+            </div>
+            <div class="footer-item" (click)="goToEarn()">
+                <img src="../../assets/earn.png" alt="">
+                <span>Earn</span>
+            </div>
+            <div class="footer-item">
+                <img src="../../assets/friends.png" alt="" (click)="goToFriends()">
+                <span>Friends</span>
+            </div>
+        </div>
+    </div> -->
+</div>

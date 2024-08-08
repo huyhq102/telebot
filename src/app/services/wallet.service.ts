@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import Web3 from 'web3';
+import { ApiService } from './api.service';
+import { GlobalDataService } from './global.service';
 
 declare let window: any;
 
@@ -12,11 +14,19 @@ export class WalletService {
 
     private account;
     private web3!: Web3;
+    userInfo: any;
 
-    constructor() {
+    constructor(private apiService: ApiService,
+        private globalDataService: GlobalDataService
+    ) {
+        this.userInfo = this.globalDataService.loadUserInfo();
+
         if (localStorage.getItem(this.KEY)) {
             this.account = localStorage.getItem(this.KEY)
         }
+    }
+    async removeKey() {
+        localStorage.removeItem(this.KEY)
     }
 
     async loginCoin98Wallet() {
@@ -28,8 +38,8 @@ export class WalletService {
 
         if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
             const provider = window['ethereum'] || window.web3.currentProvider;
-
-            if (provider.isCoin98 == true) {
+            console.log(provider)
+            if (provider) {
                 this.web3 = new Web3(provider);
                 try {
                     // Request account access if needed
@@ -55,15 +65,56 @@ export class WalletService {
             window.open('https://chromewebstore.google.com/detail/coin98-wallet/aeachknmefphepccionboohckonoeemg?hl=en', '_blank')
         }
     }
+
+    async loginWalletWithProvider(name: string) {
+
+        if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
+            const provider = window['ethereum'] || window.web3.currentProvider;
+            // const provider =  window['ethereum']
+            if (provider) {
+                this.web3 = new Web3(provider);
+                try {
+                    // Request account access if needed
+                    await provider.request({ method: 'eth_requestAccounts' });
+
+                    // Get the user's wallet address
+                    const accounts = await this.web3.eth.getAccounts();
+                    this.account = accounts[0];
+
+                    // console.log(this.account)
+                    // console.log(provider)
+                    this.verifyAccount()
+
+                } catch (error) {
+                    alert("User denied account access or there was an error signing the message");
+                }
+            } else {
+                alert('No provider found. Install Coin98 Wallet or another compatible wallet.');
+                window.open('https://chromewebstore.google.com/detail/coin98-wallet/aeachknmefphepccionboohckonoeemg?hl=en', '_blank')
+            }
+        } else {
+            alert('No web3 provider found. Install Coin98 Wallet or another compatible wallet.');
+            window.open('https://chromewebstore.google.com/detail/coin98-wallet/aeachknmefphepccionboohckonoeemg?hl=en', '_blank')
+        }
+    }
+
     async verifyAccount() {
         if (this.account) {
             // Sign a message
             const message = "Sign in to Studihub.io";
             const signature = await this.web3.eth.personal.sign(message, this.account, '');
 
-            // Send the address and the signature to your server for verification
-            // console.log("Account:", account);
-            // console.log("Signature:", signature);
+            const data = {
+                user_id: this.userInfo.user.id,
+                address: this.account,
+                message: message,
+                signature: signature
+
+            }
+            this.apiService.post(`verify-signature`, data, { 'Content-Type': 'application/json' }).subscribe((response: any) => {
+                console.log(response)
+            })
+
 
             localStorage.setItem(this.KEY, this.account)
 

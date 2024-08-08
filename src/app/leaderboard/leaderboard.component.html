@@ -76,20 +76,19 @@
                 <div class="user-name">{{userPoint?.first_name + " " + userPoint?.last_name}}</div>
                 <!-- <div class="user-score">{{userPoint?.total_point | number}} Studihubs</div> -->
 
-                <div *ngIf="tabIndex ===1">
+                <div *ngIf="tabIndex === 1">
                     <div class="user-score">{{userPoint?.total_point | number}} Studihubs</div>
                 </div>
-                <div *ngIf="tabIndex ===2">
+                <div *ngIf="tabIndex === 2">
                     <div class="user-score">{{userPoint?.referral_point / 3000 | number}} Referrals</div>
                 </div>
-
             </div>
         </div>
         <div class="user-rank">#{{userPoint?.rank}}</div>
     </div>
     <div class="sub-content" *ngIf='listUsers?.length > 0'>
         <div class="sub-title">
-            <div class="title">{{listUsers.length | number}} Holders</div>
+            <div class="title">{{10000 + totalHolder | number}} Holders</div>
         </div>
         <div class="user-content" *ngFor="let item of listUsers">
             <div class="user-infor">
@@ -104,7 +103,6 @@
                     <div *ngIf="tabIndex ===2">
                         <div class="user-score">{{item.referral_point / 3000 | number}} Referrals</div>
                     </div>
-        
                 </div>
             </div>
             <div class="user-rank">#{{item.rank}}</div>

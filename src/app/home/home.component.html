@@ -18,16 +18,25 @@
             </div>
         </div>
     </div>
-
+<!-- 
     <div class="connect-btn" (click)="openWalletSheet()">
         Connect Wallet
-    </div>
+    </div> -->
 
-    <div class="is-connect-btn" (click)="openWalletSheet()">
+    <!-- <div class="is-connect-btn" (click)="openWalletSheet()">
         <img src="../../assets/fox.png" alt="">
         <span>
             0fsgexaw346dfh7xxx...3dfgsava
         </span>
+    </div> -->
+
+    <div class="connect-btn" (click)="loginWithCoin98()" *ngIf='! walletAddress'>
+        {{walletTxtMode}}
+    </div>
+    <div class="wallet-btn" *ngIf='walletAddress'>
+       <img src='../../assets/fox.svg' style='padding-right:10px'>
+        {{walletAddress.slice(0,18) + '...' + walletAddress.slice(-6)}}
+        <img style='width:45px;padding-left: 20px;' src='../../assets/logout.png' (click)="logoutWallet()">
     </div>
 
     <div class="sub-content">

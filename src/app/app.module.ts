@@ -9,10 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DataService } from './wheel/data.service';
+import { WalletConnectComponent } from './wallet-connect/wallet-connect.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    WalletConnectComponent,
   ],
   imports: [
     BrowserModule,

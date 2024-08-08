@@ -85,6 +85,7 @@ export class LeaderboardComponent implements OnInit {
 		}
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
 			this.updateLeaderBoardRank(data.data)
+			this.totalHolder = data.total;
 		})
 	}
 
@@ -110,6 +111,8 @@ export class LeaderboardComponent implements OnInit {
 		}
 		this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
 			this.updateLeaderBoardRank(data.data)
+			this.totalHolder = data.total;
+
 		})
 	}
 
@@ -128,7 +131,7 @@ export class LeaderboardComponent implements OnInit {
 			}
 		});
 		this.totalPoints = total;
-		this.totalHolder = data.total;
+		// this.totalHolder = data.total;
 		this.isChecking = false;
 	}
 
