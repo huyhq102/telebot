@@ -8,14 +8,14 @@ userInfo: any;
 constructor(private http: HttpClient) {}
 
     loadUserInfo() {
-        return {
-                user: {
-                    id: '1893048886',
-                    first_name: '📚Son',
-                    last_name: 'Nguyen'    
-                },
-                 start_param: '1893048886'
-            }
+        // return {
+        //         user: {
+        //             id: '1893048886',
+        //             first_name: '📚Son',
+        //             last_name: 'Nguyen'    
+        //         },
+        //          start_param: '1893048886'
+        //     }
         // return {
         //     user: {
         //         id: '5976804079',

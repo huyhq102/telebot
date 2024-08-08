@@ -15,6 +15,7 @@ import { WheelComponent } from '../wheel/wheel.component';
 import { ModalComponent } from '../modal/modal.component';
 import { Web3 } from 'web3';
 import { WalletService } from '../services/wallet.service';
+import { MetamaskWalletService } from '../services/metamask-wallet.service';
 // const Web3 = require("web3");
 
 declare let window: any;
@@ -307,6 +308,9 @@ export class HomeComponent implements OnInit {
   }
 
   async loginWithCoin98() {
+    // window.open(`https://metamask.app.link/dapp/https://telebot-test.studihub.io/connect/${this.userInfo.user.id }`, '_blank')
+    // window.open(`https://coin98.com/dapp/telebot-test.studihub.io/connect/${this.userInfo.user.id }`, '_blank')
+
     this.walletService.loginCoin98Wallet().then(async () => {
       this.walletAddress = await this.walletService.getAccount()
       // this.walletAddress = account ? account : this.walletAddress
