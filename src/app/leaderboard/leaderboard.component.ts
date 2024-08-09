@@ -98,10 +98,12 @@ export class LeaderboardComponent implements OnInit {
 			this.getReferralLeaderboard()
 		}
 	}
+
 	// changeTab(nameOfTab: any) {
 	// 	this.currentTab = nameOfTab
 	// 	this.loadData()
 	// }
+	
 	getLeaderboard() {
 		// this.isChecking = true;
 		this.userInfo = this.globalDataService.loadUserInfo();

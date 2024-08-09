@@ -38,7 +38,6 @@ export class WalletService {
 
         if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
             const provider = window['ethereum'] || window.web3.currentProvider;
-            console.log(provider)
             if (provider) {
                 this.web3 = new Web3(provider);
                 try {
@@ -47,11 +46,9 @@ export class WalletService {
 
                     // Get the user's wallet address
                     const accounts = await this.web3.eth.getAccounts();
-                    this.account = accounts[0];
+                    // this.account = accounts[0];
 
-                    console.log(this.account)
-                    console.log(provider)
-                    this.verifyAccount()
+                    this.verifyAccount(accounts[0])
 
                 } catch (error) {
                     alert("User denied account access or there was an error signing the message");
@@ -67,10 +64,8 @@ export class WalletService {
     }
 
     async loginWalletWithProvider(name: string) {
-
         if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
             const provider = window['ethereum'] || window.web3.currentProvider;
-            // const provider =  window['ethereum']
             if (provider) {
                 this.web3 = new Web3(provider);
                 try {
@@ -79,11 +74,8 @@ export class WalletService {
 
                     // Get the user's wallet address
                     const accounts = await this.web3.eth.getAccounts();
-                    this.account = accounts[0];
 
-                    // console.log(this.account)
-                    // console.log(provider)
-                    this.verifyAccount()
+                    await this.verifyAccount(accounts[0])
 
                 } catch (error) {
                     alert("User denied account access or there was an error signing the message");
@@ -98,55 +90,38 @@ export class WalletService {
         }
     }
 
-    async verifyAccount() {
-        if (this.account) {
+    async verifyAccount(account: any) {
+        if (account) {
             // Sign a message
             const message = "Sign in to Studihub.io";
-            const signature = await this.web3.eth.personal.sign(message, this.account, '');
+            const signature = await this.web3.eth.personal.sign(message, account, '');
 
             const data = {
                 user_id: this.userInfo.user.id,
-                address: this.account,
+                address: account,
                 message: message,
                 signature: signature
-
             }
-            this.apiService.post(`verify-signature`, data, { 'Content-Type': 'application/json' }).subscribe((response: any) => {
-                console.log(response)
+
+            return new Promise((resolve, reject) => {
+                this.apiService.post(`verify-signature`, data, { 'Content-Type': 'application/json' }).subscribe((response: any) => {
+                    this.account = account;
+                    localStorage.setItem(this.KEY, account)
+                    resolve(true)
+                })
             })
-
-
-            localStorage.setItem(this.KEY, this.account)
-
+            // await verifySignature
             // const balance = await web3.eth.getBalance(account);
             // console.log('Balance::', web3.utils.fromWei(balance, 'ether')); // Convert balance from Wei to Ether
 
             // const accounts = await web3.eth.getAccounts();
 
             // studihub-acc-test
-            // final cup rib ramp diesel focus pitch angry unlock artwork hungry odor
-
-            // Account: 0x96B2682924790507268eCA6E7Db1625122C75b99
-            // Signature: 0xa1720b2f391115626569a093b20a87b97c38e96a4f3ca3eece60a7f3becfd7c160d0e6f4057cb9424de5df48ef70b87c6d7e1bcfe6f03d4d11e44d23de4f5d651c
-
-            // You can now send the `account` and `signature` to your backend for verification
-            // For example, using fetch:
-            /*
-            fetch('/api/verify-signature', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ account, signature })
-            }).then(response => {
-                // Handle response
-            });
-            */
+            // final cup rib ramp diesel focus pitch angry unlock artwork hungry odor   
         }
 
     }
     async getAccount(): Promise<string | undefined | null> {
-        // const accounts = await this.web3.eth.getAccounts();
         return this.account;
     }
 
