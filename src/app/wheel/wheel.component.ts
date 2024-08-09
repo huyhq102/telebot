@@ -10,12 +10,14 @@ import Swal from 'sweetalert2'
 const COLORS = ['#570F63', '#6C1C95', '#987ACF', '#D7D2EF', '#570F63', '#6C1C95', '#987ACF']; // '#D7D2EF', '#570F63', '#6C1C95', '#987ACF', '#D7D2EF',
 const _defaultOpts = [
   "200 STH", 
+  "5 USDT 🎁",
   "500 STH", 
   "1000 STH", 
+  "1 Solana 🎉",
   "2000 STH", 
+  "5000 STH 🔥", 
   "4000 STH", 
-  "5000 STH", 
-  "10000 STH",
+  "10000 STH 🔥",
   // "200 STH",
   // "200 STH",
   // "500 STH",
@@ -58,6 +60,7 @@ export class WheelComponent implements OnInit {
   ang = 0; // Angle in radians
   lastSelection: any;
   userInfo: any;
+  isJackspot = false;
 
   constructor(
     private dataService: DataService,
@@ -108,29 +111,8 @@ export class WheelComponent implements OnInit {
     // this.spinToSector(5)
 		this.isDissible = true;
     this.spinLuckyWheel()
-
-    // const sectorIdx = 1;
-
-    // let angNew = this.arc0 * sectorIdx
-    // angNew -= this.rand(0, this.arc0)
-    // angNew = this.mod(angNew, this.TAU)
-
-    // const angAbs = this.mod(this.ang, this.TAU)
-
-    // const angDiff = this.mod(angNew - angAbs, this.TAU)
-    // const rev = this.TAU * Math.floor(this.rand(4, 6)) // extra 4 or 5 full turns
-    // this.ang += angDiff + rev;
-
-    // const spinAnimation = this.wheel.nativeElement.animate([{ rotate: `${this.ang}rad` }], {
-    //   duration: this.rand(4000, 8000),
-    //   easing: "cubic-bezier(0.2, 0, 0.1, 1)",
-    //   fill: "forwards"
-    // });
-
-    // spinAnimation.addEventListener("finish", () => {
-    //   // alert('You got prize')
-    // });
   }
+
   spinToSector(sectorIdx: number, data: any) {
     let angNew = this.arc0 * sectorIdx
     angNew -= this.rand(0, this.arc0)
@@ -149,17 +131,20 @@ export class WheelComponent implements OnInit {
     });
 
     spinAnimation.addEventListener("finish", () => {
-			Swal.fire({
-				title: "You got a reward!",
-				text: `${data.prize}`,
-				icon: "success"
-			}).then((result) => {
-				if (result.isConfirmed) {
-					this.close();
-				}
-			});
-    });
+      this.isJackspot = true
 
+      setTimeout(()=>{
+        Swal.fire({
+          title: "You got a reward!",
+          text: `${data.prize}`,
+          icon: "success"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.close();
+          }
+        });
+      }, 5000) 
+    });
   }
 
   spinLuckyWheel() {
@@ -167,7 +152,6 @@ export class WheelComponent implements OnInit {
     this.apiService.post(`spin-lucky-wheel`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
       if (data.status == 1) {
         const sectorIdx = _defaultOpts.indexOf(data.prize)
-
         this.spinToSector(this.tot - sectorIdx, data)
       } else {
         Swal.fire({

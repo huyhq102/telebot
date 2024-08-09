@@ -151,7 +151,7 @@ export class HomeComponent implements OnInit {
       if (this.bonusStatus.spinLuckyWheelDaily == false) {
         this._bottomSheet.open(WheelComponent);
       }
-      console.log(this.bonusStatus)
+      // console.log(this.bonusStatus)
     })
   }
 
@@ -340,6 +340,7 @@ export class HomeComponent implements OnInit {
     this.apiService.post(`logout-wallet`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
       this.walletService.removeKey()
       this.walletAddress = undefined
+      // console.log(data)
     })
   }
 
@@ -351,7 +352,6 @@ export class HomeComponent implements OnInit {
     }
 
     this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
-      // alert(JSON.stringify(data))
       if (data.data[0].wallet_address) {
         this.walletAddress = data.data[0].wallet_address
       }
