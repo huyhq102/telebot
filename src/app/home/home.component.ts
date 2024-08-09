@@ -358,3 +358,7 @@ export class HomeComponent implements OnInit {
     })
   }
 }
+
+
+
+// https://jsfiddle.net/elin/7m3bL/
