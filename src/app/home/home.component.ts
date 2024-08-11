@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private globalDataService: GlobalDataService,
-		private _bottomSheet: MatBottomSheet,
+	private _bottomSheet: MatBottomSheet,
     private router: Router
   ) { }
 

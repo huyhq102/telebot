@@ -106,7 +106,7 @@ export class WheelComponent implements OnInit {
 
   spinner() {
     // this.spinToSector(5)
-		this.isDissible = true;
+	this.isDissible = true;
     this.spinLuckyWheel()
 
     // const sectorIdx = 1;

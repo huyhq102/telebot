@@ -1,0 +1,36 @@
+<div class="header-close">
+    <img src="../../assets/X-blue.png" alt="" (click)="close()">
+    <span>Puzzle</span>
+</div>
+<div class="win-earn">
+    <p>Win to earn</p>
+    <span>+ 250 Studihubs</span>
+</div>
+<div class="puzzle-container">
+    <div [ngStyle]="boardStyle" #board>
+      <div
+        *ngFor="let cell of cells"
+        [ngStyle]="cellStyle"
+        [attr.data-pos]="cell.dataPos"
+        [attr.data-curpos]="cell.dataCurPos"
+        [attr.data-dx]="cell.dataDx"
+        [attr.data-dy]="cell.dataDy"
+        (click)="moveCell(cell)"
+        class="cell"
+        [ngClass]="isEmptyCell(cell.dataPos) ?'cell-opacity': 'cell'"
+      >
+        <canvas
+          width="90"
+          height="90"
+          #cellCanvas
+        ></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="btn-start" (click)="shuffle()" *ngIf="isStart">
+    Start
+  </div>
+
+  <div class="btn-restart" (click)="shuffle()" *ngIf="!isStart">
+    Restart
+  </div>

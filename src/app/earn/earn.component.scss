@@ -53,6 +53,7 @@
         display: flex;
         padding: 0px 20px 20px 20px;
         background-color: white;
+        z-index: 1;
         .footer-content{
             display: flex;
             border: 1px solid #D8E3F0;
@@ -187,25 +188,51 @@
         }
     }
 }
-.minigame{
+.container-game{
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    padding: 0px 20px 0px 20px;
     justify-content: center;
-    height: 55vh;
-    span{
-        font-size: 32px;
-        line-height: 40px;
-        font-weight: 500;
-        margin-top: 12px;
-    }
-    p{
-        font-size: 14px;
-        line-height: 20px;
-        color: #647691;
-        font-weight: 500;
+    position: relative;
+    width: 100%;
+    .minigame{
+        display: grid;
+        grid-template-columns: auto auto;
+        width: 100%;
+        column-gap: 10px;
+        row-gap: 5px;
+        margin-bottom: 100px;
+        .puzzle{
+            width: 155px;
+            height: 155px;
+            background-repeat:no-repeat;
+            background-size:contain;
+            background-position:center;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            .btn-play{
+                background: rgba(255, 255, 255, 0.4);
+                width: 90%;
+                height: 32px;
+                font-size: 14px;
+                line-height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                margin-bottom: 10px;
+                color: rgba(255, 255, 255, 1);
+                cursor: pointer;
+                border-radius: 8px;
+            }
+        }
     }
 }
+
+
 ::ng-deep.spinner-three-bounce{
 	background-color: transparent !important;
 }

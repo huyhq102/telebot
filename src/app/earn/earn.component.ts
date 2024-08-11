@@ -9,11 +9,13 @@ import { ApiService } from '../services/api.service';
 import { GlobalDataService } from '../services/global.service';
 import { PointEntityType } from '../services/point-type';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { PuzzleGameComponent } from '../puzzle-game/puzzle-game.component';
 
 @Component({
 	selector: 'app-earn',
 	standalone: true,
-	imports: [CommonModule, NgxLoadingModule, MatProgressSpinnerModule],
+	imports: [CommonModule, NgxLoadingModule, MatProgressSpinnerModule, MatBottomSheetModule],
 	templateUrl: './earn.component.html',
 	styleUrls: ['./earn.component.scss']
 })
@@ -40,11 +42,20 @@ export class EarnComponent implements OnInit {
 	likeSpinnerValue: any;
 	retweetSpinnerValue: any;
 	retweetXLink = 'https://twitter.com/intent/tweet?text=Check%20out%20%40StudiHubIO%21%20%F0%9F%9A%80%20A%20cutting-edge%20platform%20integrating%20Blockchain%2C%20eLearning%2C%20and%20AI%20Interactive%20technologies.%20Join%20Studihub%20Exclusive%20Airdrop%20to%20earn%20up%20to%20%245000%20USDT%20and%20Studihub%20coins%3A%20t.me%2Fjoinstudihub_bot%20%20%23Blockchain%20%23eLearning%20%23AI%20%23EdTech'
-	likeXLink = 'https://x.com/Studihubedu/status/1816730552377946537'
+	likeXLink = 'https://x.com/Studihubedu/status/1816730552377946537';
+    gameList = [
+        {image:'assets/game1.jpg'},
+        {image:'assets/game2.jpg'},
+        {image:'assets/game3.jpg'},
+        {image:'assets/game4.jpg'},
+        {image:'assets/game5.jpg'},
+        {image:'assets/game6.jpg'},
+    ]
 	constructor(
 		private apiService: ApiService,
 		private router: Router,
-		private globalDataService: GlobalDataService
+		private globalDataService: GlobalDataService,
+        private _bottomSheet: MatBottomSheet,
 	) { }
 
 	ngOnInit(): void {
@@ -259,4 +270,10 @@ export class EarnComponent implements OnInit {
 		const status = state.find((x: any) => x.entity_id = String(entity_id) && x.entity_type == entity_type)
 		return status ? status.status : false
 	}
+
+    openGame(image:any): void {
+        this._bottomSheet.open(PuzzleGameComponent,{
+            data: { image: image },
+          });
+    }
 }

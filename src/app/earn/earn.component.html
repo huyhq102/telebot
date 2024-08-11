@@ -145,10 +145,12 @@
     </div>
 </div>
 
-<div class="minigame" *ngIf="isMiniGanme; else hasMinigame">
-    <img src="../../assets/coming-soon (1) 1.png" alt="">
-    <span>COMING SOON</span>
-    <p>We are working in the final details.</p>
+<div class="container-game" *ngIf="isMiniGanme; else hasMinigame">
+    <div class="minigame">
+        <div class="puzzle" *ngFor="let item of gameList" [ngStyle]="{'background-image': 'url(' + item.image + ')'}">
+            <div class="btn-play" (click)="openGame(item.image)">Play</div>
+        </div>
+    </div>
 </div>
 
 
