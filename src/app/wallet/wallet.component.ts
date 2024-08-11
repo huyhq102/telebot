@@ -4,6 +4,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { GlobalDataService } from '../services/global.service';
 import { WalletService } from '../services/wallet.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-wallet',
@@ -25,7 +26,7 @@ export class WalletComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.userInfo = this.globalDataService.loadUserInfo();
-
+		console.log(environment)
 	}
 
 	close(): void {
@@ -33,7 +34,7 @@ export class WalletComponent implements OnInit {
 	}
 
 	connect(walletName: string) {
-		const dappConnectLink = `https://telebot-test.studihub.io/connect/${this.userInfo.user.id}`
+		const dappConnectLink = `${environment.domain}/connect/${this.userInfo.user.id}`
 
 		// this.walletService.loginWalletWithProvider('MetaMask').then(async () => {
 		// 	console.log('okkk')

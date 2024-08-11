@@ -25,15 +25,14 @@ export class WalletService {
             this.account = localStorage.getItem(this.KEY)
         }
     }
-    async removeKey() {
-        localStorage.removeItem(this.KEY)
-    }
 
     async loginCoin98Wallet() {
 
         if (localStorage.getItem(this.KEY)) {
             this.account = localStorage.getItem(this.KEY)
-            return
+            return new Promise((resolve, reject) => {
+                reject(false)
+            })
         }
 
         if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
@@ -46,9 +45,8 @@ export class WalletService {
 
                     // Get the user's wallet address
                     const accounts = await this.web3.eth.getAccounts();
-                    // this.account = accounts[0];
 
-                    this.verifyAccount(accounts[0])
+                    return this.verifyAccount(accounts[0])
 
                 } catch (error) {
                     alert("User denied account access or there was an error signing the message");
@@ -61,6 +59,9 @@ export class WalletService {
             alert('No web3 provider found. Install Coin98 Wallet or another compatible wallet.');
             window.open('https://chromewebstore.google.com/detail/coin98-wallet/aeachknmefphepccionboohckonoeemg?hl=en', '_blank')
         }
+        return new Promise((resolve, reject) => {
+            reject(false)
+        })
     }
 
     async loginWalletWithProvider(name: string) {
@@ -97,7 +98,7 @@ export class WalletService {
             const signature = await this.web3.eth.personal.sign(message, account, '');
 
             const data = {
-                user_id: this.userInfo.user.id,
+                userId: this.userInfo.user.id,
                 address: account,
                 message: message,
                 signature: signature
@@ -119,12 +120,18 @@ export class WalletService {
             // studihub-acc-test
             // final cup rib ramp diesel focus pitch angry unlock artwork hungry odor   
         }
-
+        return new Promise((resolve, reject) => {
+            reject(false)
+        })
     }
     async getAccount(): Promise<string | undefined | null> {
         return this.account;
     }
 
+    async setAccount(account: string) {
+        this.account = account;
+        localStorage.setItem(this.KEY, account)
+    }
     async getBalance(): Promise<string> {
         if (this.account) {
             const balance = await this.web3.eth.getBalance(this.account);
@@ -134,6 +141,7 @@ export class WalletService {
     }
 
     async logout() {
+        this.account = undefined
         localStorage.removeItem(this.KEY)
     }
 }

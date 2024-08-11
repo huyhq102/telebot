@@ -18,10 +18,12 @@
             </div>
         </div>
     </div>
+
 <!-- 
     <div class="connect-btn" (click)="openWalletSheet()">
         Connect Wallet
-    </div> -->
+    </div> 
+-->
 
     <!-- <div class="is-connect-btn" (click)="openWalletSheet()">
         <img src="../../assets/fox.png" alt="">
@@ -34,7 +36,7 @@
         {{walletTxtMode}}
     </div>
     <div class="wallet-btn" *ngIf='walletAddress'>
-       <img src='../../assets/fox.svg' style='padding-right:10px'>
+       <img src='../../assets/cryptocurrency.gif' style='width:40px;padding-right:10px'>
         {{walletAddress.slice(0,18) + '...' + walletAddress.slice(-6)}}
         <img style='width:45px;padding-left: 20px;' src='../../assets/logout.png' (click)="logoutWallet()">
     </div>
@@ -118,6 +120,7 @@
         </div>
     </div>
 </div>
+
 <!-- <ngx-loading
     [show]="isChecking"
     [config]="{ backdropBorderRadius: '3px' }"

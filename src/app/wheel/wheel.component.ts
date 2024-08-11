@@ -13,19 +13,11 @@ const _defaultOpts = [
   "5 USDT 🎁",
   "500 STH", 
   "1000 STH", 
-  "1 Solana 🎉",
+  "1 SOL 🌟",
   "2000 STH", 
-  "5000 STH 🔥", 
+  "5000 STH", 
   "4000 STH", 
-  "10000 STH 🔥",
-  // "200 STH",
-  // "200 STH",
-  // "500 STH",
-  // "80 STH",
-  // "90 STH",
-  // "100 STH",
-  // "110 STH",
-  // "120 STH"
+  "10000 STH 🎉",
 ];
 
 @Component({
@@ -108,7 +100,6 @@ export class WheelComponent implements OnInit {
   mod = (n: number, m: number) => (n % m + m) % m;
 
   spinner() {
-    // this.spinToSector(5)
 		this.isDissible = true;
     this.spinLuckyWheel()
   }
@@ -143,7 +134,7 @@ export class WheelComponent implements OnInit {
             this.close();
           }
         });
-      }, 5000) 
+      }, 3000) 
     });
   }
 

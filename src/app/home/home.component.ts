@@ -151,7 +151,6 @@ export class HomeComponent implements OnInit {
       if (this.bonusStatus.spinLuckyWheelDaily == false) {
         this._bottomSheet.open(WheelComponent);
       }
-      // console.log(this.bonusStatus)
     })
   }
 
@@ -169,7 +168,6 @@ export class HomeComponent implements OnInit {
   gotoPage(page = '') {
     window.open(page)
   }
-
 
   check(entity_type: any, entity_id: any) {
     this.isChecking = true;
@@ -323,7 +321,7 @@ export class HomeComponent implements OnInit {
       this.checkWallet()
     } else {
       if (this.deviceService.isDesktop()) {
-        this.walletService.loginCoin98Wallet().then(async () => {
+        this.walletService.loginCoin98Wallet().then(async () => {          
           this.walletAddress = await this.walletService.getAccount()
         })
       } else {
@@ -335,12 +333,13 @@ export class HomeComponent implements OnInit {
 
   logoutWallet() {
     const data = {
-      user_id: this.userInfo.user.id 
+      userId: this.userInfo.user.id 
     }
+
     this.apiService.post(`logout-wallet`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
-      this.walletService.removeKey()
+      this.walletService.logout()
       this.walletAddress = undefined
-      // console.log(data)
+      this.walletTxtMode = 'Connect Wallet'
     })
   }
 
@@ -354,11 +353,11 @@ export class HomeComponent implements OnInit {
     this.apiService.post(`leaderboard`, data, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
       if (data.data[0].wallet_address) {
         this.walletAddress = data.data[0].wallet_address
+        this.walletService.setAccount(this.walletAddress)
       }
     })
   }
 }
-
 
 
 // https://jsfiddle.net/elin/7m3bL/

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class GlobalDataService {
@@ -8,7 +9,8 @@ userInfo: any;
 constructor(private http: HttpClient) {}
 
     loadUserInfo() {
-        return {
+        if (environment.production == false) {
+            return {
                 user: {
                     id: '1893048886',
                     first_name: '📚Son',
@@ -16,6 +18,7 @@ constructor(private http: HttpClient) {}
                 },
                  start_param: '1893048886'
             }
+        }
         // return {
         //     user: {
         //         id: '5976804079',

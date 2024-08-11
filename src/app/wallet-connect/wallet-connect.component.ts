@@ -33,24 +33,21 @@ export class WalletConnectComponent implements OnInit {
 
       // Get the user's wallet address
       const accounts = await web3.eth.getAccounts();
-      // account = accounts[0];
-      // alert('accoutn ' + accounts[0])
-      this.walletAddress = accounts[0]
 
       const message = "Sign in to Studihub.io";
-      const signature = await web3.eth.personal.sign(message, this.walletAddress, '');
+      const signature = await web3.eth.personal.sign(message, accounts[0], '');
 
       const data = {
         userId: this.id,
-        address: this.walletAddress,
+        address: accounts[0],
         message: message,
         signature: signature,
       }
 
       this.apiService.post(`verify-signature`, data, { 'Content-Type': 'application/json' }).subscribe((response: any) => {
+        this.walletAddress = accounts[0]
         // alert(JSON.stringify(response))
       })
-      // console.log('Connected accounts:', accounts);
     } catch (error:any) {
       // alert('Error connecting to MetaMask:'+ error.message);
     }
