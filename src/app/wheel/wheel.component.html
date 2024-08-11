@@ -1,5 +1,12 @@
 
 <div class="container">
+
+
+	<div class="pyro" *ngIf='isJackspot'>
+		<div class="before"></div>
+		<div class="after"></div>
+	</div>
+
    <div class="container-content">
 		<div class="header-close">
 			<img src="../../assets/close white.png" alt="" (click)="close()">
@@ -27,6 +34,3 @@
     [config]="{ backdropBorderRadius: '3px' }"
   ></ngx-loading> -->
 
-
-
-  

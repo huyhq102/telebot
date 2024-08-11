@@ -12,6 +12,8 @@ export enum PointEntityType {
     GotIconOnTelegramName = 10,
     DailyLuckyWheel = 11,
     PuzzleGame = 12,
+    DailyCommentOnX = 13,
+
 }
 
 export const PointAmount = {
@@ -27,4 +29,5 @@ export const PointAmount = {
     10: 1000,
     11: 1000,
     12: 1000,
+    13: 1000
 }

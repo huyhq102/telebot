@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -20,12 +21,18 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "@metamask/detect-provider": "^2.0.0",
+    "@walletconnect/web3-provider": "^1.8.0",
     "@zakarliuka/ng-telegram-webapp": "^1.0.6",
+    "@zakarliuka/tg-webapp-types": "^1.0.7",
     "axios": "^1.7.2",
+    "ethers": "^6.13.2",
+    "ngx-device-detector": "^8.0.0",
     "ngx-loading": "^2.0.1",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.12.2",
     "tslib": "^2.3.0",
+    "web3": "^4.11.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

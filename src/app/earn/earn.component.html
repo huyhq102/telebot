@@ -60,18 +60,36 @@
                 </div>
                 <div class="sub-item">
                     <div class="item-title">
+                        <img src="../../assets/x.png" alt="">
+                        <span>Comment 1 of our messages everyday on Studihub's X post</span>
+                        <img src="../../assets/right.png" alt="">
+                    </div>
+                    <div class="sub-point">
+                        <span>+1,000 Studihubs</span>
+
+                        <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[13]">
+
+                        <div *ngIf="! bonusStatus[13]">
+                            <button class="sub-btn" *ngIf='commentXModeSpinner=="determinate"' (click)="commentXPost()">Copy and Go</button>
+                            <mat-progress-spinner [diameter]="20" *ngIf='commentXModeSpinner=="indeterminate"' class="example-margin"
+                                [mode]="commentXModeSpinner" [value]="commentXSpinnerValue">
+                            </mat-progress-spinner>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-item">
+                    <div class="item-title">
                         <img src="../../assets/studihub icon.png" alt="">
-                        <span>Chat 10 messages on Studihub's Telegram community</span>
+                        <span>Chat 1 of our messages everyday on Studihub's Telegram community</span>
                         <img src="../../assets/right.png" alt="">
                     </div>
                     <div class="sub-point">
                         <span>+3,000 Studihubs</span>
 
-
                         <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[7]">
 
                         <div *ngIf="! bonusStatus[7]">
-                            <button class="sub-btn" (click)="gotoStudihubGroup()">Chat now</button>
+                            <button class="sub-btn" (click)="gotoStudihubGroup()">Copy and Go</button>
                         </div>
                     </div>
                 </div>
@@ -83,14 +101,14 @@
                     </div>
                     <div class="sub-point">
                         <span>+3,000 Studihubs</span>
-                        <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[8]">
+                        <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[9]">
 
-                        <div *ngIf="! bonusStatus[8]">
+                        <div *ngIf="! bonusStatus[9]">
                             <button class="sub-btn" (click)="gotoStudihubGroup()">Tag now</button>
                         </div>
                     </div>
                 </div>
-                <div class="sub-item">
+                <!-- <div class="sub-item">
                     <div class="item-title">
                         <img src="../../assets/studihub icon.png" alt="">
                         <span>Add 3 friends to Studihub's Telegram community</span>
@@ -98,13 +116,13 @@
                     </div>
                     <div class="sub-point">
                         <span>+3,000 Studihubs</span>
-                        <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[9]">
-                        <div *ngIf="! bonusStatus[9]">
+                        <img src="../../assets/Tick.png" alt="" *ngIf="bonusStatus[8]">
+                        <div *ngIf="! bonusStatus[8]">
                             <button class="sub-btn" (click)="gotoStudihubGroup()">Add now</button>
                         </div>
 
                     </div>
-                </div>
+                </div> -->
                 <div class="sub-item">
                     <div class="item-title">
                         <img src="../../assets/tele.png" alt="">

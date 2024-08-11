@@ -44,7 +44,8 @@ export class WelcomeComponent implements OnInit {
 
   goToScore() {
     // this.router.navigate(['/scores'])
-    this.loading = true
+    this.loading = true;
+    console.log(this.userInfo?.user?.id);
     if (
       this.userInfo?.user?.id
     ) {
