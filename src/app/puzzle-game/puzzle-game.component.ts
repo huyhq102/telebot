@@ -32,8 +32,8 @@ export class PuzzleGameComponent implements OnInit {
       display: 'flex',
       flexWrap: 'wrap',
       background: 'rgba(215, 210, 239, 1)',
-      width: '300px',
-      height: '300px',
+      width: '294px',
+      height: '294px',
       justifyContent: 'space-between',
       alignContent: 'space-between',
       margin: '0 auto',
@@ -81,8 +81,7 @@ export class PuzzleGameComponent implements OnInit {
                 const ctx = canvas.nativeElement.getContext('2d');
                 const x = index % 3;
                 const y = Math.floor(index / 3);
-    
-                ctx?.drawImage(this.dove, x * 90, y * 90, 90, 90, 0, 0, 100, 100);
+                ctx?.drawImage(this.dove, x * 90, y * 90, 90, 90, 0, 0, 90, 90);
               });
           }, 0);
       }
@@ -110,7 +109,7 @@ export class PuzzleGameComponent implements OnInit {
     moveCell(cell: any, shuffle?:boolean) {
       const direction = this.findDirectionToMove(cell);
       if (!direction) return;
-      const amount = 95;
+      const amount = 92;
       const duration = 100;
       const coef = {
         left: -1,
