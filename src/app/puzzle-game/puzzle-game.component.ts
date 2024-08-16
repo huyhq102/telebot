@@ -32,8 +32,8 @@ export class PuzzleGameComponent implements OnInit {
       display: 'flex',
       flexWrap: 'wrap',
       background: 'rgba(215, 210, 239, 1)',
-      width: '308px',
-      height: '308px',
+      width: '300px',
+      height: '300px',
       justifyContent: 'space-between',
       alignContent: 'space-between',
       margin: '0 auto',
@@ -43,7 +43,6 @@ export class PuzzleGameComponent implements OnInit {
     cellStyle = {
       background: 'rgba(191, 181, 229, 1)',
       height: '90px',
-      borderRadius: '8px',
       width: '90px',
       margin: '0px',
       cursor: 'pointer',
@@ -64,6 +63,9 @@ export class PuzzleGameComponent implements OnInit {
         this.dove.onload = () => {
             this.createCells();
             this.drawImages();
+						setTimeout(() => {
+							this.shuffle();
+						}, 0);
         };
     }
   
@@ -108,7 +110,7 @@ export class PuzzleGameComponent implements OnInit {
     moveCell(cell: any, shuffle?:boolean) {
       const direction = this.findDirectionToMove(cell);
       if (!direction) return;
-      const amount = 99;
+      const amount = 95;
       const duration = 100;
       const coef = {
         left: -1,
@@ -257,7 +259,6 @@ export class PuzzleGameComponent implements OnInit {
     }
 
 	ngOnInit(): void {
-        
 	}
 
 	close(): void {
