@@ -4,7 +4,7 @@
 </div>
 <div class="win-earn">
     <p>Win to earn</p>
-    <span>+ 250 Studihubs</span>
+    <span>+ 3000 Studihubs</span>
 </div>
 <div class="puzzle-container">
     <div [ngStyle]="boardStyle" #board>
@@ -27,10 +27,10 @@
       </div>
     </div>
   </div>
-  <div class="btn-start" (click)="shuffle()" *ngIf="isStart">
+  <div class="btn-start" (click)="shuffle()" *ngIf="! isStart">
     Start
   </div>
 
-  <div class="btn-restart" (click)="shuffle()" *ngIf="!isStart">
+  <div class="btn-restart" (click)="shuffle()" *ngIf="isStart">
     Restart
   </div>

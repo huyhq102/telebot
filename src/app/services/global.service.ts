@@ -9,7 +9,7 @@ userInfo: any;
 constructor(private http: HttpClient) {}
 
     loadUserInfo() {
-        if (environment.production == true) {
+        if (environment.production == false) {
             return {
                 user: {
                     id: '1893048886',

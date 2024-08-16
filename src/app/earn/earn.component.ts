@@ -86,6 +86,7 @@ export class EarnComponent implements OnInit {
 		"Experience the power of learning with Studihub!",
 		"🚀 Join Studihub today and transform your learning journey!"
 	]
+	puzzleGameStatus: any = {};
 
 	constructor(
 		private apiService: ApiService,
@@ -99,6 +100,8 @@ export class EarnComponent implements OnInit {
 		this.getDataUser();
 		this.getListUser();
 		this.getBonusStatus();
+		this.getPuzzleGameStatus();
+
 	}
 
 	getDataUser() {
@@ -244,6 +247,7 @@ export class EarnComponent implements OnInit {
 			timer: 300
 		})
 	}
+	
 	check(entity_type: any, entity_id: any) {
 		this.isChecking = true;
 		const data = {
@@ -365,12 +369,57 @@ export class EarnComponent implements OnInit {
 
 	checkBonus(state: any, entity_type: any, entity_id: any) {
 		const status = state.find((x: any) => x.entity_id = String(entity_id) && x.entity_type == entity_type)
+		console.log('XXX', entity_type, entity_id, status)
 		return status ? status.status : false
+	}
+
+	getPuzzleGameStatus() {
+		const payload = {
+			"user_id": this.userInfo.user.id,
+			"entity_list": [
+				{
+					"entity_type": PointEntityType.PuzzleGame,
+					"entity_id": 'assets/game1.jpg'
+				},
+				{
+					"entity_type": PointEntityType.PuzzleGame,
+					"entity_id": 'assets/game2.jpg'
+				},
+				{
+					"entity_type": PointEntityType.PuzzleGame,
+					"entity_id": 'assets/game3.jpg'
+				},
+				{
+					"entity_type": PointEntityType.PuzzleGame,
+					"entity_id": 'assets/game4.jpg'
+				},
+				{
+					"entity_type": PointEntityType.PuzzleGame,
+					"entity_id": 'assets/game5.jpg'
+				},
+				{
+					"entity_type": PointEntityType.PuzzleGame,
+					"entity_id": 'assets/game6.jpg'
+				},
+			]
+		}
+
+		this.apiService.post(`check-bonus-point`, payload, { 'Content-Type': 'application/json' }).subscribe((data: any) => {
+			for (const entity of data.data) {
+				this.puzzleGameStatus[entity.entity_id] = entity.status
+			}
+			console.log(this.puzzleGameStatus)
+		})
 	}
 
     openGame(image:any): void {
         this._bottomSheet.open(PuzzleGameComponent,{
             data: { image: image },
-          });
+        });
+		this._bottomSheet._openedBottomSheetRef?.afterDismissed().subscribe(()=>{
+			this.getPuzzleGameStatus()
+
+		})
+
     }
 }

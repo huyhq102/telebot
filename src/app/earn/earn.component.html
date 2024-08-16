@@ -164,9 +164,11 @@
 </div>
 
 <div class="container-game" *ngIf="isMiniGanme; else hasMinigame">
-    <div class="minigame">
+    <div class="minigame" *ngIf="puzzleGameStatus != undefined">
         <div class="puzzle" *ngFor="let item of gameList" [ngStyle]="{'background-image': 'url(' + item.image + ')'}">
-            <div class="btn-play" (click)="openGame(item.image)">Play</div>
+            <div *ngIf='! puzzleGameStatus?.[item.image]' class="btn-play" (click)="openGame(item.image)">Play</div>
+
+            <div *ngIf='puzzleGameStatus?.[item.image]' style="background-color: #63005e" class="btn-play">Completed</div>
         </div>
     </div>
 </div>
